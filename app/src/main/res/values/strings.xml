@@ -20,4 +20,10 @@
     <string name="boarding_second_button">Explore Your Path</string>
     <string name="boarding_third_button">Browse Opportunities</string>
     <string name="auth_choice_content">Welcome and Join Now to Start Your Journey</string>
+
+    <!--  Card Template  -->
+    <string name="title_card">Data Engineer</string>
+    <string name="subtitle_card">Create Scalable Data Infrastructure</string>
+    <string name="view_more">View more</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At purus tellus arcu sit nibh consectetur.</string>
 </resources>

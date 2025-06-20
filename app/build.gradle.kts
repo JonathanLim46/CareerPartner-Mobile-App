@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.dotsindicator)
     implementation(libs.lottie)
+    implementation(libs.androidx.cardview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
