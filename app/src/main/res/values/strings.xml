@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">CareerPartner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  OnBoarding  -->
+    <string name="boarding_title_one">Your Career, Your Vision</string>"
+    <string name="boarding_content_one">
+        Turn your career dreams into reality by discovering the path that aligns with your strengths and passions.
+    </string>
+    <string name="boarding_title_two">Grow Your Skills, Reach Your Dream Career</string>
+    <string name="boarding_content_two">
+        Receive personalized job and learning recommendations for your career goals. Build your future one step at a time.
+    </string>
+    <string name="boarding_title_three">Discover Internships &amp; Volunteer Opportunities</string>
+    <string name="boarding_content_three">
+        Stay updated with curated, real-world experiences to boost your career from trusted companies and organizations.
+    </string>
+    <string name="boarding_first_button">Get Started</string>
+    <string name="boarding_second_button">Explore Your Path</string>
+    <string name="boarding_third_button">Browse Opportunities</string>
+    <string name="auth_choice_content">Welcome and Join Now to Start Your Journey</string>
 </resources>

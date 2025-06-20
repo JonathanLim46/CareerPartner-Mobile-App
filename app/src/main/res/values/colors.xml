@@ -2,5 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_boarding">#F5F7FF</color>
     <color name="primary_color">#2155FF</color>
+    <color name="gradient"></color>
 </resources>

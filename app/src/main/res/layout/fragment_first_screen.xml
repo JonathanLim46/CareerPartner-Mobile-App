@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".onboarding.screen.FirstScreenFragment">
+
+    <TextView
+        android:id="@+id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:textSize="12sp"
+        android:layout_margin="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/ivLogoBoarding"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:contentDescription="LOGO ONBOARDING"
+        android:src="@drawable/logo_onboarding"
+        app:layout_constraintTop_toBottomOf="@+id/tvSkip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/ivBoardingContent"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:contentDescription="Onboarding Image"
+        android:src="@drawable/one_boarding"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoBoarding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvHeaderBoardingOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/boarding_title_one"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/ivBoardingContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvDescriptionBoardingOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/boarding_content_one"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeaderBoardingOne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBoardingOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/boarding_first_button"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_gradient"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

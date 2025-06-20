@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/boardingFragment">
+
+    <fragment
+        android:id="@+id/boardingFragment"
+        android:name="com.example.careerpartner.SplashFragment"
+        android:label="fragment_boarding"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_boardingFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment"
+            app:popUpTo="@id/boardingFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_boardingFragment_to_authChoiceFragment"
+            app:destination="@id/authChoiceFragment"
+            app:popUpTo="@id/boardingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.careerpartner.onboarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_authChoiceFragment"
+            app:destination="@id/authChoiceFragment"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/authChoiceFragment"
+        android:name="com.example.careerpartner.auth.ui.AuthChoiceFragment"
+        android:label="fragment_auth_choice"
+        tools:layout="@layout/fragment_auth_choice" />
+</navigation>
