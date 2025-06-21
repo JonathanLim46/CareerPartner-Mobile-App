@@ -36,5 +36,13 @@
         android:id="@+id/authChoiceFragment"
         android:name="com.example.careerpartner.auth.ui.AuthChoiceFragment"
         android:label="fragment_auth_choice"
-        tools:layout="@layout/fragment_auth_choice" />
+        tools:layout="@layout/fragment_auth_choice" >
+        <action
+            android:id="@+id/action_authChoiceFragment_to_my_nav_main"
+            app:destination="@id/my_nav_main"
+            app:popUpTo="@id/authChoiceFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <include app:graph="@navigation/my_nav_main"/>
 </navigation>

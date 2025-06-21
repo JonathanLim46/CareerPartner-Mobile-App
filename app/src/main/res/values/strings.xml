@@ -26,4 +26,9 @@
     <string name="subtitle_card">Create Scalable Data Infrastructure</string>
     <string name="view_more">View more</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At purus tellus arcu sit nibh consectetur.</string>
+
+    <!--  Menu  -->
+    <string name="menu_home">Home</string>
+    <string name="menu_discover">Discover</string>
+    <string name="menu_profile">Profile</string>
 </resources>
