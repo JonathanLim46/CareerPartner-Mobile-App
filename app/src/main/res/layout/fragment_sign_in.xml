@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".auth.ui.SignInFragment"
+    android:background="@drawable/background_apk">
+
+
+    <ImageView
+        android:id="@+id/ivBackgroundBiru"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:contentDescription="BACKGROUND BIRU"
+        android:src="@drawable/background_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ivLogoBack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/back"
+        android:contentDescription="ICON BACK"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivBackgroundBiru"/>
+
+    <ImageView
+        android:id="@+id/ivLogoSign"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:contentDescription="LOGO SIGN IN"
+        android:src="@drawable/logo_sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-20dp"
+        />
+
+    <FrameLayout
+        android:id="@+id/flBoxPutih"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:elevation="10dp"
+        android:background="@drawable/background_putih"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoSign"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/button_gradient"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tvHeaderSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvHeaderSignIn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start The Journey Now!"
+            android:textStyle="normal"
+            android:textColor="@color/abu"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="56dp" />
+
+        <TextView
+            android:id="@+id/tvUsernameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginStart="16dp"
+            android:text="Username"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPasswordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginStart="16dp"
+            android:text="Pssword"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="110dp"
+            android:layout_marginHorizontal="16dp"
+            android:hint="Username"
+            style="@style/CustomTextInputLayout"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:placeholderText="Masukkan Username"
+            app:placeholderTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernamelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginHorizontal="16dp"
+            android:hint="Password"
+            style="@style/CustomTextInputLayout"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:placeholderText="Masukkan Password"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:padding="13dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvAlreadyHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?"
+        android:textSize="14sp"
+        android:textColor="@color/abu"
+        app:layout_constraintTop_toBottomOf="@+id/flBoxPutih"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="14sp"
+        android:textColor="@color/primary_color"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:backgroundTint="@null"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlreadyHaveAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-5dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+

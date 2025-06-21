@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/primary_color</item>
+        <item name="boxBackgroundColor">@color/bg_boarding</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+    </style>
+
+
+    <style name="HintTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/primary_color</item>
+    </style>
+</resources>
