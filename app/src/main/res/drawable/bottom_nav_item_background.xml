@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Transparan latar -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+    <!-- Indicator bar di bawah -->
+    <item
+        android:bottom="8dp"
+        android:top="56dp"
+        android:gravity="center_horizontal">
+        <shape android:shape="rectangle">
+            <size
+                android:width="56dp"
+                android:height="1dp" />
+            <gradient
+                android:startColor="#2155FF"
+                android:endColor="#73C2FF"
+                android:angle="45"/>
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+</layer-list>
