@@ -91,8 +91,9 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="120dp"
             android:layout_marginHorizontal="16dp"
-            android:hint="Username"
             style="@style/CustomTextInputLayout"
+            app:boxBackgroundColor="@android:color/white"
+            app:placeholderText="Enter Username"
             app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -123,18 +124,19 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="200dp"
             android:layout_marginHorizontal="16dp"
-            android:hint="Email"
             style="@style/CustomTextInputLayout"
+            app:boxBackgroundColor="@android:color/white"
+            app:placeholderText="Enter Email"
             app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:padding="14dp"
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                android:inputType="textEmailAddress" />
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -156,9 +158,10 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="280dp"
             android:layout_marginHorizontal="16dp"
-            android:hint="Password"
             style="@style/CustomTextInputLayout"
-            app:boxBackgroundMode="outline">
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="outline"
+            app:placeholderText="Enter Password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordInput"
@@ -189,9 +192,10 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="360dp"
             android:layout_marginHorizontal="16dp"
-            android:hint="Confirm Password"
             style="@style/CustomTextInputLayout"
             app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@android:color/white"
+            app:placeholderText="Enter Confirm Password"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -203,7 +207,6 @@
                 android:padding="13dp"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/checkboxAgree"
@@ -240,10 +243,11 @@
         app:layout_constraintTop_toBottomOf="@+id/flBoxPutih"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="-35dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/tvSignUp"
+        android:id="@+id/tvSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
@@ -253,10 +257,9 @@
         android:textAllCaps="false"
         android:backgroundTint="@null"
         android:background="@android:color/transparent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlreadyHaveAccount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="-5dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvAlreadyHaveAccount"
+        app:layout_constraintStart_toEndOf="@+id/tvAlreadyHaveAccount"
+        android:layout_marginStart="-15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
