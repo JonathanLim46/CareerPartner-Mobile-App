@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:theme="@style/Theme.CareerPartner"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:theme="@style/Theme.CareerPartner">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -21,18 +21,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
         app:navGraph="@navigation/my_nav" />
-    
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:paddingTop="4dp"
-        app:itemPaddingBottom="24dp"
-        app:itemIconTint="@color/bottom_nav_selector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:visibility="visible"
+        app:elevation="8dp"
+        app:labelVisibilityMode="labeled"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:itemBackground="@drawable/bottom_nav_item_selector"
-        app:menu="@menu/my_navigation_items"
-        android:visibility="invisible"
+        app:itemPaddingBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/my_navigation_items" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
