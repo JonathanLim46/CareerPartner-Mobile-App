@@ -20,6 +20,9 @@ class AuthChoiceFragment : Fragment() {
         view.findViewById<AppCompatButton>(R.id.btnSignIn).setOnClickListener {
             findNavController().navigate(R.id.action_authChoiceFragment_to_my_nav_main)
         }
+        view.findViewById<AppCompatButton>(R.id.btnSignUp).setOnClickListener {
+            findNavController().navigate(R.id.action_authChoiceFragment_to_signUpFragment)
+        }
         return view
     }
 }
