@@ -216,7 +216,9 @@
             android:layout_marginTop="415dp"
             android:text="I Agree with The Terms and Conditions"
             android:textSize="14sp"
-            android:buttonTint="@color/primary_color" />
+            android:checked="true"
+            app:buttonTint="@color/primary_color"
+            android:theme="@style/Widget.MaterialComponents.CompoundButton.CheckBox" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
