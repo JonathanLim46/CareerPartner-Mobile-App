@@ -36,5 +36,21 @@
         android:id="@+id/authChoiceFragment"
         android:name="com.example.careerpartner.auth.ui.AuthChoiceFragment"
         android:label="fragment_auth_choice"
-        tools:layout="@layout/fragment_auth_choice" />
+        tools:layout="@layout/fragment_auth_choice" >
+        <action
+            android:id="@+id/action_authChoiceFragment_to_my_nav_main"
+            app:destination="@id/my_nav_main"
+            app:popUpTo="@id/authChoiceFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_authChoiceFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+
+    <include app:graph="@navigation/my_nav_main"/>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.careerpartner.auth.ui.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
