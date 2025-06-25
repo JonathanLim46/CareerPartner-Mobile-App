@@ -63,11 +63,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ivChangesImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="@drawable/changes"
             android:layout_marginTop="150dp"
-            android:layout_marginStart="230dp"
+            android:layout_marginStart="220dp"
             android:contentDescription="ICON CHANGES IMAGE"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivBackgroundBiru" />
