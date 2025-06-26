@@ -41,8 +41,8 @@
             android:id="@+id/action_authChoiceFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_authChoiceFragment_to_finishUpEducationFragment"
-            app:destination="@id/finishUpEducationFragment" />
+            android:id="@+id/action_authChoiceFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
 
     <include app:graph="@navigation/my_nav_main"/>
@@ -99,5 +99,14 @@
             app:destination="@id/my_nav_main"
             app:popUpTo="@id/finishUpEndFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.careerpartner.auth.ui.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_finishUpEducationFragment"
+            app:destination="@id/finishUpEducationFragment" />
     </fragment>
 </navigation>
