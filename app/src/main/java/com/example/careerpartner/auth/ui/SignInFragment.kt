@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import com.example.careerpartner.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +37,20 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        val view = inflater.inflate(R.layout.fragment_sign_in, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val btnSignIn = view.findViewById<Button>(R.id.btnSignIn)
+        val btnBack = view.findViewById<Button>(R.id.ivLogoBack)
+        btnSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_finishUpEducationFragment)
+        }
+        btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     companion object {

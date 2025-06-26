@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".finishup.ui.FinishUpSkillsFragment">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:background="@drawable/background_gradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:contentDescription="Logo Career Partner"
+        android:src="@drawable/logo_sign_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardFinishUp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="84dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvFinishUpTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp"
+                android:text="@string/finish_up_title"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--      Progress Anchor Start      -->
+            <View
+                android:id="@+id/progressAnchor"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvFinishUpTitle" />
+
+            <View
+                android:id="@+id/circleEdu"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/shape_circle_gradient"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintStart_toStartOf="@id/progressAnchor"
+                app:layout_constraintTop_toTopOf="@+id/progressAnchor" />
+
+            <TextView
+                android:id="@+id/tvTitleEdu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/education_title"
+                android:textAlignment="center"
+                android:textColor="@color/finish_up_color_active"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/circleEdu"
+                app:layout_constraintStart_toStartOf="@+id/circleEdu"
+                app:layout_constraintTop_toBottomOf="@+id/circleEdu" />
+
+            <View
+                android:id="@+id/lineOne"
+                android:layout_width="64dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintEnd_toStartOf="@id/circleInterests"
+                app:layout_constraintStart_toEndOf="@id/circleEdu"
+                app:layout_constraintTop_toTopOf="@id/progressAnchor" />
+
+            <View
+                android:id="@+id/circleInterests"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/shape_circle_gradient"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintStart_toEndOf="@id/lineOne"
+                app:layout_constraintTop_toTopOf="@id/progressAnchor" />
+
+            <TextView
+                android:id="@+id/tvTitleInterests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/interests_title"
+                android:textAlignment="center"
+                android:textColor="@color/finish_up_color_active"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/circleInterests"
+                app:layout_constraintStart_toStartOf="@+id/circleInterests"
+                app:layout_constraintTop_toBottomOf="@+id/circleInterests" />
+
+            <View
+                android:id="@+id/lineTwo"
+                android:layout_width="64dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintEnd_toStartOf="@id/circleSkills"
+                app:layout_constraintStart_toEndOf="@id/circleInterests"
+                app:layout_constraintTop_toTopOf="@id/progressAnchor" />
+
+            <View
+                android:id="@+id/circleSkills"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/shape_circle_gradient"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintStart_toEndOf="@id/lineTwo"
+                app:layout_constraintTop_toTopOf="@id/progressAnchor" />
+
+            <TextView
+                android:id="@+id/tvTitleSkills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skills_title"
+                android:textAlignment="center"
+                android:textColor="@color/finish_up_color_active"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/circleSkills"
+                app:layout_constraintStart_toStartOf="@+id/circleSkills"
+                app:layout_constraintTop_toBottomOf="@+id/circleSkills" />
+
+            <View
+                android:id="@+id/lineThree"
+                android:layout_width="64dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintEnd_toStartOf="@id/circleExp"
+                app:layout_constraintStart_toEndOf="@id/circleSkills"
+                app:layout_constraintTop_toTopOf="@id/progressAnchor" />
+
+            <View
+                android:id="@+id/circleExp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/shape_circle"
+                app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
+                app:layout_constraintStart_toEndOf="@id/lineThree"
+                app:layout_constraintTop_toTopOf="@id/progressAnchor" />
+
+            <TextView
+                android:id="@+id/tvTitleExp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/experience_title"
+                android:textAlignment="center"
+                android:textColor="@color/finish_up_color_active"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/circleExp"
+                app:layout_constraintStart_toStartOf="@+id/circleExp"
+                app:layout_constraintTop_toBottomOf="@+id/circleExp" />
+
+            <!--      Progress Anchor End      -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="84dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressAnchor">
+
+                <TextView
+                    android:id="@+id/tvTitleInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_your_skills"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="false"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    >
+
+                </com.google.android.material.chip.ChipGroup>
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnContinue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="64dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_gradient"
+                android:text="Continue"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
