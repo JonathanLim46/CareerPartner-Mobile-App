@@ -31,4 +31,20 @@
     <string name="menu_home">Home</string>
     <string name="menu_discover">Discover</string>
     <string name="menu_profile">Profile</string>
+
+    <!-- Finish Up Account -->
+    <string name="finish_up_title">Finish Up Your Account</string>
+    <string name="education_title">Education</string>
+    <string name="interests_title">Interests</string>
+    <string name="skills_title">Skills</string>
+    <string name="experience_title">Experience</string>
+
+    <string name="select_your_last_education">Select Your Last Education</string>
+    <string name="select_your_interests">What\'s Your Interests ?</string>
+    <string name="select_your_skills">What\'s Your Skills ?</string>
+    <string name="select_your_experience">Let\'s Talk About Your Experience</string>"
+    <string name="experience_subtitle">Share any activity, project, or role that helped you grow at school, work, or, in your community.</string>
+
+    <string name="welcome_aboard">You\'re In! Welcome Aboard</string>
+    <string name="sub_aboard">Start building your future, we\'ll guide you every step of the way.</string>
 </resources>
