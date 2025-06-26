@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".main.ui.SupportHelpFragment"
+        android:background="@drawable/background_apk">
+
+    <ImageView
+        android:id="@+id/ivBackgroundBiru"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:contentDescription="BACKGROUND BIRU"
+        android:src="@drawable/background_gradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ivLogoBack1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/back"
+            android:contentDescription="ICON BACK SUPPORT HELP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivBackgroundBiru"/>
+
+    <TextView
+        android:id="@+id/tvSupportHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="18dp"
+        android:text="Support and Help"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivLogoBack1"
+        app:layout_constraintTop_toTopOf="@+id/ivLogoBack1" />
+
+    <FrameLayout
+        android:id="@+id/flBoxPutih"
+        android:layout_width="350dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_putih"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSupportHelp">
+
+        <ImageView
+            android:id="@+id/imageViewGradient"
+            android:layout_width="300dp"
+            android:layout_height="155dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-195dp"
+            android:background="@drawable/shape_gradient" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-245dp"
+            android:layout_marginRight="70dp"
+            android:padding="8dp"
+            android:text="Contact Support"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="3dp"
+            android:padding="8dp"
+            android:text="Need technical assistance or have a question?"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="78dp"
+            android:layout_marginRight="63dp"
+            android:padding="8dp"
+            android:text="Our team is here to help."
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="115dp"
+            android:layout_marginRight="47dp"
+            android:padding="8dp"
+            android:text="Email: support@careermate.id"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="133dp"
+            android:layout_marginRight="59dp"
+            android:padding="8dp"
+            android:text="Phone: +62 87861658909"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="190dp"
+            android:layout_marginRight="25dp"
+            android:padding="8dp"
+            android:text="Frequently Asked Questions (FAQ)"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="225dp"
+            android:layout_marginRight="1dp"
+            android:padding="8dp"
+            android:text="How do I change my selected career path?"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/textViewDescription6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="250dp"
+            android:layout_marginRight="-65dp"
+            android:padding="8dp"
+            android:text="To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals. "
+            android:textSize="12sp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textStyle="normal"
+            android:justificationMode="inter_word"/>
+
+        <TextView
+            android:id="@+id/textViewDescription7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="325dp"
+            android:layout_marginRight="1dp"
+            android:padding="8dp"
+            android:text="Can I view detailed information about internships and volunteer?"
+            android:textStyle="bold"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="365dp"
+            android:layout_marginRight="-65dp"
+            android:padding="8dp"
+            android:text="To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals. "
+            android:textSize="12sp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textStyle="normal"
+            android:justificationMode="inter_word"/>
+
+        <TextView
+            android:id="@+id/textViewDescription9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="440dp"
+            android:layout_marginRight="1dp"
+            android:padding="8dp"
+            android:text="Is support available through a Live Chat Bot?"
+            android:textStyle="bold"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewDescription10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="480dp"
+            android:layout_marginRight="-65dp"
+            android:padding="8dp"
+            android:text="To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals. "
+            android:textSize="12sp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textStyle="normal"
+            android:justificationMode="inter_word"/>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
