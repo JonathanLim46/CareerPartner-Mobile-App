@@ -1,4 +1,4 @@
-package com.example.careerpartner.main.ui
+package com.example.careerpartner.main.home
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
