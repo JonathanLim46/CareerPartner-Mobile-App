@@ -7,6 +7,10 @@ android {
     namespace = "com.example.careerpartner"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.careerpartner"
         minSdk = 33
