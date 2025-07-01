@@ -18,7 +18,7 @@ class AuthChoiceFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_auth_choice, container, false)
         view.findViewById<AppCompatButton>(R.id.btnSignIn).setOnClickListener {
-            findNavController().navigate(R.id.action_authChoiceFragment_to_my_nav_main)
+            findNavController().navigate(R.id.action_authChoiceFragment_to_signInFragment)
         }
         view.findViewById<AppCompatButton>(R.id.btnSignUp).setOnClickListener {
             findNavController().navigate(R.id.action_authChoiceFragment_to_signUpFragment)

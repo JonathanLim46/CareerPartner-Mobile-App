@@ -5,5 +5,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bg_boarding">#F5F7FF</color>
     <color name="primary_color">#2155FF</color>
-    <color name="gradient"></color>
+    <color name="finish_up_color_active">#717D96</color>
+    <color name="finish_up_color_inactive">#989FB1</color>"
+    <color name="finish_up_line">#D1DCFF</color>
+    <color name="orange">#FFBB00</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="background">#F5F7FF</color>
 </resources>

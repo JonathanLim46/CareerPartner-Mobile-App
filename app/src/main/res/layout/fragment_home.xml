@@ -4,15 +4,267 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.ui.HomeFragment">
+    android:background="@color/background"
+    tools:context=".main.home.HomeFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pattern_onboarding"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <TextView
+        android:id="@+id/tvHomeHello"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_user"
+        android:textSize="20sp"
+        android:textColor="@color/abu"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHomeHelloSub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_user_sub"
+        android:textSize="12sp"
+        android:textColor="@color/abu"
+        android:textStyle="normal"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeHello"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeHello" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo_splash"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toTopOf="@+id/tvHomeHello"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHomeHelloSub"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCourseProgress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="30dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeHelloSub"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="20dp"
+            android:background="@drawable/button_gradient"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivLogoModuleCourse"
+                android:layout_width="92dp"
+                android:layout_height="96dp"
+                android:src="@drawable/dummyimg"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvHomeCardModule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/card_home_title_career"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/ivLogoModuleCourse"
+                app:layout_constraintTop_toTopOf="@+id/ivLogoModuleCourse"
+                />
+
+            <TextView
+                android:id="@+id/tvHomeCardSubModule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/card_home_module_title_career"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tvHomeCardModule"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeCardModule"
+                />
+
+            <TextView
+                android:id="@+id/tvHomeCardCourseTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/card_home_module_career"
+                android:maxLength="40"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textStyle="normal"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tvHomeCardModule"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeCardSubModule"
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_marginEnd="8dp"
+                android:progressDrawable="@drawable/background_progress_bar"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeCardCourseTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvHomeCardCourseTitle"
+                app:layout_constraintEnd_toStartOf="@+id/tvProgress"
+                />
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="2/7 steps"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintBottom_toBottomOf="@id/progressBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardCourseProgress"
+        app:layout_constraintStart_toStartOf="@+id/cardCourseProgress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardCourseProgress"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/tvHomeIntershipTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/home_internships_title"
+                android:textStyle="bold"
+                android:textColor="@color/abu"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvViewMore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/view_more"
+                android:textStyle="normal"
+                android:textColor="@color/finish_up_color_inactive"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/tvHomeIntershipTitle"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHomeIntershipTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvInternship"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="horizontal"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeIntershipTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvHomeVolunteerTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/home_volunteer_title"
+                android:textStyle="bold"
+                android:textColor="@color/abu"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/rvInternship"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvViewMoreTwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/view_more"
+                android:textStyle="normal"
+                android:textColor="@color/finish_up_color_inactive"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/tvHomeVolunteerTitle"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHomeVolunteerTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvVolunteer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="horizontal"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tvHomeVolunteerTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOME FRAGMENT"
-        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Live Chat Bot"
+        android:src="@drawable/icon_chat_bot"
+        app:tint="@null"
+        app:maxImageSize="90dp"
+        app:backgroundTint="@color/white"
+        app:fabSize="normal"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

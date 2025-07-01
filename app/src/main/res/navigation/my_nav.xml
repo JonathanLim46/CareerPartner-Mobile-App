@@ -38,13 +38,11 @@
         android:label="fragment_auth_choice"
         tools:layout="@layout/fragment_auth_choice" >
         <action
-            android:id="@+id/action_authChoiceFragment_to_my_nav_main"
-            app:destination="@id/my_nav_main"
-            app:popUpTo="@id/authChoiceFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_authChoiceFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_authChoiceFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
 
     <include app:graph="@navigation/my_nav_main"/>
@@ -53,4 +51,62 @@
         android:name="com.example.careerpartner.auth.ui.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/finishUpEducationFragment"
+        android:name="com.example.careerpartner.finishup.ui.FinishUpEducationFragment"
+        android:label="fragment_finish_up_education"
+        tools:layout="@layout/fragment_finish_up_education" >
+        <action
+            android:id="@+id/action_finishUpEducationFragment_to_finishUpInterestsFragment"
+            app:destination="@id/finishUpInterestsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishUpInterestsFragment"
+        android:name="com.example.careerpartner.finishup.ui.FinishUpInterestsFragment"
+        android:label="fragment_finish_up_interests"
+        tools:layout="@layout/fragment_finish_up_interests" >
+        <action
+            android:id="@+id/action_finishUpInterestsFragment_to_finishUpSkillsFragment"
+            app:destination="@id/finishUpSkillsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishUpSkillsFragment"
+        android:name="com.example.careerpartner.finishup.ui.FinishUpSkillsFragment"
+        android:label="fragment_finish_up_skills"
+        tools:layout="@layout/fragment_finish_up_skills" >
+        <action
+            android:id="@+id/action_finishUpSkillsFragment_to_finishUpExperienceFragment"
+            app:destination="@id/finishUpExperienceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishUpExperienceFragment"
+        android:name="com.example.careerpartner.finishup.ui.FinishUpExperienceFragment"
+        android:label="fragment_finish_up_experience"
+        tools:layout="@layout/fragment_finish_up_experience" >
+        <action
+            android:id="@+id/action_finishUpExperienceFragment_to_finishUpEndFragment"
+            app:destination="@id/finishUpEndFragment"
+            app:popUpTo="@id/my_nav_main"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishUpEndFragment"
+        android:name="com.example.careerpartner.finishup.ui.FinishUpEndFragment"
+        android:label="fragment_finish_up_end"
+        tools:layout="@layout/fragment_finish_up_end" >
+        <action
+            android:id="@+id/action_finishUpEndFragment_to_my_nav_main"
+            app:destination="@id/my_nav_main"
+            app:popUpTo="@id/finishUpEndFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.careerpartner.auth.ui.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_finishUpEducationFragment"
+            app:destination="@id/finishUpEducationFragment" />
+    </fragment>
 </navigation>

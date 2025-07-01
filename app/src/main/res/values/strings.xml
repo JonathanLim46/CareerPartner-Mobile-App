@@ -31,4 +31,38 @@
     <string name="menu_home">Home</string>
     <string name="menu_discover">Discover</string>
     <string name="menu_profile">Profile</string>
+
+    <!-- Finish Up Account -->
+    <string name="finish_up_title">Finish Up Your Account</string>
+    <string name="education_title">Education</string>
+    <string name="interests_title">Interests</string>
+    <string name="skills_title">Skills</string>
+    <string name="experience_title">Experience</string>
+
+    <string name="select_your_last_education">Select Your Last Education</string>
+    <string name="select_your_interests">What\'s Your Interests ?</string>
+    <string name="select_your_skills">What\'s Your Skills ?</string>
+    <string name="select_your_experience">Let\'s Talk About Your Experience</string>"
+    <string name="experience_subtitle">Share any activity, project, or role that helped you grow at school, work, or, in your community.</string>
+
+    <string name="welcome_aboard">You\'re In! Welcome Aboard</string>
+    <string name="sub_aboard">Start building your future, we\'ll guide you every step of the way.</string>
+
+    <!-- Home Fragment -->
+    <string name="hello_user">Hello, Jonathan Lim</string>
+    <string name="hello_user_sub">Your future career Frontend Engineer</string>
+    <string name="card_home_title_career">Build Your Career</string>
+    <string name="card_home_module_title_career">Modules You Need to Learn</string>
+    <string name="card_home_module_career">CSS Tutorial 0 Full Course for Begineers</string>
+
+    <string name="home_internships_title">Internships Just for You</string>
+    <string name="home_volunteer_title">Fresh Volunteer Openings</string>
+
+    <string name="card_title_content">Data Engineer</string>
+    <string name="card_subtitle_content">Create Scalable Data Infrastructure</string>
+    <string name="card_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At purus tellus arcu sit nibh consectetur.</string>
+
+    <!-- Discover Fragment -->
+    <string name="discover_title">Boost Your Career Journey</string>
+    <string name="discover_sub_title">Find the right internships, meaningful volunteer work, and essential skills to move forward.</string>
 </resources>
