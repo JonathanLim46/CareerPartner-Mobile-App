@@ -1,4 +1,4 @@
-package com.example.careerpartner.main.ui
+package com.example.careerpartner.main.discover
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.careerpartner.R
 
-class ProfileFragment : Fragment() {
+class DiscoverDetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_discover_detail, container, false)
     }
 }

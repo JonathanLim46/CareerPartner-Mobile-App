@@ -1,4 +1,4 @@
-package com.example.careerpartner.main.ui
+package com.example.careerpartner.main.home
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
@@ -13,12 +13,15 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
+import com.example.careerpartner.databinding.FragmentHomeBinding
 import com.example.careerpartner.main.adapter.HomeAdapter
 import com.example.careerpartner.main.data.HomeData
 
 class HomeFragment : Fragment() {
 
     private var currentProgress = 0
+    private var _binding : FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var progressBar : ProgressBar
     private lateinit var rvInternship : RecyclerView
     private lateinit var rvVolunteer : RecyclerView
@@ -26,7 +29,6 @@ class HomeFragment : Fragment() {
     private lateinit var adapterVolunteer : HomeAdapter
     private lateinit var internshipsData : List<HomeData>
     private lateinit var volunteerData : List<HomeData>
-
     private lateinit var rawData : List<List<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,20 +45,19 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
         return view
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        progressBar = view.findViewById(R.id.progressBar)
-        rvInternship = view.findViewById(R.id.rvInternship)
-        rvVolunteer = view.findViewById(R.id.rvVolunteer)
-
-        val tvProgressCourse = view.findViewById<TextView>(R.id.tvProgress)
+        progressBar = binding.progressBar
+        rvInternship = binding.rvInternship
+        rvVolunteer = binding.rvVolunteer
 
         val pathCourse = arrayOf("HTML", "CSS", "JS", "PHP", "LARAVEL")
         val currentCourse = "CSS"
@@ -72,7 +73,7 @@ class HomeFragment : Fragment() {
         val color = ContextCompat.getColor(requireContext(), colorResId)
         progressBar.progressTintList = ColorStateList.valueOf(color)
 
-        tvProgressCourse.text = "$currentProgress/${progressBar.max} steps"
+        binding.tvProgress.text = "$currentProgress/${progressBar.max} steps"
         internshipsData()
         volunteersData()
     }
