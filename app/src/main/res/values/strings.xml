@@ -62,4 +62,7 @@
     <string name="card_subtitle_content">Create Scalable Data Infrastructure</string>
     <string name="card_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At purus tellus arcu sit nibh consectetur.</string>
 
+    <!-- Discover Fragment -->
+    <string name="discover_title">Boost Your Career Journey</string>
+    <string name="discover_sub_title">Find the right internships, meaningful volunteer work, and essential skills to move forward.</string>
 </resources>
