@@ -9,12 +9,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
 import com.example.careerpartner.main.discover.data.DiscoverData
 
-class DiscoverDataAdapter(private val discoverData : List<DiscoverData>) : RecyclerView.Adapter<DiscoverDataAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class DiscoverDataAdapter(private var discoverData : List<DiscoverData> = emptyList()) : RecyclerView.Adapter<DiscoverDataAdapter.ViewHolder>() {
+
+    var onItemClick: ((DiscoverData) -> Unit)? = null
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.tvTitleCardDiscover)
         val subTitle: TextView = itemView.findViewById(R.id.tvSubTitleCardDiscover)
         val contentCard: TextView = itemView.findViewById(R.id.tvContentCardDiscover)
         val imageCard: ImageView = itemView.findViewById(R.id.ivCardDiscover)
+
+        init {
+            itemView.setOnClickListener{
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick?.invoke(discoverData[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
