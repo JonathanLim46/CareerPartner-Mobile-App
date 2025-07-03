@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/authChoiceFragment"
-        android:name="com.example.careerpartner.auth.ui.AuthChoiceFragment"
+        android:name="com.example.careerpartner.auth.screen.AuthChoiceFragment"
         android:label="fragment_auth_choice"
         tools:layout="@layout/fragment_auth_choice" >
         <action
@@ -48,12 +48,12 @@
     <include app:graph="@navigation/my_nav_main"/>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.careerpartner.auth.ui.SignUpFragment"
+        android:name="com.example.careerpartner.auth.screen.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <fragment
         android:id="@+id/finishUpEducationFragment"
-        android:name="com.example.careerpartner.finishup.ui.FinishUpEducationFragment"
+        android:name="com.example.careerpartner.finishup.screen.FinishUpEducationFragment"
         android:label="fragment_finish_up_education"
         tools:layout="@layout/fragment_finish_up_education" >
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishUpInterestsFragment"
-        android:name="com.example.careerpartner.finishup.ui.FinishUpInterestsFragment"
+        android:name="com.example.careerpartner.finishup.screen.FinishUpInterestsFragment"
         android:label="fragment_finish_up_interests"
         tools:layout="@layout/fragment_finish_up_interests" >
         <action
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishUpSkillsFragment"
-        android:name="com.example.careerpartner.finishup.ui.FinishUpSkillsFragment"
+        android:name="com.example.careerpartner.finishup.screen.FinishUpSkillsFragment"
         android:label="fragment_finish_up_skills"
         tools:layout="@layout/fragment_finish_up_skills" >
         <action
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishUpExperienceFragment"
-        android:name="com.example.careerpartner.finishup.ui.FinishUpExperienceFragment"
+        android:name="com.example.careerpartner.finishup.screen.FinishUpExperienceFragment"
         android:label="fragment_finish_up_experience"
         tools:layout="@layout/fragment_finish_up_experience" >
         <action
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/finishUpEndFragment"
-        android:name="com.example.careerpartner.finishup.ui.FinishUpEndFragment"
+        android:name="com.example.careerpartner.finishup.screen.FinishUpEndFragment"
         android:label="fragment_finish_up_end"
         tools:layout="@layout/fragment_finish_up_end" >
         <action
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.careerpartner.auth.ui.SignInFragment"
+        android:name="com.example.careerpartner.auth.screen.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action

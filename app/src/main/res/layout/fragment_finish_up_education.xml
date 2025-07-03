@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".finishup.ui.FinishUpEducationFragment">
+    tools:context=".finishup.screen.FinishUpEducationFragment">
 
     <View
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:background="@drawable/background_gradient"
+        android:background="@drawable/background_gradient_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

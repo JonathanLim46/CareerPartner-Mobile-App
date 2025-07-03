@@ -65,4 +65,22 @@
     <!-- Discover Fragment -->
     <string name="discover_title">Boost Your Career Journey</string>
     <string name="discover_sub_title">Find the right internships, meaningful volunteer work, and essential skills to move forward.</string>
+
+    <!-- My Career -->
+    <string name="my_career_goals">Goals Career</string>
+    <string name="my_career_path">Path to Your Dream Career</string>
+    <string name="my_career_path_title">HTML Tutorial - Full Course for Beginners</string>
+    <string name="my_career_path_source">freeCodeCamp</string>
+
+
+    <!-- Education -->
+    <string name="education_header">Education History</string>"
+    <string name="edit">Edit</string>
+    <string name="education">Bachelor of Computer Science</string>
+    <string name="education_subtitle">IPB University</string>
+    <string name="education_year">2019 – 2023</string>
+
+    <!-- Projects -->
+    <string name="project_title">Love Your Pets Web</string>
+    <string name="project_year">2024</string>
 </resources>
