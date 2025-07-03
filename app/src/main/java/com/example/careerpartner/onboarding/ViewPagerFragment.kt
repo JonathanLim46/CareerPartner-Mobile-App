@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.careerpartner.R
+import com.example.careerpartner.onboarding.adapter.ViewPagerAdapter
 import com.example.careerpartner.onboarding.screen.FirstScreenFragment
 import com.example.careerpartner.onboarding.screen.SecondScreenFragment
 import com.example.careerpartner.onboarding.screen.ThirdScreenFragment

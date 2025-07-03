@@ -1,4 +1,4 @@
-package com.example.careerpartner.finishup.ui
+package com.example.careerpartner.finishup.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

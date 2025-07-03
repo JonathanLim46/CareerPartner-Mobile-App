@@ -1,8 +1,7 @@
-package com.example.careerpartner.finishup.ui
+package com.example.careerpartner.finishup.screen
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View

@@ -79,4 +79,8 @@
     <string name="education">Bachelor of Computer Science</string>
     <string name="education_subtitle">IPB University</string>
     <string name="education_year">2019 – 2023</string>
+
+    <!-- Projects -->
+    <string name="project_title">Love Your Pets Web</string>
+    <string name="project_year">2024</string>
 </resources>

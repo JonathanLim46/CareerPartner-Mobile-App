@@ -1,4 +1,4 @@
-package com.example.careerpartner.auth.ui
+package com.example.careerpartner.auth.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

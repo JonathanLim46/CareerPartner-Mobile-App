@@ -1,4 +1,4 @@
-package com.example.careerpartner.main.discover
+package com.example.careerpartner.main.discover.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
-import com.example.careerpartner.R
 import com.example.careerpartner.databinding.FragmentDiscoverBinding
 import com.example.careerpartner.main.discover.adapter.DiscoverTabAdapter
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DiscoverFragment : Fragment() {

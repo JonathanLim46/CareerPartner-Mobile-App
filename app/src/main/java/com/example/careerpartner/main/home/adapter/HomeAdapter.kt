@@ -1,4 +1,4 @@
-package com.example.careerpartner.main.adapter
+package com.example.careerpartner.main.home.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
-import com.example.careerpartner.main.data.HomeData
+import com.example.careerpartner.main.home.data.HomeData
 
 class HomeAdapter(private val homeData: List<HomeData>) :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
