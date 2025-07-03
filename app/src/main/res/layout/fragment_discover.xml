@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.discover.DiscoverFragment">
 
     <TextView
@@ -13,12 +13,11 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:text="@string/discover_title"
-        android:textSize="20sp"
         android:textColor="@color/abu"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDiscoverSubTitle"
@@ -27,13 +26,12 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="4dp"
         android:text="@string/discover_sub_title"
-        android:textSize="16sp"
         android:textColor="@color/abu"
+        android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiscoverTitle"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscoverTitle" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_discover"
@@ -41,27 +39,25 @@
         android:layout_height="40dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
-        app:tabSelectedTextColor="@color/white"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        app:tabBackground="@drawable/tab_color_selector"
-        app:layout_constraintTop_toBottomOf="@id/tvDiscoverSubTitle"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDiscoverSubTitle"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabGravity="fill"
         app:tabIndicatorColor="@android:color/transparent"
         app:tabIndicatorHeight="0dp"
-        />
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerDiscover"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout_discover"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout_discover" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

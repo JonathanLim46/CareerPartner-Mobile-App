@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".main.profile.screen.ProfileMyCareerFragment">
+
+    <TextView
+        android:id="@+id/tvMyCareerGoalsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_career_goals"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/tvMyCareerGoals"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Frontend Engineer"
+        android:textColor="@color/abu"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyCareerGoalsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvMyCareerGoalsDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem"
+        android:textColor="@color/abu"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyCareerGoals"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvMyCareerSalary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Salary: Rp 10.000.000"
+        android:textColor="@color/abu"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyCareerGoalsDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvMyCareerJobOpportunity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Job Opportunity: Junior Frontend"
+        android:textColor="@color/abu"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyCareerSalary"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvMyCareerPathCareer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/my_career_path"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyCareerJobOpportunity"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyCareerPath"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvMyCareerPathCareer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
