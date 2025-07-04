@@ -37,5 +37,38 @@
             app:destination="@id/profileFragment"
             app:popUpTo="@id/my_nav_main"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.careerpartner.main.profile.screen.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_supportHelpFragment"
+            app:destination="@id/supportHelpFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.careerpartner.main.profile.screen.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/supportHelpFragment"
+        android:name="com.example.careerpartner.main.profile.screen.SupportHelpFragment"
+        android:label="fragment_support_help"
+        tools:layout="@layout/fragment_support_help" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.careerpartner.main.profile.screen.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>
