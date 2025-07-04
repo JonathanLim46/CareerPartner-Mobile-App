@@ -51,6 +51,24 @@ dependencies {
     implementation(libs.dotsindicator)
     implementation(libs.lottie)
     implementation(libs.androidx.cardview)
+
+    //RetroFit Dependencies
+    implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    //Coroutains
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) //viewModel scope
+    implementation(libs.androidx.lifecycle.runtime.ktx) //lifecycle scope
+    implementation(libs.androidx.fragment.ktx)
+
+    //Lifecycle
+    implementation(libs.androidx.lifecycle.common)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v241)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
