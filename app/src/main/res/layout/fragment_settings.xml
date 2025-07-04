@@ -9,7 +9,7 @@
     android:background="@drawable/background_apk">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ivLogoSettings"
+        android:id="@+id/btnBack"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/back_left"
@@ -28,9 +28,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/ivLogoSettings"
-        app:layout_constraintTop_toTopOf="@id/ivLogoSettings"
-        app:layout_constraintBottom_toBottomOf="@id/ivLogoSettings"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

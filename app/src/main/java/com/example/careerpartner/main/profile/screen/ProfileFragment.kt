@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.careerpartner.R
 import com.example.careerpartner.databinding.FragmentProfileBinding
@@ -41,5 +42,9 @@ class ProfileFragment : Fragment() {
             tabView.findViewById<TextView>(R.id.tabText).text = tabTitles[position]
             tab.customView = tabView
         }.attach()
+
+        binding.btnSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
+        }
     }
 }

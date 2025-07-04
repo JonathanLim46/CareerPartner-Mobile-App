@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ivLogoBack1"
+        android:id="@+id/btnBack"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/back"
@@ -38,8 +38,8 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/ivLogoBack1"
-        app:layout_constraintTop_toTopOf="@+id/ivLogoBack1" />
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
     <FrameLayout
         android:id="@+id/flBoxPutih"
