@@ -93,7 +93,7 @@
             android:layout_marginTop="90dp"
             android:layout_marginBottom="35dp"
             android:layout_marginStart="16dp"
-            android:text="Username"
+            android:text="Username or Email"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,12 +125,12 @@
             app:boxBackgroundMode="outline"
             app:boxStrokeWidth="2dp"
             app:boxStrokeWidthFocused="2dp"
-            app:placeholderText="Enter Username"
+            app:placeholderText="Enter Username or Email"
             app:placeholderTextColor="@color/black"
             app:boxBackgroundColor="@android:color/white">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/usernamelayout"
+                android:id="@+id/etIdentifier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="14dp"
@@ -153,7 +153,7 @@
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordlayout"
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"

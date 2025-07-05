@@ -7,4 +7,5 @@ data class UserData(@SerializedName("id") var id: Int,
                     @SerializedName("phone") var phone: String,
                     @SerializedName("username") var username: String,
                     @SerializedName("email") var email: String,
+                    @SerializedName("role") var role: String,
                     @SerializedName("profile_picture") var profile_picture: String)

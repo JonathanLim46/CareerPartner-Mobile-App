@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.careerpartner.data.network.SessionManager
 
 class SplashFragment : Fragment() {
 
@@ -17,8 +18,12 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val token = SessionManager.getToken(requireActivity())
+
         Handler(Looper.getMainLooper()).postDelayed({
-            if(onBoardingFinished()){
+            if(onBoardingFinished() && token != null){
+                findNavController().navigate(R.id.action_boardingFragment_to_my_nav_main)
+            } else if (onBoardingFinished() && token == null){
                 findNavController().navigate(R.id.action_boardingFragment_to_authChoiceFragment)
             } else {
                 findNavController().navigate(R.id.action_boardingFragment_to_viewPagerFragment)
