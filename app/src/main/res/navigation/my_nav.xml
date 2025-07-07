@@ -9,7 +9,7 @@
         android:id="@+id/boardingFragment"
         android:name="com.example.careerpartner.SplashFragment"
         android:label="fragment_boarding"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_boardingFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment"
@@ -30,7 +30,7 @@
         android:id="@+id/viewPagerFragment"
         android:name="com.example.careerpartner.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" >
+        tools:layout="@layout/fragment_view_pager">
         <action
             android:id="@+id/action_viewPagerFragment_to_authChoiceFragment"
             app:destination="@id/authChoiceFragment"
@@ -41,13 +41,18 @@
         android:id="@+id/authChoiceFragment"
         android:name="com.example.careerpartner.auth.screen.AuthChoiceFragment"
         android:label="fragment_auth_choice"
-        tools:layout="@layout/fragment_auth_choice" >
+        tools:layout="@layout/fragment_auth_choice">
         <action
             android:id="@+id/action_authChoiceFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_authChoiceFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_authChoiceFragment_to_my_nav_main"
+            app:destination="@id/my_nav_main"
+            app:popUpTo="@id/authChoiceFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <action
@@ -55,8 +60,6 @@
         app:destination="@id/authChoiceFragment"
         app:popUpTo="@id/my_nav"
         app:popUpToInclusive="true" />
-
-    <include app:graph="@navigation/my_nav_main"/>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.careerpartner.auth.screen.SignUpFragment"
@@ -66,7 +69,7 @@
         android:id="@+id/finishUpEducationFragment"
         android:name="com.example.careerpartner.finishup.screen.FinishUpEducationFragment"
         android:label="fragment_finish_up_education"
-        tools:layout="@layout/fragment_finish_up_education" >
+        tools:layout="@layout/fragment_finish_up_education">
         <action
             android:id="@+id/action_finishUpEducationFragment_to_finishUpInterestsFragment"
             app:destination="@id/finishUpInterestsFragment" />
@@ -75,7 +78,7 @@
         android:id="@+id/finishUpInterestsFragment"
         android:name="com.example.careerpartner.finishup.screen.FinishUpInterestsFragment"
         android:label="fragment_finish_up_interests"
-        tools:layout="@layout/fragment_finish_up_interests" >
+        tools:layout="@layout/fragment_finish_up_interests">
         <action
             android:id="@+id/action_finishUpInterestsFragment_to_finishUpSkillsFragment"
             app:destination="@id/finishUpSkillsFragment" />
@@ -84,7 +87,7 @@
         android:id="@+id/finishUpSkillsFragment"
         android:name="com.example.careerpartner.finishup.screen.FinishUpSkillsFragment"
         android:label="fragment_finish_up_skills"
-        tools:layout="@layout/fragment_finish_up_skills" >
+        tools:layout="@layout/fragment_finish_up_skills">
         <action
             android:id="@+id/action_finishUpSkillsFragment_to_finishUpExperienceFragment"
             app:destination="@id/finishUpExperienceFragment" />
@@ -93,7 +96,7 @@
         android:id="@+id/finishUpExperienceFragment"
         android:name="com.example.careerpartner.finishup.screen.FinishUpExperienceFragment"
         android:label="fragment_finish_up_experience"
-        tools:layout="@layout/fragment_finish_up_experience" >
+        tools:layout="@layout/fragment_finish_up_experience">
         <action
             android:id="@+id/action_finishUpExperienceFragment_to_finishUpEndFragment"
             app:destination="@id/finishUpEndFragment"
@@ -104,7 +107,7 @@
         android:id="@+id/finishUpEndFragment"
         android:name="com.example.careerpartner.finishup.screen.FinishUpEndFragment"
         android:label="fragment_finish_up_end"
-        tools:layout="@layout/fragment_finish_up_end" >
+        tools:layout="@layout/fragment_finish_up_end">
         <action
             android:id="@+id/action_finishUpEndFragment_to_my_nav_main"
             app:destination="@id/my_nav_main"
@@ -115,12 +118,16 @@
         android:id="@+id/signInFragment"
         android:name="com.example.careerpartner.auth.screen.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_finishUpEducationFragment"
             app:destination="@id/finishUpEducationFragment" />
         <action
             android:id="@+id/action_signInFragment_to_my_nav_main"
-            app:destination="@id/my_nav_main" />
+            app:destination="@id/my_nav_main"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+
+    <include app:graph="@navigation/my_nav_main" />
 </navigation>

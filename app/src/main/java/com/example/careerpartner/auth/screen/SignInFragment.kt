@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.careerpartner.R
@@ -23,7 +24,7 @@ class SignInFragment : Fragment() {
 
     private lateinit var loadingDialog: LoadingDialog
 
-    private val viewModel by viewModels<LoginViewModel>()
+    private val viewModel : LoginViewModel by activityViewModels<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

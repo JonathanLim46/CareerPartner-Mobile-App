@@ -1,14 +1,20 @@
 package com.example.careerpartner.main.profile.screen
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.careerpartner.MainActivity
 import com.example.careerpartner.R
 import com.example.careerpartner.auth.viewmodel.LoginViewModel
 import com.example.careerpartner.data.network.BaseResponse
@@ -20,7 +26,7 @@ class SettingsFragment : Fragment() {
     private var _binding : FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewmodel by viewModels<LoginViewModel>()
+    private val viewmodel : LoginViewModel by activityViewModels<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +43,12 @@ class SettingsFragment : Fragment() {
         viewmodel.logoutResult.observe(requireActivity()) {
             when  (it){
                 is BaseResponse.Success -> {
-                    SessionManager.clearData(requireActivity())
-                    Toast.makeText(requireActivity(), it.data?.message, Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_global_auth_choice)
+                    SessionManager.clearData(requireContext().applicationContext)
+
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.putExtra("from_logout", true)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                 }
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()

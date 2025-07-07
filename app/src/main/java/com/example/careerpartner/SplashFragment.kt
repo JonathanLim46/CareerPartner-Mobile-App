@@ -18,17 +18,22 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val token = SessionManager.getToken(requireActivity())
+
+
+        val fromLogout = requireActivity().intent?.getBooleanExtra("from_logout", false) ?: false
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if(onBoardingFinished() && token != null){
+            val token = SessionManager.getToken(requireContext().applicationContext)
+            if (fromLogout) {
+                findNavController().navigate(R.id.action_boardingFragment_to_authChoiceFragment)
+            } else if (onBoardingFinished() && !token.isNullOrEmpty()) {
                 findNavController().navigate(R.id.action_boardingFragment_to_my_nav_main)
-            } else if (onBoardingFinished() && token == null){
+            } else if (onBoardingFinished()) {
                 findNavController().navigate(R.id.action_boardingFragment_to_authChoiceFragment)
             } else {
                 findNavController().navigate(R.id.action_boardingFragment_to_viewPagerFragment)
             }
-        }, 3000)
+        }, 1000)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
