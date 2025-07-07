@@ -21,6 +21,8 @@ class LoadingDialog {
     }
 
     fun dismissDialog(){
-        dialog.dismiss()
+        if(::dialog.isInitialized && dialog.isShowing) {
+            dialog.dismiss()
+        }
     }
 }

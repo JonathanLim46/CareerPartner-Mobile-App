@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.careerpartner.R
+import com.example.careerpartner.data.network.SessionManager
 import com.example.careerpartner.databinding.FragmentProfileBinding
 import com.example.careerpartner.main.profile.adapter.ProfileTabAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -46,5 +48,7 @@ class ProfileFragment : Fragment() {
         binding.btnSettings.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
         }
+
+        Toast.makeText(requireActivity(), SessionManager.getToken(requireActivity()).toString(), Toast.LENGTH_SHORT).show()
     }
 }
