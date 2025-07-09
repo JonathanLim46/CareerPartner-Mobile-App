@@ -39,7 +39,7 @@
     <string name="skills_title">Skills</string>
     <string name="experience_title">Experience</string>
 
-    <string name="select_your_last_education">Select Your Last Education</string>
+    <string name="select_your_last_education">We Need Your All Education Details</string>
     <string name="select_your_interests">What\'s Your Interests ?</string>
     <string name="select_your_skills">What\'s Your Skills ?</string>
     <string name="select_your_experience">Let\'s Talk About Your Experience</string>"
@@ -83,4 +83,5 @@
     <!-- Projects -->
     <string name="project_title">Love Your Pets Web</string>
     <string name="project_year">2024</string>
+
 </resources>
