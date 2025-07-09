@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.careerpartner.R
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
@@ -47,6 +48,11 @@ class ProfileFragment : Fragment() {
                 is BaseResponse.Success -> {
                     binding.tvProfileName.text = it.data?.data?.talent?.full_name
                     binding.tvProfileLastDegree.text = it.data?.data?.talent?.talent?.currentEducation
+                    Glide.with(requireContext())
+                        .load(it.data?.data?.talent?.profile_picture)
+                        .placeholder(R.drawable.img_default_profile)
+                        .error(R.drawable.img_default_profile)
+                        .into(binding.ivProfilePicture)
                 }
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg.toString(), Toast.LENGTH_SHORT).show()

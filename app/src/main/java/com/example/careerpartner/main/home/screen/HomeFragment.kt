@@ -74,6 +74,7 @@ class HomeFragment : Fragment() {
             when(it) {
                 is BaseResponse.Success -> {
                     binding.tvHomeHello.text = "Hello, ${it.data?.data?.talent?.full_name}"
+                    binding.tvHomeHelloSub.text = "Your future career ${it.data?.data?.talent?.talent?.goalCareer}"
                 }
                 is BaseResponse.Error -> {
                     Log.d("HomeFragment", it.msg.toString())

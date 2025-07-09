@@ -39,6 +39,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -68,6 +69,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.common)
     implementation(libs.androidx.lifecycle.runtime.ktx.v241)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
