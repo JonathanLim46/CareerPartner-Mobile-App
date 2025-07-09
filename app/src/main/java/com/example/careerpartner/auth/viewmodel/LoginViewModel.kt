@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.careerpartner.auth.model.LoginRequest
@@ -19,12 +20,15 @@ import java.net.SocketTimeoutException
 class LoginViewModel(application: Application): AndroidViewModel(application) {
 
     val authRepo = AuthRepository()
-    val loginResult : MutableLiveData<BaseResponse<LoginResponse>> = MutableLiveData()
-    val logoutResult : MutableLiveData<BaseResponse<LogoutResponse>> = MutableLiveData()
+    val _loginResult : MutableLiveData<BaseResponse<LoginResponse>> = MutableLiveData()
+    val loginResult: LiveData<BaseResponse<LoginResponse>> = _loginResult
+
+    val _logoutResult : MutableLiveData<BaseResponse<LogoutResponse>> = MutableLiveData()
+    val logoutResult : LiveData<BaseResponse<LogoutResponse>> = _logoutResult
 
     fun login(identifier: String, password: String){
 
-        loginResult.value = BaseResponse.Loading()
+        _loginResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val loginRequest = LoginRequest(
@@ -33,18 +37,17 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
                 )
                 val response = authRepo.login(loginRequest = loginRequest)
                 if (response?.code() == 200) {
-                    loginResult.value = BaseResponse.Success(response.body())
+                    _loginResult.value = BaseResponse.Success(response.body())
                 } else {
-                    val errorMsg = response?.errorBody()?.string() ?: "Invalid credentials"
-                    Log.e("LoginViewModel", "Login failed: $errorMsg")
-                    loginResult.value = BaseResponse.Error(errorMsg)
+                    Log.e("LoginViewModel", "Login failed: Invalid credentials")
+                    _loginResult.value = BaseResponse.Error("Invalid credentials")
                 }
             } catch (ex: Exception) {
-                loginResult.value = BaseResponse.Error("Exception occurred")
+                _loginResult.value = BaseResponse.Error("Exception occurred")
             } catch (ex: ConnectException){
-                loginResult.value = BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+                _loginResult.value = BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
             } catch (ex: SocketTimeoutException){
-                loginResult.value = BaseResponse.Error("Request timed out. Please try again.")
+                _loginResult.value = BaseResponse.Error("Request timed out. Please try again.")
             }
         }
     }
@@ -53,9 +56,9 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             val responseLogout = authRepo.logout(token = "Bearer ${SessionManager.getToken(activity)}")
             if (responseLogout?.code() == 200){
-                logoutResult.value = BaseResponse.Success(responseLogout.body())
+                _logoutResult.value = BaseResponse.Success(responseLogout.body())
             } else {
-                logoutResult.value = BaseResponse.Error("Logout failed")
+                _logoutResult.value = BaseResponse.Error("Logout failed")
             }
         }
     }

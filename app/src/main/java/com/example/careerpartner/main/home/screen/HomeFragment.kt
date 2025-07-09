@@ -9,13 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
+import com.example.careerpartner.data.network.BaseResponse
+import com.example.careerpartner.data.viewmodel.UserViewModel
 import com.example.careerpartner.databinding.FragmentHomeBinding
 import com.example.careerpartner.main.home.adapter.HomeAdapter
 import com.example.careerpartner.main.home.data.HomeData
+import kotlin.div
+import kotlin.times
 
 class HomeFragment : Fragment() {
 
@@ -30,6 +36,9 @@ class HomeFragment : Fragment() {
     private lateinit var internshipsData : List<HomeData>
     private lateinit var volunteerData : List<HomeData>
     private lateinit var rawData : List<List<String>>
+
+    private val viewModel: UserViewModel by activityViewModels<UserViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,21 +69,23 @@ class HomeFragment : Fragment() {
         rvInternship = binding.rvInternship
         rvVolunteer = binding.rvVolunteer
 
-        val pathCourse = arrayOf("HTML", "CSS", "JS", "PHP", "LARAVEL")
-        val currentCourse = "CSS"
-        progressBar.max = pathCourse.size
-        currentProgress = pathCourse.indexOf(currentCourse) + 1
-        progressBar.progress = currentProgress
 
-        val colorResId = when {
-            currentProgress <= pathCourse.size / 3 -> R.color.red
-            currentProgress <= pathCourse.size * 2 / 3 -> R.color.orange
-            else -> R.color.green
+        viewModel.userResult.observe(requireActivity()){
+            when(it) {
+                is BaseResponse.Success -> {
+                    binding.tvHomeHello.text = "Hello, ${it.data?.data?.talent?.full_name}"
+                }
+                is BaseResponse.Error -> {
+                    Log.d("HomeFragment", it.msg.toString())
+                    Toast.makeText(requireActivity(), it.msg.toString(), Toast.LENGTH_SHORT).show()
+                } else -> {
+                    Toast.makeText(requireActivity(), "Something went wrong, check your internet connection !", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-        val color = ContextCompat.getColor(requireContext(), colorResId)
-        progressBar.progressTintList = ColorStateList.valueOf(color)
 
-        binding.tvProgress.text = "$currentProgress/${progressBar.max} steps"
+        viewModel.getTalentData(requireActivity())
+        setupPathCourse()
         internshipsData()
         volunteersData()
     }
@@ -95,5 +106,23 @@ class HomeFragment : Fragment() {
         adapterVolunteer = HomeAdapter(volunteerData)
         rvVolunteer.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvVolunteer.adapter = adapterVolunteer
+    }
+
+    private fun setupPathCourse(){
+        val pathCourse = arrayOf("HTML", "CSS", "JS", "PHP", "LARAVEL")
+        val currentCourse = "CSS"
+        progressBar.max = pathCourse.size
+        currentProgress = pathCourse.indexOf(currentCourse) + 1
+        progressBar.progress = currentProgress
+
+        val colorResId = when {
+            currentProgress <= pathCourse.size / 3 -> R.color.red
+            currentProgress <= pathCourse.size * 2 / 3 -> R.color.orange
+            else -> R.color.green
+        }
+        val color = ContextCompat.getColor(requireContext(), colorResId)
+        progressBar.progressTintList = ColorStateList.valueOf(color)
+
+        binding.tvProgress.text = "$currentProgress/${progressBar.max} steps"
     }
 }
