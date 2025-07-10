@@ -9,10 +9,10 @@ import retrofit2.http.POST
 
 interface AuthApi {
 
-    @POST("/api/login")
+    @POST("api/login")
     suspend fun login(@Body loginRequest: LoginRequest) : retrofit2.Response<LoginResponse>
 
-    @POST("/api/logout")
+    @POST("api/logout")
     suspend fun logout(@Header ("Authorization") token: String) : retrofit2.Response<LogoutResponse>
 
     companion object {
