@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
         adapter = ProfileTabAdapter(childFragmentManager, lifecycle)
         viewPager2.adapter = adapter
 
-        viewmodel.userResult.observe(requireActivity()) {
+        viewmodel.userResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Success -> {
                     binding.tvProfileName.text = it.data?.data?.talent?.full_name

@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
+import com.example.careerpartner.data.network.BaseResponse
+import com.example.careerpartner.data.viewmodel.UserViewModel
 import com.example.careerpartner.databinding.FragmentProfileEducationalsBinding
 import com.example.careerpartner.main.profile.adapter.ProfileEduAchieveAdapter
 import com.example.careerpartner.main.profile.data.ProfileHistoryData
@@ -16,6 +20,8 @@ class ProfileEducationalsFragment : Fragment() {
 
     private var _binding : FragmentProfileEducationalsBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: UserViewModel by activityViewModels<UserViewModel>()
 
     private lateinit var adapter : ProfileEduAchieveAdapter
     private lateinit var recyclerView: RecyclerView
@@ -43,14 +49,29 @@ class ProfileEducationalsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = binding.rvEducation
-        setupRv()
+        viewModel.userEducationResult.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    educationData = it.data?.data?.map { ProfileHistoryData(it.institutionName, it.fieldOfStudy, it.startDate + " - " + it.endDate) } ?: listOf()
+                    setupRv()
+                }
+                is BaseResponse.Error -> {
+                    educationData = listOf()
+                    setupRv()
+                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                } else -> {
+                    educationData = listOf()
+                    setupRv()
+                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.getEducationData(requireActivity())
+
     }
 
     private fun setupRv(){
-        educationData = rawData.map {
-            ProfileHistoryData(it[0], it[1], it[2])
-        }
-
         adapter = ProfileEduAchieveAdapter(educationData)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter

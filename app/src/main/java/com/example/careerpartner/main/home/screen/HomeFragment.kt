@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
         rvVolunteer = binding.rvVolunteer
 
 
-        viewModel.userResult.observe(requireActivity()){
+        viewModel.userResult.observe(viewLifecycleOwner){
             when(it) {
                 is BaseResponse.Success -> {
                     binding.tvHomeHello.text = "Hello, ${it.data?.data?.talent?.full_name}"
