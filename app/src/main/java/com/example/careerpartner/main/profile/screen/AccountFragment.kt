@@ -18,6 +18,7 @@ import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.viewmodel.UserViewModel
 import com.example.careerpartner.databinding.FragmentAccountBinding
 import java.io.File
+import androidx.core.view.isVisible
 
 class AccountFragment : Fragment() {
 
@@ -86,6 +87,11 @@ class AccountFragment : Fragment() {
                 null,
                 binding.passwordlayout.text.toString()
             )
+        }
+
+        binding.tvChangePassword.setOnClickListener {
+            binding.tvPasswordLabel.visibility = if (binding.tvPasswordLabel.isVisible) View.GONE else View.VISIBLE
+            binding.password.visibility = if (binding.password.isVisible) View.GONE else View.VISIBLE
         }
 
         viewModel.userUpdateResult.observe(viewLifecycleOwner) { event ->

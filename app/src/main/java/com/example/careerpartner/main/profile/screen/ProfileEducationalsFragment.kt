@@ -75,5 +75,9 @@ class ProfileEducationalsFragment : Fragment() {
         adapter = ProfileEduAchieveAdapter(educationData)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        adapter.onItemClick = { item ->
+            Toast.makeText(requireContext(), item.title, Toast.LENGTH_SHORT).show()
+        }
     }
 }

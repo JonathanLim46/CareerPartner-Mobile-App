@@ -29,197 +29,236 @@
 
     <TextView
         android:id="@+id/tvSupportHelp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="18dp"
         android:text="Support and Help"
         android:textColor="#FFFFFF"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        />
 
-    <FrameLayout
-        android:id="@+id/flBoxPutih"
-        android:layout_width="350dp"
-        android:layout_height="580dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/background_putih"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintTop_toBottomOf="@+id/tvSupportHelp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSupportHelp">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
-        <ImageView
-            android:id="@+id/imageViewGradient"
-            android:layout_width="300dp"
-            android:layout_height="155dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-195dp"
-            android:background="@drawable/shape_gradient" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardContactSupport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_gradient"
+                >
+
+                <TextView
+                    android:id="@+id/tvContactSupport"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_support_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tvContactSubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_support_subtitle"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvContactSupport"
+                    />
+
+                <TextView
+                    android:id="@+id/tvContactSubSubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_support_sub_subtitle"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginHorizontal="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvContactSubTitle"
+                    />
+
+                <TextView
+                    android:id="@+id/tvContactEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_support_email"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvContactSubSubTitle"
+                    />
+
+                <TextView
+                    android:id="@+id/tvContactPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_support_phone"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvContactEmail"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="20dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvFaqTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="-245dp"
-            android:layout_marginRight="70dp"
-            android:padding="8dp"
-            android:text="Contact Support"
-            android:textColor="#FFFFFF"
+            android:text="@string/faq_title"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
-            android:layout_marginRight="3dp"
-            android:padding="8dp"
-            android:text="Need technical assistance or have a question?"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/textViewDescription1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="78dp"
-            android:layout_marginRight="63dp"
-            android:padding="8dp"
-            android:text="Our team is here to help."
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/textViewDescription2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="115dp"
-            android:layout_marginRight="47dp"
-            android:padding="8dp"
-            android:text="Email: support@careermate.id"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/textViewDescription3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="133dp"
-            android:layout_marginRight="59dp"
-            android:padding="8dp"
-            android:text="Phone: +62 87861658909"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/textViewDescription4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="190dp"
-            android:layout_marginRight="25dp"
-            android:padding="8dp"
-            android:text="Frequently Asked Questions (FAQ)"
             android:textStyle="bold"
-            android:textSize="14sp" />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardContactSupport"
+            />
 
         <TextView
-            android:id="@+id/textViewDescription5"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvFaqOne"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="225dp"
-            android:layout_marginRight="1dp"
-            android:padding="8dp"
-            android:text="How do I change my selected career path?"
-            android:textStyle="bold"
-            android:textSize="14sp" />
-
-
-        <TextView
-            android:id="@+id/textViewDescription6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="250dp"
-            android:layout_marginRight="-65dp"
-            android:padding="8dp"
-            android:text="To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals. "
+            android:text="@string/faq_one"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:textStyle="normal"
-            android:justificationMode="inter_word"/>
-
-        <TextView
-            android:id="@+id/textViewDescription7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="325dp"
-            android:layout_marginRight="1dp"
-            android:padding="8dp"
-            android:text="Can I view detailed information about internships and volunteer?"
             android:textStyle="bold"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:textSize="14sp" />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFaqTitle"
+            />
 
         <TextView
-            android:id="@+id/textViewDescription8"
-            android:layout_width="match_parent"
+            android:id="@+id/tvFaqOneDesc"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="365dp"
-            android:layout_marginRight="-65dp"
-            android:padding="8dp"
-            android:text="To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals. "
+            android:text="@string/faq_one_desc"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:textStyle="normal"
-            android:justificationMode="inter_word"/>
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFaqOne"
+            />
 
         <TextView
-            android:id="@+id/textViewDescription9"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvFaqTwo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="440dp"
-            android:layout_marginRight="1dp"
-            android:padding="8dp"
-            android:text="Is support available through a Live Chat Bot?"
+            android:text="@string/faq_two"
+            android:textColor="@color/black"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:textSize="14sp" />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFaqOneDesc"
+            />
 
         <TextView
-            android:id="@+id/textViewDescription10"
-            android:layout_width="match_parent"
+            android:id="@+id/tvFaqTwoDesc"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="480dp"
-            android:layout_marginRight="-65dp"
-            android:padding="8dp"
-            android:text="To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals. "
+            android:text="@string/faq_two_desc"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:textStyle="normal"
-            android:justificationMode="inter_word"/>
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFaqTwo"
+            />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/tvFaqThree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/faq_three"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFaqTwoDesc"
+            />
+
+        <TextView
+            android:id="@+id/tvFaqThreeDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/faq_three_desc"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFaqThree"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
