@@ -30,7 +30,7 @@ class UserRepository {
         username: String?,
         email: String?,
         phone: String?,
-        password: String
+        password: String?
     ): retrofit2.Response<UserUpdateResponse>? {
         val imagePart = image?.let {
             val mediaType = "image/*".toMediaTypeOrNull()
@@ -49,7 +49,9 @@ class UserRepository {
         val phonePart = phone?.takeIf { it.isNotBlank() }?.let {
             RequestBody.create("text/plain".toMediaTypeOrNull(), it)
         }
-        val passwordPart = RequestBody.create("text/plain".toMediaTypeOrNull(), password)
+        val passwordPart = phone?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
 
         return UserApi.getApi()?.updateUserData(
             token = token,

@@ -26,7 +26,7 @@ interface UserApi {
         @Part("username") username: RequestBody?,
         @Part("email") email: RequestBody?,
         @Part("phone") phone: RequestBody?,
-        @Part("password") password: RequestBody,
+        @Part("password") password: RequestBody?,
         @Part profilePicture: MultipartBody.Part?
     ) : retrofit2.Response<UserUpdateResponse>
 

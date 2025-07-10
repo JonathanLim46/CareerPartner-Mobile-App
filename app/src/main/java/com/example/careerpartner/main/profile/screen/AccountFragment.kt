@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.careerpartner.R
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.viewmodel.UserViewModel
@@ -51,6 +52,7 @@ class AccountFragment : Fragment() {
                 is BaseResponse.Success -> {
                     binding.usernamelayout.setText(it.data?.data?.talent?.username)
                     binding.emaillayout.setText(it.data?.data?.talent?.email)
+                    Glide.with(requireActivity()).load(it.data?.data?.talent?.profile_picture).into(binding.ivLogoFufufa)
                 }
 
                 is BaseResponse.Error -> {
