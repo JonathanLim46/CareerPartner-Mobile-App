@@ -48,7 +48,7 @@ class ProfileAchievementsFragment : Fragment() {
 
     private fun setupRv(){
         educationData = rawData.map {
-            ProfileHistoryData(it[0], it[1], it[2])
+            ProfileHistoryData(1,it[0], it[1], it[2])
         }
 
         adapter = ProfileEduAchieveAdapter(educationData)

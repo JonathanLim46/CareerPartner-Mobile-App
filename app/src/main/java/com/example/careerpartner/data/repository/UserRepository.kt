@@ -2,24 +2,18 @@ package com.example.careerpartner.data.repository
 
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
+import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.UserApi
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.Response
 import java.io.File
 
 class UserRepository {
 
     suspend fun getTalentData(token: String): retrofit2.Response<UserResponse>? {
         return UserApi.getApi()?.getTalentData(
-            token = token
-        )
-    }
-
-    suspend fun getEducationData(token: String): retrofit2.Response<UserEducationResponse>? {
-        return UserApi.getApi()?.getEducationData(
             token = token
         )
     }
@@ -61,5 +55,42 @@ class UserRepository {
             password = passwordPart,
             profilePicture = imagePart
         )
+    }
+
+    suspend fun addUserEducationData(token: String, addEducation: UserEducationRequest): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.addUserEducation(token = token, addEducation)
+    }
+
+    suspend fun getEducationData(token: String): retrofit2.Response<UserEducationResponse>? {
+        return UserApi.getApi()?.getEducationData(
+            token = token
+        )
+    }
+
+    suspend fun updateUserEducationData(
+        token: String,
+        id: Int,
+        institutionName: String,
+        fieldOfStudy: String,
+        startYear: String,
+        endYear: String
+    ): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.updateUserEducation(
+            token = token,
+            id = id,
+            updateEducationRequest = UserEducationRequest(
+                institutionName = institutionName,
+                fieldOfStudy = fieldOfStudy,
+                startYear = startYear,
+                endYear = endYear
+            )
+        )
+    }
+
+    suspend fun deleteUserEducationData(
+        token: String,
+        id: Int
+    ): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.deleteUserEducation(token = token, id = id)
     }
 }
