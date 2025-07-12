@@ -11,6 +11,7 @@ import com.example.careerpartner.data.model.UserAchievementsRequest
 import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserEducationResponse
+import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.BaseResponse
@@ -65,6 +66,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val _userDeleteAchievementResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
         MutableLiveData()
     val userDeleteAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> = _userDeleteAchievementResult
+
+    val _userProjectsResult: MutableLiveData<BaseResponse<UserProjectsResponse>> = MutableLiveData()
+    val userProjectsResult: LiveData<BaseResponse<UserProjectsResponse>> = _userProjectsResult
+
+    val _userDeleteProjectResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        MutableLiveData()
+    val userDeleteProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> = _userDeleteProjectResult
 
     fun getTalentData(activity: Activity) {
         viewModelScope.launch {
@@ -353,6 +361,51 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 _userDeleteAchievementResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
                 _userDeleteAchievementResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    // Projects
+
+    fun getProjectsData(activity: Activity){
+        viewModelScope.launch {
+            val responseProjects = userRepo.getProjectsData(token = "Bearer ${SessionManager.getToken(activity)}")
+            try {
+                if (responseProjects?.code() == 200){
+                    _userProjectsResult.value = BaseResponse.Success(responseProjects.body())
+                } else {
+                    _userProjectsResult.value = BaseResponse.Error("Check your internet connection")
+                }
+            } catch (ex: ConnectException) {
+                _userProjectsResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (ex: SocketTimeoutException) {
+                _userProjectsResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _userProjectsResult.value = BaseResponse.Error("Exception occurred")
+            }
+        }
+    }
+
+    fun deleteProjectData(activity: Activity, id: Int){
+        viewModelScope.launch {
+            val responseDeleteProject = userRepo.deleteProjectData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                id = id
+            )
+            try {
+                if (responseDeleteProject?.code() == 200){
+                    _userDeleteProjectResult.value = Event(BaseResponse.Success(responseDeleteProject.body()))
+                } else {
+                    _userDeleteProjectResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userDeleteProjectResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userDeleteProjectResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userDeleteProjectResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
         }
     }

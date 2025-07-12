@@ -5,6 +5,8 @@ import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
+import com.example.careerpartner.data.model.UserProjectData
+import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserUpdateResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -69,7 +71,16 @@ interface UserApi {
     suspend fun deleteAchievementData(
         @Header("Authorization") token: String,
         @Path(value = "id") id: Int
-    ) : retrofit2.Response<UserUpdateResponse>
+    ): retrofit2.Response<UserUpdateResponse>
+
+    @GET("api/talent/projects")
+    suspend fun getProjectsData(@Header("Authorization") token: String): retrofit2.Response<UserProjectsResponse>
+
+    @DELETE("api/talent/projects/{id}")
+    suspend fun deleteProjectData(
+        @Header("Authorization") token: String,
+        @Path(value = "id") id: Int
+    ): retrofit2.Response<UserUpdateResponse>
 
     companion object {
         fun getApi(): UserApi? {

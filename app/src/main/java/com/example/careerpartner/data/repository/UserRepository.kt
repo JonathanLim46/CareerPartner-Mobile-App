@@ -5,6 +5,7 @@ import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
+import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.UserApi
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -110,5 +111,13 @@ class UserRepository {
 
     suspend fun deleteAchievementData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
         return UserApi.getApi()?.deleteAchievementData(token=token, id=id)
+    }
+
+    suspend fun getProjectsData(token: String): retrofit2.Response<UserProjectsResponse>? {
+        return UserApi.getApi()?.getProjectsData(token = token)
+    }
+
+    suspend fun deleteProjectData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.deleteProjectData(token = token, id = id)
     }
 }

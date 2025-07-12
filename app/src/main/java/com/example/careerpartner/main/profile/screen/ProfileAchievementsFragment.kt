@@ -146,6 +146,7 @@ class ProfileAchievementsFragment : Fragment() {
 
         dialogBinding.tvDelete.setOnClickListener {
             viewModel.deleteAchievementData(requireActivity(), item?.id ?: 0)
+            dialog.dismiss()
         }
 
         dialogBinding.btnCancel.setOnClickListener {
