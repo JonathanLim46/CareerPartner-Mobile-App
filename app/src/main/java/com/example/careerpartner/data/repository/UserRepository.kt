@@ -1,5 +1,7 @@
 package com.example.careerpartner.data.repository
 
+import com.example.careerpartner.data.model.UserAchievementsRequest
+import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
@@ -92,5 +94,21 @@ class UserRepository {
         id: Int
     ): retrofit2.Response<UserUpdateResponse>? {
         return UserApi.getApi()?.deleteUserEducation(token = token, id = id)
+    }
+
+    // Achievements
+
+    suspend fun getAchievementsData(token: String): retrofit2.Response<UserAchievementsResponse>? {
+        return UserApi.getApi()?.getAchievementData(
+            token = token
+        )
+    }
+
+    suspend fun addAchievementData(token: String, achievementRequest: UserAchievementsRequest): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.addAchievementData(token = token, achievementRequest = achievementRequest)
+    }
+
+    suspend fun deleteAchievementData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.deleteAchievementData(token=token, id=id)
     }
 }

@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Add Your Education"
+            android:text="Add Your Achievement"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -27,11 +27,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvFieldOfStudy"
+            android:id="@+id/tvTitleAchievement"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="Field Of Study"
+            android:text="Title Achievement"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,16 +45,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:hint="Ex. Bachelor of Computer Science"
+            android:hint="Ex. Indonesia Education Awards"
             app:counterEnabled="true"
             app:counterMaxLength="40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFieldOfStudy"
-            app:placeholderText="Education">
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleAchievement"
+            app:placeholderText="Title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFieldOfStudy"
+                android:id="@+id/etAchievement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="40" />
@@ -62,12 +62,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tvInstitution"
+            android:id="@+id/tvNomination"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:text="Institution Name"
+            android:text="Nomination"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,22 +75,22 @@
             app:layout_constraintTop_toBottomOf="@+id/outlinedTextField" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutInstitution"
+            android:id="@+id/textInputLayoutNomination"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:hint="Ex. IPB University"
+            android:hint="Ex. Best Student"
             app:counterEnabled="true"
             app:counterMaxLength="40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInstitution"
-            app:placeholderText="Education">
+            app:layout_constraintTop_toBottomOf="@+id/tvNomination"
+            app:placeholderText="Nomination">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etInstitution"
+                android:id="@+id/etNomination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="40" />
@@ -98,7 +98,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
-            android:id="@+id/etStartYear"
+            android:id="@+id/etYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -109,21 +109,7 @@
             android:inputType="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutInstitution" />
-
-        <EditText
-            android:id="@+id/etEndYear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="Choose End Year"
-            android:inputType="none"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etStartYear" />
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutNomination" />
 
         <LinearLayout
             android:id="@+id/layout_button"
@@ -136,7 +122,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etEndYear">
+            app:layout_constraintTop_toBottomOf="@id/etYear">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAdd"

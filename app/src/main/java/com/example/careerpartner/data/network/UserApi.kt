@@ -1,5 +1,7 @@
 package com.example.careerpartner.data.network
 
+import com.example.careerpartner.data.model.UserAchievementsRequest
+import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
@@ -46,12 +48,27 @@ interface UserApi {
     suspend fun deleteUserEducation(
         @Header("Authorization") token: String,
         @Path(value = "id") id: Int
-    ) : retrofit2.Response<UserUpdateResponse>
+    ): retrofit2.Response<UserUpdateResponse>
 
     @POST("api/talent/education")
     suspend fun addUserEducation(
         @Header("Authorization") token: String,
         @Body addEducationRequest: UserEducationRequest
+    ): retrofit2.Response<UserUpdateResponse>
+
+    @GET("api/talent/achievements")
+    suspend fun getAchievementData(@Header("Authorization") token: String): retrofit2.Response<UserAchievementsResponse>
+
+    @POST("api/talent/achievements")
+    suspend fun addAchievementData(
+        @Header("Authorization") token: String,
+        @Body achievementRequest: UserAchievementsRequest
+    ): retrofit2.Response<UserUpdateResponse>
+
+    @DELETE("api/talent/achievements/{id}")
+    suspend fun deleteAchievementData(
+        @Header("Authorization") token: String,
+        @Path(value = "id") id: Int
     ) : retrofit2.Response<UserUpdateResponse>
 
     companion object {

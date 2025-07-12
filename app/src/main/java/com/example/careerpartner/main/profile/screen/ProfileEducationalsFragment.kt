@@ -185,12 +185,12 @@ class ProfileEducationalsFragment : Fragment() {
         recyclerView.adapter = adapter
 
         adapter.onItemClick = { item ->
-            openBottomDialog(item.id)
+            openBottomDialog(item)
         }
     }
 
     @SuppressLint("InflateParams", "MissingInflatedId")
-    private fun openBottomDialog(id: Int) {
+    private fun openBottomDialog(item: ProfileHistoryData) {
         val dialog = BottomSheetDialog(requireContext())
         val view =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_choose_bottom, null)
@@ -200,12 +200,12 @@ class ProfileEducationalsFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.tvEditDialog).setOnClickListener {
-            openEducationDialog(id)
+            openEducationDialog(item)
             dialog.dismiss()
         }
 
         view.findViewById<TextView>(R.id.tvDelete).setOnClickListener {
-            viewModel.deleteUserEducationData(requireActivity(), id)
+            viewModel.deleteUserEducationData(requireActivity(), item.id)
             dialog.dismiss()
         }
 
@@ -214,9 +214,8 @@ class ProfileEducationalsFragment : Fragment() {
         dialog.show()
     }
 
-    private fun openEducationDialog(id: Int?) {
-        val dialogView =
-            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_education, null)
+    private fun openEducationDialog(item: ProfileHistoryData?) {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_education, null)
         val etFieldOfStudy = dialogView.findViewById<EditText>(R.id.etFieldOfStudy)
         val etInstitution = dialogView.findViewById<EditText>(R.id.etInstitution)
         val etStartYear = dialogView.findViewById<EditText>(R.id.etStartYear)
@@ -224,40 +223,41 @@ class ProfileEducationalsFragment : Fragment() {
         val btnAdd = dialogView.findViewById<AppCompatButton>(R.id.btnAdd)
         val btnCancel = dialogView.findViewById<AppCompatButton>(R.id.btnCancel)
 
-        val dialog = AlertDialog.Builder(requireContext())
-            .setView(dialogView)
-            .create()
+        val dialog = AlertDialog.Builder(requireContext()).setView(dialogView).create()
 
-        etStartYear.setOnClickListener {
-            openDateDialog(etStartYear)
+        item?.let {
+            etFieldOfStudy.setText(it.title)
+            etInstitution.setText(it.source)
+
+            val dateParts = it.year.split(" - ")
+            if (dateParts.size == 2) {
+                etStartYear.setText(dateParts[0])
+                etEndYear.setText(dateParts[1])
+            }
+
+            btnAdd.text = "Update"
         }
 
-        etEndYear.setOnClickListener {
-            openDateDialog(etEndYear)
-        }
+        etStartYear.setOnClickListener { openDateDialog(etStartYear) }
+        etEndYear.setOnClickListener { openDateDialog(etEndYear) }
+        btnCancel.setOnClickListener { dialog.dismiss() }
 
-        btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
         btnAdd.setOnClickListener {
             val fieldOfStudy = etFieldOfStudy.text.toString()
             val institution = etInstitution.text.toString()
             val startYear = etStartYear.text.toString()
             val endYear = etEndYear.text.toString()
-            if (fieldOfStudy.isNotEmpty() && institution
-                    .isNotEmpty() && startYear
-                    .isNotEmpty() && endYear.isNotEmpty()
-            ) {
-                if (id != null) {
+
+            if (fieldOfStudy.isNotEmpty() && institution.isNotEmpty() && startYear.isNotEmpty() && endYear.isNotEmpty()) {
+                if (item != null) {
                     viewModel.updateUserEducationData(
                         requireActivity(),
-                        id = id,
+                        id = item.id,
                         institutionName = institution,
                         fieldOfStudy = fieldOfStudy,
                         startYear = startYear,
                         endYear = endYear
                     )
-                    dialog.dismiss()
                 } else {
                     viewModel.addUserData(
                         requireActivity(),
@@ -266,16 +266,13 @@ class ProfileEducationalsFragment : Fragment() {
                         startYear = startYear,
                         endYear = endYear
                     )
-                    dialog.dismiss()
                 }
+                dialog.dismiss()
             } else {
-                Toast.makeText(
-                    requireActivity(),
-                    "Please fill all the fields",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show()
             }
         }
+
         dialog.show()
     }
 

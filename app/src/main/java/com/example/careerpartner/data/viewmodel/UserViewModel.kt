@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.careerpartner.data.model.UserAchievementsRequest
+import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
@@ -49,6 +51,20 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData()
     val userAddEducationResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
         _userAddEducationResult
+
+    val _userAchievementsResult: MutableLiveData<BaseResponse<UserAchievementsResponse>> =
+        MutableLiveData()
+    val userAchievementResult: LiveData<BaseResponse<UserAchievementsResponse>> =
+        _userAchievementsResult
+
+    val _userAddAchievementResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        MutableLiveData()
+    val userAddAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        _userAddAchievementResult
+
+    val _userDeleteAchievementResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        MutableLiveData()
+    val userDeleteAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> = _userDeleteAchievementResult
 
     fun getTalentData(activity: Activity) {
         viewModelScope.launch {
@@ -204,7 +220,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 _userAddEducationResult.value =
                     Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
-                Log.e("UPLOAD", "Code: ${responseAdd?.code()}, ErrorBody: ${responseAdd?.errorBody()?.string()}")
+                Log.e(
+                    "UPLOAD",
+                    "Code: ${responseAdd?.code()}, ErrorBody: ${responseAdd?.errorBody()?.string()}"
+                )
             }
         }
 
@@ -250,6 +269,90 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     "Code: ${response?.code()}, ErrorBody: ${response?.errorBody()?.string()}"
                 )
                 _userUpdateResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    // Achievement
+
+    fun getAchievementsData(activity: Activity) {
+        viewModelScope.launch {
+            val responseAchievement =
+                userRepo.getAchievementsData(token = "Bearer ${SessionManager.getToken(activity)}")
+            try {
+                if (responseAchievement?.code() == 200) {
+                    _userAchievementsResult.value = BaseResponse.Success(responseAchievement.body())
+                } else {
+                    _userAchievementsResult.value =
+                        BaseResponse.Error("Check your internet connection")
+                }
+            } catch (ex: ConnectException) {
+                _userAchievementsResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (ex: SocketTimeoutException) {
+                _userAchievementsResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _userAchievementsResult.value = BaseResponse.Error("Exception occurred")
+            }
+        }
+    }
+
+    fun addAchievementData(activity: Activity, title: String, nomination: String, year: String) {
+        viewModelScope.launch {
+            val responseAddAchievement = userRepo.addAchievementData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                achievementRequest = UserAchievementsRequest(
+                    title = title,
+                    nominationData = nomination,
+                    year = year
+                )
+            )
+            try {
+                if (responseAddAchievement?.code() == 201) {
+                    _userAddAchievementResult.value =
+                        Event(BaseResponse.Success(responseAddAchievement.body()))
+                } else {
+                    _userAddAchievementResult.value =
+                        Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userAddAchievementResult.value =
+                    Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userAddAchievementResult.value =
+                    Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                Log.e(
+                    "UPLOAD",
+                    "Code: ${responseAddAchievement?.code()}, ErrorBody: ${
+                        responseAddAchievement?.errorBody()?.string()
+                    }"
+                )
+                _userAddAchievementResult.value =
+                    Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    fun deleteAchievementData(activity: Activity, id: Int){
+        viewModelScope.launch {
+            val responseDeleteAchievement = userRepo.deleteAchievementData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                id = id
+            )
+            try {
+                if (responseDeleteAchievement?.code() == 200){
+                    _userDeleteAchievementResult.value = Event(BaseResponse.Success(responseDeleteAchievement.body()))
+                } else {
+                    _userDeleteAchievementResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userDeleteAchievementResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userDeleteAchievementResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userDeleteAchievementResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
         }
     }
