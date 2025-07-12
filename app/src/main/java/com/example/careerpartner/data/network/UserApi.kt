@@ -89,6 +89,27 @@ interface UserApi {
         @Path(value = "id") id: Int
     ): retrofit2.Response<UserUpdateResponse>
 
+    @Multipart
+    @POST("api/talent/projects")
+    suspend fun addProjectData(
+        @Header("Authorization") token: String,
+        @Part("title") title: RequestBody?,
+        @Part image: MultipartBody.Part?,
+        @Part("link") link: RequestBody?,
+        @Part("year") year: RequestBody?
+    ): retrofit2.Response<UserUpdateResponse>
+
+    @Multipart
+    @POST("api/talent/projects/{id}")
+    suspend fun addProjectData(
+        @Header("Authorization") token: String,
+        @Path(value = "id") id: Int,
+        @Part("title") title: RequestBody?,
+        @Part image: MultipartBody.Part?,
+        @Part("link") link: RequestBody?,
+        @Part("year") year: RequestBody?
+    ): retrofit2.Response<UserUpdateResponse>
+
     companion object {
         fun getApi(): UserApi? {
             return ApiClient.client?.create(UserApi::class.java)

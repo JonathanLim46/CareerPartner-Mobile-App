@@ -65,7 +65,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     val _userDeleteAchievementResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
         MutableLiveData()
-    val userDeleteAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> = _userDeleteAchievementResult
+    val userDeleteAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        _userDeleteAchievementResult
 
     val _userUpdateAchievementResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
         MutableLiveData()
@@ -77,7 +78,18 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     val _userDeleteProjectResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
         MutableLiveData()
-    val userDeleteProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> = _userDeleteProjectResult
+    val userDeleteProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        _userDeleteProjectResult
+
+    val _userAddProjectResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        MutableLiveData()
+    val userAddProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        _userAddProjectResult
+
+    val _userUpdateProjectResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        MutableLiveData()
+    val userUpdateProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        _userUpdateProjectResult
 
     fun getTalentData(activity: Activity) {
         viewModelScope.launch {
@@ -348,41 +360,57 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun deleteAchievementData(activity: Activity, id: Int){
+    fun deleteAchievementData(activity: Activity, id: Int) {
         viewModelScope.launch {
             val responseDeleteAchievement = userRepo.deleteAchievementData(
                 token = "Bearer ${SessionManager.getToken(activity)}",
                 id = id
             )
             try {
-                if (responseDeleteAchievement?.code() == 200){
-                    _userDeleteAchievementResult.value = Event(BaseResponse.Success(responseDeleteAchievement.body()))
+                if (responseDeleteAchievement?.code() == 200) {
+                    _userDeleteAchievementResult.value =
+                        Event(BaseResponse.Success(responseDeleteAchievement.body()))
                 } else {
-                    _userDeleteAchievementResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                    _userDeleteAchievementResult.value =
+                        Event(BaseResponse.Error("Check your internet connection"))
                 }
             } catch (e: ConnectException) {
-                _userDeleteAchievementResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+                _userDeleteAchievementResult.value =
+                    Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
             } catch (e: SocketTimeoutException) {
-                _userDeleteAchievementResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+                _userDeleteAchievementResult.value =
+                    Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
                 _userDeleteAchievementResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
         }
     }
 
-    fun updateAchievementData(activity: Activity, id: Int, achievementRequest: UserAchievementsRequest){
+    fun updateAchievementData(
+        activity: Activity,
+        id: Int,
+        achievementRequest: UserAchievementsRequest
+    ) {
         viewModelScope.launch {
-            val responseUpdate = userRepo.updateAchievementData(token = "Bearer ${SessionManager.getToken(activity)}", id, achievementRequest)
+            val responseUpdate = userRepo.updateAchievementData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                id,
+                achievementRequest
+            )
             try {
-                if (responseUpdate?.code() == 200){
-                    _userUpdateAchievementResult.value = Event(BaseResponse.Success(responseUpdate.body()))
+                if (responseUpdate?.code() == 200) {
+                    _userUpdateAchievementResult.value =
+                        Event(BaseResponse.Success(responseUpdate.body()))
                 } else {
-                    _userUpdateAchievementResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                    _userUpdateAchievementResult.value =
+                        Event(BaseResponse.Error("Check your internet connection"))
                 }
             } catch (e: ConnectException) {
-                _userUpdateAchievementResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+                _userUpdateAchievementResult.value =
+                    Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
             } catch (e: SocketTimeoutException) {
-                _userUpdateAchievementResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+                _userUpdateAchievementResult.value =
+                    Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
                 _userUpdateAchievementResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
@@ -391,11 +419,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     // Projects
 
-    fun getProjectsData(activity: Activity){
+    fun getProjectsData(activity: Activity) {
         viewModelScope.launch {
-            val responseProjects = userRepo.getProjectsData(token = "Bearer ${SessionManager.getToken(activity)}")
+            val responseProjects =
+                userRepo.getProjectsData(token = "Bearer ${SessionManager.getToken(activity)}")
             try {
-                if (responseProjects?.code() == 200){
+                if (responseProjects?.code() == 200) {
                     _userProjectsResult.value = BaseResponse.Success(responseProjects.body())
                 } else {
                     _userProjectsResult.value = BaseResponse.Error("Check your internet connection")
@@ -412,24 +441,92 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun deleteProjectData(activity: Activity, id: Int){
+    fun deleteProjectData(activity: Activity, id: Int) {
         viewModelScope.launch {
             val responseDeleteProject = userRepo.deleteProjectData(
                 token = "Bearer ${SessionManager.getToken(activity)}",
                 id = id
             )
             try {
-                if (responseDeleteProject?.code() == 200){
-                    _userDeleteProjectResult.value = Event(BaseResponse.Success(responseDeleteProject.body()))
+                if (responseDeleteProject?.code() == 200) {
+                    _userDeleteProjectResult.value =
+                        Event(BaseResponse.Success(responseDeleteProject.body()))
                 } else {
-                    _userDeleteProjectResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                    _userDeleteProjectResult.value =
+                        Event(BaseResponse.Error("Check your internet connection"))
                 }
             } catch (e: ConnectException) {
-                _userDeleteProjectResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+                _userDeleteProjectResult.value =
+                    Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
             } catch (e: SocketTimeoutException) {
-                _userDeleteProjectResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+                _userDeleteProjectResult.value =
+                    Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
                 _userDeleteProjectResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    fun addProjectData(
+        activity: Activity,
+        title: String?,
+        image: File?,
+        link: String?,
+        year: String?
+    ) {
+        viewModelScope.launch {
+            val responseAddProject = userRepo.addProjectData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                title = title,
+                image = image,
+                link = link,
+                year = year
+            )
+            try {
+                if (responseAddProject?.code() == 201){
+                    _userAddProjectResult.value = Event(BaseResponse.Success(responseAddProject.body()))
+                } else {
+                    _userAddProjectResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userAddProjectResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userAddProjectResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userAddProjectResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    fun updateProjectData(
+        activity: Activity,
+        id: Int,
+        title: String?,
+        image: File?,
+        link: String?,
+        year: String?
+    ) {
+        viewModelScope.launch {
+            val responseAddProject = userRepo.updateProjectData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                id = id,
+                title = title,
+                image = image,
+                link = link,
+                year = year
+            )
+            try {
+                if (responseAddProject?.code() == 200){
+                    _userAddProjectResult.value = Event(BaseResponse.Success(responseAddProject.body()))
+                } else {
+                    _userAddProjectResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userAddProjectResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userAddProjectResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userAddProjectResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
         }
     }

@@ -60,7 +60,10 @@ class UserRepository {
         )
     }
 
-    suspend fun addUserEducationData(token: String, addEducation: UserEducationRequest): retrofit2.Response<UserUpdateResponse>? {
+    suspend fun addUserEducationData(
+        token: String,
+        addEducation: UserEducationRequest
+    ): retrofit2.Response<UserUpdateResponse>? {
         return UserApi.getApi()?.addUserEducation(token = token, addEducation)
     }
 
@@ -105,16 +108,31 @@ class UserRepository {
         )
     }
 
-    suspend fun addAchievementData(token: String, achievementRequest: UserAchievementsRequest): retrofit2.Response<UserUpdateResponse>? {
-        return UserApi.getApi()?.addAchievementData(token = token, achievementRequest = achievementRequest)
+    suspend fun addAchievementData(
+        token: String,
+        achievementRequest: UserAchievementsRequest
+    ): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()
+            ?.addAchievementData(token = token, achievementRequest = achievementRequest)
     }
 
-    suspend fun deleteAchievementData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
-        return UserApi.getApi()?.deleteAchievementData(token=token, id=id)
+    suspend fun deleteAchievementData(
+        token: String,
+        id: Int
+    ): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.deleteAchievementData(token = token, id = id)
     }
 
-    suspend fun updateAchievementData(token: String, id: Int, achievementsRequest: UserAchievementsRequest): retrofit2.Response<UserUpdateResponse>? {
-        return UserApi.getApi()?.updateAchievementData(token = token, id= id, achievementRequest = achievementsRequest)
+    suspend fun updateAchievementData(
+        token: String,
+        id: Int,
+        achievementsRequest: UserAchievementsRequest
+    ): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.updateAchievementData(
+            token = token,
+            id = id,
+            achievementRequest = achievementsRequest
+        )
     }
 
     suspend fun getProjectsData(token: String): retrofit2.Response<UserProjectsResponse>? {
@@ -123,5 +141,75 @@ class UserRepository {
 
     suspend fun deleteProjectData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
         return UserApi.getApi()?.deleteProjectData(token = token, id = id)
+    }
+
+    suspend fun addProjectData(
+        token: String,
+        title: String?,
+        image: File?,
+        link: String?,
+        year: String?
+    ): retrofit2.Response<UserUpdateResponse>? {
+        val imagePart = image?.let {
+            val mediaType = "image/*".toMediaTypeOrNull()
+            val imageBody = RequestBody.create(mediaType, it)
+            MultipartBody.Part.createFormData("image", it.name, imageBody)
+        }
+
+        val titlePart = title?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
+
+        val linkPart = link?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
+
+        val yearPart = year?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
+
+        return UserApi.getApi()?.addProjectData(
+            token = token,
+            title = titlePart,
+            image = imagePart,
+            link = linkPart,
+            year = yearPart
+        )
+    }
+
+    suspend fun updateProjectData(
+        token: String,
+        id: Int,
+        title: String?,
+        image: File?,
+        link: String?,
+        year: String?
+    ): retrofit2.Response<UserUpdateResponse>? {
+        val imagePart = image?.let {
+            val mediaType = "image/*".toMediaTypeOrNull()
+            val imageBody = RequestBody.create(mediaType, it)
+            MultipartBody.Part.createFormData("image", it.name, imageBody)
+        }
+
+        val titlePart = title?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
+
+        val linkPart = link?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
+
+        val yearPart = year?.takeIf { it.isNotBlank() }?.let {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), it)
+        }
+
+        return UserApi.getApi()?.addProjectData(
+            id = id,
+            token = token,
+            title = titlePart,
+            image = imagePart,
+            link = linkPart,
+            year = yearPart
+        )
     }
 }
