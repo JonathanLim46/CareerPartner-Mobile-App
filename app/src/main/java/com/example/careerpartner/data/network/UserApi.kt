@@ -73,6 +73,13 @@ interface UserApi {
         @Path(value = "id") id: Int
     ): retrofit2.Response<UserUpdateResponse>
 
+    @PUT("api/talent/achievements/{id}")
+    suspend fun updateAchievementData(
+        @Header("Authorization") token: String,
+        @Path(value = "id") id: Int,
+        @Body achievementRequest: UserAchievementsRequest
+    ): retrofit2.Response<UserUpdateResponse>
+
     @GET("api/talent/projects")
     suspend fun getProjectsData(@Header("Authorization") token: String): retrofit2.Response<UserProjectsResponse>
 

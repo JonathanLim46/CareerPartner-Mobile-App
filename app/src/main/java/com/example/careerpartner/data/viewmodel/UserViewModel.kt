@@ -67,6 +67,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData()
     val userDeleteAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> = _userDeleteAchievementResult
 
+    val _userUpdateAchievementResult: MutableLiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        MutableLiveData()
+    val userUpdateAchievementResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
+        _userUpdateAchievementResult
+
     val _userProjectsResult: MutableLiveData<BaseResponse<UserProjectsResponse>> = MutableLiveData()
     val userProjectsResult: LiveData<BaseResponse<UserProjectsResponse>> = _userProjectsResult
 
@@ -361,6 +366,25 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 _userDeleteAchievementResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
                 _userDeleteAchievementResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    fun updateAchievementData(activity: Activity, id: Int, achievementRequest: UserAchievementsRequest){
+        viewModelScope.launch {
+            val responseUpdate = userRepo.updateAchievementData(token = "Bearer ${SessionManager.getToken(activity)}", id, achievementRequest)
+            try {
+                if (responseUpdate?.code() == 200){
+                    _userUpdateAchievementResult.value = Event(BaseResponse.Success(responseUpdate.body()))
+                } else {
+                    _userUpdateAchievementResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userUpdateAchievementResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userUpdateAchievementResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userUpdateAchievementResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
         }
     }

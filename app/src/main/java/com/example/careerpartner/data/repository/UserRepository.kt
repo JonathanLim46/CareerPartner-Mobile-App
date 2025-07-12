@@ -113,6 +113,10 @@ class UserRepository {
         return UserApi.getApi()?.deleteAchievementData(token=token, id=id)
     }
 
+    suspend fun updateAchievementData(token: String, id: Int, achievementsRequest: UserAchievementsRequest): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.updateAchievementData(token = token, id= id, achievementRequest = achievementsRequest)
+    }
+
     suspend fun getProjectsData(token: String): retrofit2.Response<UserProjectsResponse>? {
         return UserApi.getApi()?.getProjectsData(token = token)
     }

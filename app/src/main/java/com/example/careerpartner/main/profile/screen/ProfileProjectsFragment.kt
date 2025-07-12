@@ -1,5 +1,6 @@
 package com.example.careerpartner.main.profile.screen
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +21,7 @@ import com.example.careerpartner.databinding.FragmentProfileProjectsBinding
 import com.example.careerpartner.main.profile.adapter.ProfileProjectAdapter
 import com.example.careerpartner.main.profile.data.ProfileProjectsData
 import androidx.core.net.toUri
+import com.example.careerpartner.databinding.DialogAddProjectsBinding
 import com.example.careerpartner.databinding.DialogChooseBottomBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -30,8 +33,19 @@ class ProfileProjectsFragment : Fragment() {
     private lateinit var adapter: ProfileProjectAdapter
     private lateinit var projectsData: List<ProfileProjectsData>
     private lateinit var recyclerView: RecyclerView
+    private var selectedImageUri: Uri? = null
+    private var dialogProjectBinding: DialogAddProjectsBinding? = null
 
     private val viewModel: UserViewModel by activityViewModels<UserViewModel>()
+
+    var contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        if(it!=null){
+            selectedImageUri = it
+            dialogProjectBinding?.ivProject?.setImageURI(it)
+        } else {
+            Toast.makeText(requireActivity(), "No Image Selected", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +63,10 @@ class ProfileProjectsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = binding.rvProjects
+
+        binding.tvAdd.setOnClickListener {
+            openDialog()
+        }
 
 
         viewModel.getProjectsData(requireActivity())
@@ -142,6 +160,28 @@ class ProfileProjectsFragment : Fragment() {
         }
 
         dialogBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    private fun openDialog(){
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_projects, null)
+        dialogProjectBinding = DialogAddProjectsBinding.bind(dialogView)
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+        dialog.show()
+
+
+        selectedImageUri?.let {
+            dialogProjectBinding?.ivProject?.setImageURI(selectedImageUri)
+        }
+
+        dialogProjectBinding?.ivProject?.setOnClickListener {
+            contract.launch("image/*")
+        }
+
+        dialogProjectBinding?.btnCancel?.setOnClickListener {
             dialog.dismiss()
         }
     }
