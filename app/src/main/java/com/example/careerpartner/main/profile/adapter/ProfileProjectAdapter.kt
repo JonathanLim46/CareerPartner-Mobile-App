@@ -14,9 +14,12 @@ import com.example.careerpartner.data.model.ProjectData
 import com.example.careerpartner.main.profile.data.ProfileProjectsData
 import kotlinx.coroutines.withContext
 
-class ProfileProjectAdapter(private val context: Context,private val profileData: List<ProfileProjectsData>) : RecyclerView.Adapter<ProfileProjectAdapter.ViewHolder>() {
+class ProfileProjectAdapter(
+    private val context: Context,
+    private val profileData: List<ProfileProjectsData>
+) : RecyclerView.Adapter<ProfileProjectAdapter.ViewHolder>() {
 
-    var onMoreClick : ((ProfileProjectsData) -> Unit)? = null
+    var onMoreClick: ((ProfileProjectsData) -> Unit)? = null
 
     var onSourceClick: ((ProfileProjectsData) -> Unit)? = null
 
@@ -44,7 +47,8 @@ class ProfileProjectAdapter(private val context: Context,private val profileData
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.each_card_profile_projects, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.each_card_profile_projects, parent, false)
         return ViewHolder(view)
     }
 
@@ -56,7 +60,8 @@ class ProfileProjectAdapter(private val context: Context,private val profileData
         val item = profileData[position]
         holder.titleProject.text = item.title
         holder.year.text = item.year
-        Glide.with(context).load(item.image).skipMemoryCache(true).into(holder.imageProject)
+        Glide.with(context).load(item.image).placeholder(R.drawable.dummyimg)
+            .error(R.drawable.dummyimg).skipMemoryCache(true).into(holder.imageProject)
     }
 
 

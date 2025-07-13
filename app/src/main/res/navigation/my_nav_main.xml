@@ -15,6 +15,15 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/my_nav_main"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_discoverFragment"
+            app:destination="@id/discoverFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="tabIndex"
+                android:defaultValue="1" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
@@ -26,6 +35,10 @@
             app:destination="@id/discoverFragment"
             app:popUpTo="@id/my_nav_main"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="tabIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
