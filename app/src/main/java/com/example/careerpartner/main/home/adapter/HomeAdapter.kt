@@ -27,7 +27,7 @@ class HomeAdapter(private val context: Context, private val homeData: List<HomeD
         val item = homeData[position]
         holder.title.text = item.title
         holder.subTitle.text = item.subTitle
-        Glide.with(context).load(item.image).placeholder(R.drawable.dummyimg)
+        Glide.with(context).load(item.image ?: R.drawable.img_default_profile).placeholder(R.drawable.dummyimg)
             .error(R.drawable.dummyimg).skipMemoryCache(true).into(holder.image)
     }
 

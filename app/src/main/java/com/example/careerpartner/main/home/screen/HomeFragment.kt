@@ -20,6 +20,7 @@ import com.example.careerpartner.R
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.viewmodel.InternshipViewModel
 import com.example.careerpartner.data.viewmodel.UserViewModel
+import com.example.careerpartner.data.viewmodel.VolunteerViewModel
 import com.example.careerpartner.databinding.FragmentHomeBinding
 import com.example.careerpartner.main.home.adapter.HomeAdapter
 import com.example.careerpartner.main.home.data.HomeData
@@ -40,6 +41,7 @@ class HomeFragment : Fragment() {
     private lateinit var volunteerData: List<HomeData>
 
     private val viewModelIntern: InternshipViewModel by activityViewModels<InternshipViewModel>()
+    private val viewModelVolunteer: VolunteerViewModel by activityViewModels<VolunteerViewModel>()
 
     private val viewModel: UserViewModel by activityViewModels<UserViewModel>()
 
@@ -99,18 +101,45 @@ class HomeFragment : Fragment() {
                             it.description,
                             it.imageCover
                         )
-                    } ?: listOf()
+                    }?.take(5) ?: listOf()
                     internshipsData()
                 }
+
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
                     internshipsData = listOf()
                     internshipsData()
                 }
+
                 else -> {
-                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT)
+                        .show()
                     internshipsData = listOf()
                     internshipsData()
+                }
+            }
+        }
+
+        viewModelVolunteer.getVolunteerDataResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Success -> {
+                    volunteerData = it.data?.data?.map {
+                        HomeData(it.title, it.description, it.imageCover)
+                    }?.take(5) ?: listOf()
+                    volunteersData()
+                }
+
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                    volunteerData = listOf()
+                    volunteersData()
+                }
+
+                else -> {
+                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT)
+                        .show()
+                    volunteerData = listOf()
+                    volunteersData()
                 }
             }
         }
@@ -119,21 +148,25 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_discoverFragment)
         }
 
+        binding.tvViewMoreTwo.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_discoverFragment2)
+        }
+
         viewModel.getTalentData(requireActivity())
         viewModelIntern.getInternshipsData(requireActivity())
+        viewModelVolunteer.getVolunteerData(requireActivity())
         setupPathCourse()
-        volunteersData()
+
     }
 
     private fun internshipsData() {
-        adapterInternships = HomeAdapter(requireContext(),internshipsData)
+        adapterInternships = HomeAdapter(requireContext(), internshipsData)
         rvInternship.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvInternship.adapter = adapterInternships
     }
 
     private fun volunteersData() {
-        volunteerData = listOf()
         adapterVolunteer = HomeAdapter(requireContext(), volunteerData)
         rvVolunteer.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
