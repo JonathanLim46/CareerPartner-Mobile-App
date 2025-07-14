@@ -93,15 +93,17 @@ class HomeFragment : Fragment() {
         }
 
         viewModelIntern.getInternshipsDataResult.observe(viewLifecycleOwner) {
+
             when (it) {
                 is BaseResponse.Success -> {
                     internshipsData = it.data?.data?.map {
                         HomeData(
-                            it.title,
-                            it.description,
-                            it.imageCover
+                            title = it.title,
+                            subTitle = it.description,
+                            image = it.imageCover,
+                            status = it.status
                         )
-                    }?.take(5) ?: listOf()
+                    }?.filter{it.status == "open"}?.take(5) ?: listOf()
                     internshipsData()
                 }
 
@@ -124,8 +126,11 @@ class HomeFragment : Fragment() {
             when (it) {
                 is BaseResponse.Success -> {
                     volunteerData = it.data?.data?.map {
-                        HomeData(it.title, it.description, it.imageCover)
-                    }?.take(5) ?: listOf()
+                        HomeData(title = it.title,
+                            subTitle = it.description,
+                            image = it.imageCover,
+                            status = it.status)
+                    }?.filter { it.status == "completed" }?.take(5) ?: listOf()
                     volunteersData()
                 }
 
