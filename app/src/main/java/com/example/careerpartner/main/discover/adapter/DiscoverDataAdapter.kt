@@ -1,15 +1,17 @@
 package com.example.careerpartner.main.discover.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.careerpartner.R
 import com.example.careerpartner.main.discover.data.DiscoverData
 
-class DiscoverDataAdapter(private var discoverData : List<DiscoverData> = emptyList()) : RecyclerView.Adapter<DiscoverDataAdapter.ViewHolder>() {
+class DiscoverDataAdapter(private val context: Context,private var discoverData : List<DiscoverData> = emptyList()) : RecyclerView.Adapter<DiscoverDataAdapter.ViewHolder>() {
 
     var onItemClick: ((DiscoverData) -> Unit)? = null
 
@@ -43,7 +45,12 @@ class DiscoverDataAdapter(private var discoverData : List<DiscoverData> = emptyL
         holder.title.text = item.title
         holder.subTitle.text = item.subTitle
         holder.contentCard.text = item.content
-        holder.imageCard.setImageResource(item.image)
+
+        Glide.with(context)
+            .load(item.image ?: R.drawable.img_default_profile)
+            .placeholder(R.drawable.dummyimg)
+            .error(R.drawable.dummyimg)
+            .into(holder.imageCard)
     }
 
 }

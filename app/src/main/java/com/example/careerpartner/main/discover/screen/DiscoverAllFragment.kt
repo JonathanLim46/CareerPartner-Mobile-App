@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
+import com.example.careerpartner.data.network.BaseResponse
+import com.example.careerpartner.data.viewmodel.InternshipViewModel
+import com.example.careerpartner.data.viewmodel.VolunteerViewModel
 import com.example.careerpartner.databinding.FragmentDiscoverAllBinding
 import com.example.careerpartner.main.discover.adapter.DiscoverDataAdapter
 import com.example.careerpartner.main.discover.data.DiscoverData
@@ -19,17 +24,16 @@ class DiscoverAllFragment : Fragment() {
 
     private lateinit var adapter: DiscoverDataAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var discoverData: List<DiscoverData>
-    private lateinit var rawData: List<List<String>>
+    private var discoverData: List<DiscoverData> = emptyList()
+    private var internshipsData: List<DiscoverData> = emptyList()
+    private var volunteersData: List<DiscoverData> = emptyList()
+
+    private val viewModelInternship: InternshipViewModel by activityViewModels<InternshipViewModel>()
+    private val viewModelVolunteer: VolunteerViewModel by activityViewModels<VolunteerViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        rawData = listOf(
-            listOf("Judul 1", "Deskripsi A", getString(R.string.lorem)),
-            listOf("Judul 2", "Deskripsi B", getString(R.string.lorem)),
-            listOf("Judul 3", "Deskripsi C", getString(R.string.lorem)),
-            listOf("Judul 4", "Deskripsi D", getString(R.string.lorem)),
-        )
     }
 
     override fun onCreateView(
@@ -45,14 +49,79 @@ class DiscoverAllFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.rvDiscoverAll
+
+        setupInternshipsVolunteerData()
+
+        viewModelInternship.getInternshipsData(requireActivity())
+        viewModelVolunteer.getVolunteerData(requireActivity())
+    }
+
+    private fun setupInternshipsVolunteerData(){
+        viewModelInternship.getInternshipsDataResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Success -> {
+                    internshipsData = it.data?.data?.map {
+                        DiscoverData(
+                            title = it.title,
+                            subTitle = it.description,
+                            image = it.imageCover,
+                            content = it.description,
+                            status = it.status
+                        )
+                    }?.filter { it.status == "open" } ?: listOf()
+                    updateRv()
+                }
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                    discoverData = listOf()
+                    getDataRv()
+                }
+                else -> {
+                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
+                    discoverData = listOf()
+                    getDataRv()
+                }
+            }
+        }
+
+        viewModelVolunteer.getVolunteerDataResult.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    volunteersData = it.data?.data?.map {
+                        DiscoverData(
+                            title = it.title,
+                            subTitle = it.description,
+                            image = it.imageCover,
+                            content = it.description,
+                            status = it.status
+                        )
+                    }?.filter { it.status == "completed" } ?: listOf()
+                    updateRv()
+                }
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                    discoverData = listOf()
+                    getDataRv()
+                }
+                else -> {
+                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
+                    discoverData = listOf()
+                    getDataRv()
+                }
+            }
+        }
+
+        viewModelInternship.getInternshipsData(requireActivity())
+        viewModelVolunteer.getVolunteerData(requireActivity())
+    }
+
+    private fun updateRv(){
+        discoverData = (internshipsData + volunteersData).distinct()
         getDataRv()
     }
 
     private fun getDataRv(){
-        discoverData = rawData.map {
-            DiscoverData(it[0], it[1], R.drawable.dummyimg, it[2])
-        }
-        adapter = DiscoverDataAdapter(discoverData)
+        adapter = DiscoverDataAdapter(requireContext(),discoverData)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
     }
