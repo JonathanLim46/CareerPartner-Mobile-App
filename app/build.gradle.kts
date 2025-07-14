@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.annotationProcessor
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -39,6 +41,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -68,6 +71,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.common)
     implementation(libs.androidx.lifecycle.runtime.ktx.v241)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-beta01")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

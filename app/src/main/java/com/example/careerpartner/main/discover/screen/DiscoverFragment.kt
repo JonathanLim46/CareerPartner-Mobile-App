@@ -34,6 +34,8 @@ class DiscoverFragment : Fragment() {
         adapter = DiscoverTabAdapter(childFragmentManager, lifecycle)
         viewPager2.adapter = adapter
 
+        val tabIndex = arguments?.getInt("tabIndex") ?: 0
+
         TabLayoutMediator(binding.tabLayoutDiscover, viewPager2) { tab, position ->
             when (position) {
                 0 -> {tab.text = "All"}
@@ -41,6 +43,10 @@ class DiscoverFragment : Fragment() {
                 2 -> {tab.text = "Volunteers"}
             }
         }.attach()
+
+        binding.viewPagerDiscover.post{
+            binding.viewPagerDiscover.setCurrentItem(tabIndex, false)
+        }
     }
 
 }

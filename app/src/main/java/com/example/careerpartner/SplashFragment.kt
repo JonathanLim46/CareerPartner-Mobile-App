@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class SplashFragment : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             val token = SessionManager.getToken(requireContext().applicationContext)
+            Log.d("SplashFragment", "Token saat Splash: $token")
             if (fromLogout) {
                 findNavController().navigate(R.id.action_boardingFragment_to_authChoiceFragment)
             } else if (onBoardingFinished() && !token.isNullOrEmpty()) {

@@ -40,7 +40,7 @@ class SignInFragment : Fragment() {
 
         loadingDialog = LoadingDialog()
 
-        viewModel.loginResult.observe(requireActivity()) {
+        viewModel.loginResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
                     showLoading()

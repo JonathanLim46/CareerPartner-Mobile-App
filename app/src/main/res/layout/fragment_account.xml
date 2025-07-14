@@ -52,14 +52,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAccount">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivLogoFufufa"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="25dp"
             android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/Circular"
             android:contentDescription="GAMBAR FUFUFA"
-            android:src="@drawable/fufufa" />
+            android:src="@drawable/img_default_profile" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ivChangesImage"
@@ -67,7 +69,7 @@
             android:layout_height="25dp"
             android:background="@drawable/changes"
             android:layout_marginTop="150dp"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="250dp"
             android:contentDescription="ICON CHANGES IMAGE"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivBackgroundBiru" />
@@ -139,18 +141,33 @@
             android:id="@+id/tvPasswordLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
+            android:layout_marginTop="400dp"
             android:layout_marginStart="16dp"
+            android:visibility="invisible"
             android:text="Password"
             android:textSize="14sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="370dp"
+            android:layout_marginHorizontal="16dp"
+            android:text="Change Password"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:clickable="true"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="390dp"
+            android:layout_marginTop="420dp"
             android:layout_marginHorizontal="16dp"
+            android:visibility="invisible"
             app:boxBackgroundMode="outline"
             app:boxStrokeWidth="2dp"
             app:boxStrokeWidthFocused="2dp"

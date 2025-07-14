@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.careerpartner.R
+import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
+import com.example.careerpartner.data.viewmodel.UserViewModel
 import com.example.careerpartner.databinding.FragmentProfileBinding
 import com.example.careerpartner.main.profile.adapter.ProfileTabAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,6 +26,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var viewPager2: ViewPager2
     private lateinit var adapter: ProfileTabAdapter
+
+    private val viewmodel: UserViewModel by activityViewModels<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +43,33 @@ class ProfileFragment : Fragment() {
         adapter = ProfileTabAdapter(childFragmentManager, lifecycle)
         viewPager2.adapter = adapter
 
+        viewmodel.userResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Success -> {
+                    binding.tvProfileName.text = it.data?.data?.talent?.full_name
+                    binding.tvProfileLastDegree.text = it.data?.data?.talent?.talent?.currentEducation
+                    Glide.with(requireContext())
+                        .load(it.data?.data?.talent?.profile_picture)
+                        .placeholder(R.drawable.img_default_profile)
+                        .error(R.drawable.img_default_profile)
+                        .into(binding.ivProfilePicture)
+                }
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireActivity(), it.msg.toString(), Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(requireActivity(), "Something went wrong, check your internet connection !", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        binding.btnSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
+        }
+        setupTabLayout()
+    }
+
+    private fun setupTabLayout(){
         val tabTitles = listOf("My Career", "Educational", "Achievements", "Projects")
 
         TabLayoutMediator(binding.tabLayoutProfile, viewPager2) { tab, position ->
@@ -44,11 +77,5 @@ class ProfileFragment : Fragment() {
             tabView.findViewById<TextView>(R.id.tabText).text = tabTitles[position]
             tab.customView = tabView
         }.attach()
-
-        binding.btnSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
-        }
-
-        Toast.makeText(requireActivity(), SessionManager.getToken(requireActivity()).toString(), Toast.LENGTH_SHORT).show()
     }
 }

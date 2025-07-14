@@ -39,7 +39,7 @@
     <string name="skills_title">Skills</string>
     <string name="experience_title">Experience</string>
 
-    <string name="select_your_last_education">Select Your Last Education</string>
+    <string name="select_your_last_education">We Need Your All Education Details</string>
     <string name="select_your_interests">What\'s Your Interests ?</string>
     <string name="select_your_skills">What\'s Your Skills ?</string>
     <string name="select_your_experience">Let\'s Talk About Your Experience</string>"
@@ -83,4 +83,19 @@
     <!-- Projects -->
     <string name="project_title">Love Your Pets Web</string>
     <string name="project_year">2024</string>
+
+    <!-- Support and Help -->
+    <string name="contact_support_title">Contact Support</string>
+    <string name="contact_support_subtitle">Need technical assistance or have a question?</string>
+    <string name="contact_support_sub_subtitle">Our team is here to help.</string>
+    <string name="contact_support_email">Email: support@careermate.id</string>
+    <string name="contact_support_phone">Phone: +62 87861658909</string>
+
+    <string name="faq_title">Frequently Asked Question (FAQ)</string>
+    <string name="faq_one">How do i change my selected career path ?</string>
+    <string name="faq_one_desc">To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals.</string>
+    <string name="faq_two">Can i view detailed information about internships and volunteer ?</string>
+    <string name="faq_two_desc">To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals.</string>
+    <string name="faq_three">Is support available through a Live Chat Bot ?</string>"
+    <string name="faq_three_desc">To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals.</string>
 </resources>

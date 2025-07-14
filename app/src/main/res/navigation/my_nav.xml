@@ -64,7 +64,11 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.careerpartner.auth.screen.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_finishUpEducationFragment"
+            app:destination="@id/finishUpEducationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/finishUpEducationFragment"
         android:name="com.example.careerpartner.finishup.screen.FinishUpEducationFragment"
@@ -119,9 +123,6 @@
         android:name="com.example.careerpartner.auth.screen.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in">
-        <action
-            android:id="@+id/action_signInFragment_to_finishUpEducationFragment"
-            app:destination="@id/finishUpEducationFragment" />
         <action
             android:id="@+id/action_signInFragment_to_my_nav_main"
             app:destination="@id/my_nav_main"
