@@ -71,7 +71,6 @@
                 android:id="@+id/progressAnchor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,8 +81,10 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/shape_circle_gradient"
+                android:layout_marginStart="32dp"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
-                app:layout_constraintStart_toStartOf="@id/progressAnchor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/lineOne"
                 app:layout_constraintTop_toTopOf="@+id/progressAnchor" />
 
             <TextView
@@ -101,7 +102,7 @@
 
             <View
                 android:id="@+id/lineOne"
-                android:layout_width="64dp"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/primary_color"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
@@ -116,6 +117,7 @@
                 android:background="@drawable/shape_circle_gradient"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
                 app:layout_constraintStart_toEndOf="@id/lineOne"
+                app:layout_constraintEnd_toStartOf="@id/lineTwo"
                 app:layout_constraintTop_toTopOf="@id/progressAnchor" />
 
             <TextView
@@ -133,7 +135,7 @@
 
             <View
                 android:id="@+id/lineTwo"
-                android:layout_width="64dp"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/primary_color"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
@@ -148,6 +150,7 @@
                 android:background="@drawable/shape_circle_gradient"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
                 app:layout_constraintStart_toEndOf="@id/lineTwo"
+                app:layout_constraintEnd_toStartOf="@+id/lineThree"
                 app:layout_constraintTop_toTopOf="@id/progressAnchor" />
 
             <TextView
@@ -165,12 +168,12 @@
 
             <View
                 android:id="@+id/lineThree"
-                android:layout_width="64dp"
+                android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/primary_color"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
-                app:layout_constraintEnd_toStartOf="@id/circleExp"
                 app:layout_constraintStart_toEndOf="@id/circleSkills"
+                app:layout_constraintEnd_toStartOf="@+id/circleExp"
                 app:layout_constraintTop_toTopOf="@id/progressAnchor" />
 
             <View
@@ -178,8 +181,10 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/shape_circle_gradient"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toBottomOf="@id/progressAnchor"
-                app:layout_constraintStart_toEndOf="@id/lineThree"
+                app:layout_constraintStart_toEndOf="@+id/lineThree"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/progressAnchor" />
 
             <TextView

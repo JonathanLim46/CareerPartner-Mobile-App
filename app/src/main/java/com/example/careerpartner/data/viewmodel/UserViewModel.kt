@@ -11,8 +11,12 @@ import com.example.careerpartner.data.model.UserAchievementsRequest
 import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserEducationResponse
+import com.example.careerpartner.data.model.UserInterestsRequest
+import com.example.careerpartner.data.model.UserInterestsRespond
 import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserResponse
+import com.example.careerpartner.data.model.UserSkillsRequest
+import com.example.careerpartner.data.model.UserSkillsRespond
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
@@ -90,6 +94,14 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData()
     val userUpdateProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
         _userUpdateProjectResult
+
+    val _userAddInterestsResult: MutableLiveData<Event<BaseResponse<UserInterestsRespond>>> =
+        MutableLiveData()
+    val userAddInterestsResult: LiveData<Event<BaseResponse<UserInterestsRespond>>> = _userAddInterestsResult
+
+    val _userAddSkillsResult: MutableLiveData<Event<BaseResponse<UserSkillsRespond>>> =
+        MutableLiveData()
+    val userAddSkillsResult: LiveData<Event<BaseResponse<UserSkillsRespond>>> = _userAddSkillsResult
 
     fun getTalentData(activity: Activity) {
         viewModelScope.launch {
@@ -527,6 +539,60 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 _userAddProjectResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
             } catch (e: Exception) {
                 _userAddProjectResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    // Interests
+
+    fun addInterestsData(
+        activity: Activity,
+        interestsRequest: UserInterestsRequest
+    ) {
+        viewModelScope.launch {
+            val responseInterests = userRepo.addInterestsData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                interests = interestsRequest
+            )
+            try {
+                if (responseInterests?.code() == 201) {
+                    _userAddInterestsResult.value = Event(BaseResponse.Success(responseInterests.body()))
+                } else {
+                    _userAddInterestsResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userAddInterestsResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userAddInterestsResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userAddInterestsResult.value = Event(BaseResponse.Error("Exception occurred"))
+            }
+        }
+    }
+
+    // Skills
+
+    fun addSkillsData(
+        activity: Activity,
+        skillsRequest: UserSkillsRequest
+    ) {
+        viewModelScope.launch {
+            val responseSkills = userRepo.addSkillsData(
+                token = "Bearer ${SessionManager.getToken(activity)}",
+                skills = skillsRequest
+            )
+            try {
+                if (responseSkills?.code() == 201){
+                    _userAddSkillsResult.value = Event(BaseResponse.Success(responseSkills.body()))
+                } else {
+                    _userAddSkillsResult.value = Event(BaseResponse.Error("Check your internet connection"))
+                }
+            } catch (e: ConnectException) {
+                _userAddSkillsResult.value = Event(BaseResponse.Error("Unable to connect to the server. Please check your internet connection."))
+            } catch (e: SocketTimeoutException) {
+                _userAddSkillsResult.value = Event(BaseResponse.Error("Request timed out. Please try again."))
+            } catch (e: Exception) {
+                _userAddSkillsResult.value = Event(BaseResponse.Error("Exception occurred"))
             }
         }
     }

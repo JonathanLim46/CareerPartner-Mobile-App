@@ -8,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.careerpartner.R
+import com.example.careerpartner.data.model.Interest
+import com.example.careerpartner.data.model.UserInterestsRequest
+import com.example.careerpartner.finishup.viewmodel.FinishUpViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 class FinishUpInterestsFragment : Fragment() {
+
+    private val viewModel: FinishUpViewModel by activityViewModels<FinishUpViewModel>()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -49,6 +55,16 @@ class FinishUpInterestsFragment : Fragment() {
         }
 
         view.findViewById<AppCompatButton>(R.id.btnContinue).setOnClickListener {
+            val selectedInterests = mutableListOf<Interest>()
+            for (i in 0 until chipGroup.childCount) {
+                val chip = chipGroup.getChildAt(i) as Chip
+                if (chip.isChecked) {
+                    selectedInterests.add(Interest(name = chip.text.toString()))
+                }
+            }
+
+            viewModel.updateInterests(UserInterestsRequest(selectedInterests))
+
             findNavController().navigate(R.id.action_finishUpInterestsFragment_to_finishUpSkillsFragment)
         }
     }

@@ -13,7 +13,7 @@ class EducationAdapter(private val educations: List<EducationData>): RecyclerVie
         parent: ViewGroup,
         viewType: Int
     ): EducationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_finish_up_education, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_finish_up, parent, false)
         return EducationViewHolder(view)
     }
 
