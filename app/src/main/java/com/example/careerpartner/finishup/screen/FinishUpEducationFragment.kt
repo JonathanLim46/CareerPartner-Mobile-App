@@ -16,13 +16,16 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
+import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.databinding.FragmentFinishUpEducationBinding
 import com.example.careerpartner.finishup.adapter.EducationAdapter
 import com.example.careerpartner.finishup.data.EducationData
+import com.example.careerpartner.finishup.viewmodel.FinishUpViewModel
 import java.util.Calendar
 
 class FinishUpEducationFragment : Fragment() {
@@ -33,6 +36,8 @@ class FinishUpEducationFragment : Fragment() {
 
     private var _binding: FragmentFinishUpEducationBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: FinishUpViewModel by activityViewModels<FinishUpViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +58,14 @@ class FinishUpEducationFragment : Fragment() {
         recyclerView.adapter = adapter
 
         binding.btnContinue.setOnClickListener {
+            educations.forEachIndexed { index, data ->
+                viewModel.updateEducation(UserEducationRequest(
+                    institutionName = data.institution,
+                    fieldOfStudy = data.fieldOfStudy,
+                    startYear = data.year.split("-")[0],
+                    endYear = data.year.split("-")[1]
+                ))
+            }
             findNavController().navigate(R.id.action_finishUpEducationFragment_to_finishUpInterestsFragment)
         }
 

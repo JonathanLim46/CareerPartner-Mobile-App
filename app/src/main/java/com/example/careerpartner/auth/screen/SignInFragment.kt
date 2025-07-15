@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.careerpartner.R
 import com.example.careerpartner.auth.model.LoginResponse
-import com.example.careerpartner.auth.viewmodel.LoginViewModel
+import com.example.careerpartner.auth.viewmodel.AuthViewModel
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
 import com.example.careerpartner.databinding.FragmentSignInBinding
@@ -24,7 +22,7 @@ class SignInFragment : Fragment() {
 
     private lateinit var loadingDialog: LoadingDialog
 
-    private val viewModel : LoginViewModel by activityViewModels<LoginViewModel>()
+    private val viewModel : AuthViewModel by activityViewModels<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

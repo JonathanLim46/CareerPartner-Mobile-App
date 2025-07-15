@@ -8,12 +8,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.careerpartner.R
+import com.example.careerpartner.data.model.Interest
+import com.example.careerpartner.data.model.Skill
+import com.example.careerpartner.data.model.UserInterestsRequest
+import com.example.careerpartner.data.model.UserSkillsRequest
+import com.example.careerpartner.finishup.viewmodel.FinishUpViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 class FinishUpSkillsFragment : Fragment() {
+
+    private val viewModel: FinishUpViewModel by activityViewModels<FinishUpViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +52,15 @@ class FinishUpSkillsFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.btnContinue).setOnClickListener {
+            val selectedSkills = mutableListOf<Skill>()
+            for (i in 0 until chipGroup.childCount) {
+                val chip = chipGroup.getChildAt(i) as Chip
+                if (chip.isChecked) {
+                    selectedSkills.add(Skill(name = chip.text.toString()))
+                }
+            }
+
+            viewModel.updateSkills(UserSkillsRequest(selectedSkills))
             findNavController().navigate(R.id.action_finishUpSkillsFragment_to_finishUpExperienceFragment)
         }
     }

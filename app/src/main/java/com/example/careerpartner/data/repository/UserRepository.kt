@@ -5,7 +5,11 @@ import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
+import com.example.careerpartner.data.model.UserInterestsRequest
+import com.example.careerpartner.data.model.UserInterestsRespond
 import com.example.careerpartner.data.model.UserProjectsResponse
+import com.example.careerpartner.data.model.UserSkillsRequest
+import com.example.careerpartner.data.model.UserSkillsRespond
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.UserApi
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -14,6 +18,8 @@ import okhttp3.RequestBody
 import java.io.File
 
 class UserRepository {
+
+    // User
 
     suspend fun getTalentData(token: String): retrofit2.Response<UserResponse>? {
         return UserApi.getApi()?.getTalentData(
@@ -59,6 +65,8 @@ class UserRepository {
             profilePicture = imagePart
         )
     }
+
+    // Education
 
     suspend fun addUserEducationData(
         token: String,
@@ -135,6 +143,8 @@ class UserRepository {
         )
     }
 
+    // Projects
+
     suspend fun getProjectsData(token: String): retrofit2.Response<UserProjectsResponse>? {
         return UserApi.getApi()?.getProjectsData(token = token)
     }
@@ -203,7 +213,7 @@ class UserRepository {
             RequestBody.create("text/plain".toMediaTypeOrNull(), it)
         }
 
-        return UserApi.getApi()?.addProjectData(
+        return UserApi.getApi()?.updateProjectData(
             id = id,
             token = token,
             title = titlePart,
@@ -211,5 +221,17 @@ class UserRepository {
             link = linkPart,
             year = yearPart
         )
+    }
+
+    // Interests
+
+    suspend fun addInterestsData(token: String, interests: UserInterestsRequest): retrofit2.Response<UserInterestsRespond>? {
+        return UserApi.getApi()?.addInterestsData(token = token, interests = interests)
+    }
+
+    // Skills
+
+    suspend fun addSkillsData(token: String, skills: UserSkillsRequest): retrofit2.Response<UserSkillsRespond>? {
+        return UserApi.getApi()?.addSkillsData(token = token, skills = skills)
     }
 }
