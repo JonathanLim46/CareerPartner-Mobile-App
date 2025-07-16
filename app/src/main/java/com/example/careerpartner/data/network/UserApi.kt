@@ -9,6 +9,7 @@ import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsRespond
 import com.example.careerpartner.data.model.UserProjectData
 import com.example.careerpartner.data.model.UserProjectsResponse
+import com.example.careerpartner.data.model.UserSkillsAllRespond
 import com.example.careerpartner.data.model.UserSkillsRequest
 import com.example.careerpartner.data.model.UserSkillsRespond
 import com.example.careerpartner.data.model.UserUpdateResponse
@@ -139,6 +140,17 @@ interface UserApi {
         @Header("Authorization") token: String,
         @Body skills: UserSkillsRequest
     ): retrofit2.Response<UserSkillsRespond>
+
+    @GET("api/talent/skills")
+    suspend fun getSkillsData(
+        @Header("Authorization") token: String,
+    ): retrofit2.Response<UserSkillsAllRespond>
+
+    @DELETE("api/talent/skills/{id}")
+    suspend fun deleteSkillData(
+        @Header("Authorization") token: String,
+        @Path(value = "id") id: Int
+    ): retrofit2.Response<UserUpdateResponse>
 
     companion object {
         fun getApi(): UserApi? {

@@ -36,12 +36,12 @@ class FinishUpSkillsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val skillsOptions = arrayOf(
-            "Writing",
-            "Design",
-            "Editor",
-            "Speaking",
-            "Science",
-            "Marketing"
+            "Communication",
+            "Critical Thinking",
+            "Digital Literacy",
+            "Teamwork",
+            "Time Management",
+            "Problem Solving"
         )
 
         val chipGroup = view.findViewById<ChipGroup>(R.id.chipGroup)

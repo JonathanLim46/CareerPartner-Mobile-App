@@ -8,6 +8,7 @@ import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsRespond
 import com.example.careerpartner.data.model.UserProjectsResponse
+import com.example.careerpartner.data.model.UserSkillsAllRespond
 import com.example.careerpartner.data.model.UserSkillsRequest
 import com.example.careerpartner.data.model.UserSkillsRespond
 import com.example.careerpartner.data.model.UserUpdateResponse
@@ -225,13 +226,27 @@ class UserRepository {
 
     // Interests
 
-    suspend fun addInterestsData(token: String, interests: UserInterestsRequest): retrofit2.Response<UserInterestsRespond>? {
+    suspend fun addInterestsData(
+        token: String,
+        interests: UserInterestsRequest
+    ): retrofit2.Response<UserInterestsRespond>? {
         return UserApi.getApi()?.addInterestsData(token = token, interests = interests)
     }
 
     // Skills
 
-    suspend fun addSkillsData(token: String, skills: UserSkillsRequest): retrofit2.Response<UserSkillsRespond>? {
+    suspend fun addSkillsData(
+        token: String,
+        skills: UserSkillsRequest
+    ): retrofit2.Response<UserSkillsRespond>? {
         return UserApi.getApi()?.addSkillsData(token = token, skills = skills)
+    }
+
+    suspend fun getSkillsData(token: String): retrofit2.Response<UserSkillsAllRespond>? {
+        return UserApi.getApi()?.getSkillsData(token = token)
+    }
+
+    suspend fun deleteSkillData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.deleteSkillData(token = token, id = id)
     }
 }

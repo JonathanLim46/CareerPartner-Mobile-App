@@ -6,5 +6,4 @@ data class UserInterestsRespond(
     @SerializedName("status") val status: String,
     @SerializedName("message") val message: String,
     @SerializedName("dataCount") val dataCount: Int
-
 )
