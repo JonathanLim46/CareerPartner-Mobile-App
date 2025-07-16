@@ -47,7 +47,6 @@ class ProfileFragment : Fragment() {
             when (it) {
                 is BaseResponse.Loading -> {
                     binding.contentUserLayout.visibility = View.INVISIBLE
-                    binding.shimmerUserLayout.visibility = View.VISIBLE
                     binding.shimmerUserLayout.startShimmer()
                 }
                 is BaseResponse.Success -> {

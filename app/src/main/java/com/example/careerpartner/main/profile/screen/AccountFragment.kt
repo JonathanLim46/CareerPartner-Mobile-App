@@ -50,10 +50,21 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.userResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.contentAccount.visibility = View.INVISIBLE
+                    binding.shimmerAccount.startShimmer()
+                }
                 is BaseResponse.Success -> {
+                    binding.contentAccount.visibility = View.VISIBLE
+                    binding.shimmerAccount.stopShimmer()
+                    binding.shimmerAccount.visibility = View.GONE
                     binding.usernamelayout.setText(it.data?.data?.talent?.username)
                     binding.emaillayout.setText(it.data?.data?.talent?.email)
-                    Glide.with(requireActivity()).load(it.data?.data?.talent?.profile_picture).into(binding.ivLogoFufufa)
+                    Glide.with(requireActivity())
+                        .load(it.data?.data?.talent?.profile_picture)
+                        .placeholder(R.drawable.img_default_profile)
+                        .error(R.drawable.img_default_profile)
+                        .into(binding.ivLogoFufufa)
                 }
 
                 is BaseResponse.Error -> {
