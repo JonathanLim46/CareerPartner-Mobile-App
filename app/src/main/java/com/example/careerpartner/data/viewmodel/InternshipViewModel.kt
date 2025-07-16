@@ -12,6 +12,7 @@ import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
 import com.example.careerpartner.data.repository.InternshipRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.time.delay
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
@@ -30,7 +31,9 @@ class InternshipViewModel(application: Application) : AndroidViewModel(applicati
         _getInternshipsDetailResult
 
     fun getInternshipsData(activity: Activity) {
+        _getInternshipsDataResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            kotlinx.coroutines.delay(500)
             val response =
                 internshipRepo.getInternshipsData(token = "Bearer ${SessionManager.getToken(activity)}")
             try {

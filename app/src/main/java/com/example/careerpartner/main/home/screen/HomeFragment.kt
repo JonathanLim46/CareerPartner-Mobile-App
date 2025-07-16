@@ -71,7 +71,14 @@ class HomeFragment : Fragment() {
 
         viewModel.userResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.shimmerUserLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
+                    binding.contentUserLayout.visibility = View.VISIBLE
+                    binding.shimmerUserLayout.stopShimmer()
+                    binding.shimmerUserLayout.visibility = View.GONE
+                    Log.d("HomeFragment", it.data?.data?.talent?.full_name.toString())
                     binding.tvHomeHello.text = "Hello, ${it.data?.data?.talent?.full_name}"
                     binding.tvHomeHelloSub.text =
                         "Your future career ${it.data?.data?.talent?.talent?.goalCareer}"
@@ -95,6 +102,10 @@ class HomeFragment : Fragment() {
         viewModelIntern.getInternshipsDataResult.observe(viewLifecycleOwner) {
 
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.contentInternshipsLayout.visibility = View.INVISIBLE
+                    binding.shimmerInternshipsLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     internshipsData = it.data?.data?.map {
                         HomeData(
@@ -106,6 +117,9 @@ class HomeFragment : Fragment() {
                         )
                     }?.filter { it.status == "open" }?.take(5) ?: listOf()
                     internshipsData()
+                    binding.shimmerInternshipsLayout.stopShimmer()
+                    binding.shimmerInternshipsLayout.visibility = View.GONE
+                    binding.contentInternshipsLayout.visibility = View.VISIBLE
                 }
 
                 is BaseResponse.Error -> {
@@ -125,6 +139,10 @@ class HomeFragment : Fragment() {
 
         viewModelVolunteer.getVolunteerDataResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.contentVolunteersLayout.visibility = View.INVISIBLE
+                    binding.shimmerVolunteersLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     volunteerData = it.data?.data?.map {
                         HomeData(
@@ -136,6 +154,9 @@ class HomeFragment : Fragment() {
                         )
                     }?.filter { it.status == "open" }?.take(5) ?: listOf()
                     volunteersData()
+                    binding.shimmerVolunteersLayout.stopShimmer()
+                    binding.shimmerVolunteersLayout.visibility = View.GONE
+                    binding.contentVolunteersLayout.visibility = View.VISIBLE
                 }
 
                 is BaseResponse.Error -> {

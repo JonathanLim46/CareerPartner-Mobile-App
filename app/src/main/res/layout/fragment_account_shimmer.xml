@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_putih"
+    android:elevation="10dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="@color/shimmerColor"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/Circular" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="150dp"
+        android:background="@color/shimmerColor"
+        android:contentDescription="ICON CHANGES IMAGE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivBackgroundBiru" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="190dp"
+        android:background="@color/shimmerColor"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="210dp"
+        android:background="@color/shimmerColor"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:placeholderText="Enter Username"
+        app:placeholderTextColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="280dp"
+        android:background="@color/shimmerColor"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="298dp"
+        android:background="@color/shimmerColor"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:placeholderText="Enter Email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="400dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="370dp"
+        android:clickable="true"
+        android:background="@color/shimmerColor"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</FrameLayout>

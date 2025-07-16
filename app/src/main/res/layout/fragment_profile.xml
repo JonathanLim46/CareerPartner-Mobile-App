@@ -7,135 +7,161 @@
     android:background="@drawable/background_gradient"
     tools:context=".main.profile.screen.ProfileFragment">
 
-    <TextView
-        android:id="@+id/tvProfileHeader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="My Profile"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvAppVersion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="Career Partner 1.0"
-        android:textColor="#C3FFFFFF"
-        android:textSize="12sp"
-        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        >
 
+        <include layout="@layout/fragment_profile_shimmer"/>
 
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:elevation="0dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfileHeader">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_card_profile">
+        <TextView
+            android:id="@+id/tvProfileHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="My Profile"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivProfilePicture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/dummyimg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/Circular" />
+        <TextView
+            android:id="@+id/tvAppVersion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Career Partner 1.0"
+            android:textColor="#C3FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSettings"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/icon_setting"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintTop_toTopOf="@id/ivProfilePicture"
-                app:layout_constraintStart_toEndOf="@+id/ivProfilePicture"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
 
-            <TextView
-                android:id="@+id/tvProfileName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Jonathan Lim"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivProfilePicture" />
 
-            <TextView
-                android:id="@+id/tvProfileLastDegree"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Bachelor of Computer Science"
-                android:textAlignment="center"
-                android:textColor="@color/abu"
-                android:textSize="12sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileHeader">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayoutProfile"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="Profile Tab"
-                android:elevation="0dp"
-                android:maxWidth="0dp"
-                android:tabStripEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvProfileLastDegree"
-                app:tabBackground="@drawable/tab_color_selector"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@android:color/transparent"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/white" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_card_profile">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerProfile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginHorizontal="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tabLayoutProfile" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivProfilePicture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/dummyimg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/Circular" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSettings"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/icon_setting"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintTop_toTopOf="@id/ivProfilePicture"
+                    app:layout_constraintStart_toEndOf="@+id/ivProfilePicture"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Jonathan Lim"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivProfilePicture" />
+
+                <TextView
+                    android:id="@+id/tvProfileLastDegree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bachelor of Computer Science"
+                    android:textAlignment="center"
+                    android:textColor="@color/abu"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayoutProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Profile Tab"
+                    android:elevation="0dp"
+                    android:maxWidth="0dp"
+                    android:tabStripEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvProfileLastDegree"
+                    app:tabBackground="@drawable/tab_color_selector"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@android:color/transparent"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/white" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tabLayoutProfile" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

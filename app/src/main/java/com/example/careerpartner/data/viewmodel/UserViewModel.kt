@@ -24,6 +24,7 @@ import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
 import com.example.careerpartner.data.repository.UserRepository
 import com.example.careerpartner.util.Event
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import java.net.ConnectException
@@ -115,7 +116,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val userGetSkillsResult: LiveData<BaseResponse<UserSkillsAllRespond>> = _userGetSkillsResult
 
     fun getTalentData(activity: Activity) {
+        _userResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(1000)
             try {
                 val response =
                     userRepo.getTalentData(token = "Bearer ${SessionManager.getToken(activity)}")

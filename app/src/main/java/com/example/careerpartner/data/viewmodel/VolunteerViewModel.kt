@@ -12,6 +12,7 @@ import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
 import com.example.careerpartner.data.repository.VolunteerRepository
 import com.example.careerpartner.util.Event
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -29,7 +30,9 @@ class VolunteerViewModel(application: Application) : AndroidViewModel(applicatio
     val getVolunteerDetailResult: LiveData<BaseResponse<VolunteerDetailResponse>> = _getVolunteerDetailResult
 
     fun getVolunteerData(activity: Activity) {
+        _getVolunteerDataResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(500)
             val response =
                 volunteerRepo.getVolunteerData(token = "Bearer ${SessionManager.getToken(activity)}")
             try {
