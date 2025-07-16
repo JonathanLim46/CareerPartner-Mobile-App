@@ -13,18 +13,17 @@ import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
-import com.example.careerpartner.data.model.UserInterestsRespond
+import com.example.careerpartner.data.model.UserInterestsResponse
 import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserSkillsAllRespond
 import com.example.careerpartner.data.model.UserSkillsRequest
-import com.example.careerpartner.data.model.UserSkillsRespond
+import com.example.careerpartner.data.model.UserSkillsResponse
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
 import com.example.careerpartner.data.repository.UserRepository
 import com.example.careerpartner.util.Event
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import java.net.ConnectException
@@ -97,9 +96,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val userUpdateProjectResult: LiveData<Event<BaseResponse<UserUpdateResponse>>> =
         _userUpdateProjectResult
 
-    val _userAddInterestsResult: MutableLiveData<Event<BaseResponse<UserInterestsRespond>>> =
+    val _userAddInterestsResult: MutableLiveData<Event<BaseResponse<UserInterestsResponse>>> =
         MutableLiveData()
-    val userAddInterestsResult: LiveData<Event<BaseResponse<UserInterestsRespond>>> =
+    val userAddInterestsResult: LiveData<Event<BaseResponse<UserInterestsResponse>>> =
         _userAddInterestsResult
 
     val _userGetInterestsResult: MutableLiveData<BaseResponse<UserInterestsAllRespond>> =
@@ -107,9 +106,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val userGetInterestsResult: LiveData<BaseResponse<UserInterestsAllRespond>> =
         _userGetInterestsResult
 
-    val _userAddSkillsResult: MutableLiveData<Event<BaseResponse<UserSkillsRespond>>> =
+    val _userAddSkillsResult: MutableLiveData<Event<BaseResponse<UserSkillsResponse>>> =
         MutableLiveData()
-    val userAddSkillsResult: LiveData<Event<BaseResponse<UserSkillsRespond>>> = _userAddSkillsResult
+    val userAddSkillsResult: LiveData<Event<BaseResponse<UserSkillsResponse>>> = _userAddSkillsResult
 
     val _userGetSkillsResult: MutableLiveData<BaseResponse<UserSkillsAllRespond>> =
         MutableLiveData()

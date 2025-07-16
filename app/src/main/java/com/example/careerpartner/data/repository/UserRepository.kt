@@ -7,11 +7,11 @@ import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
-import com.example.careerpartner.data.model.UserInterestsRespond
+import com.example.careerpartner.data.model.UserInterestsResponse
 import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserSkillsAllRespond
 import com.example.careerpartner.data.model.UserSkillsRequest
-import com.example.careerpartner.data.model.UserSkillsRespond
+import com.example.careerpartner.data.model.UserSkillsResponse
 import com.example.careerpartner.data.model.UserUpdateResponse
 import com.example.careerpartner.data.network.UserApi
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -230,7 +230,7 @@ class UserRepository {
     suspend fun addInterestsData(
         token: String,
         interests: UserInterestsRequest
-    ): retrofit2.Response<UserInterestsRespond>? {
+    ): retrofit2.Response<UserInterestsResponse>? {
         return UserApi.getApi()?.addInterestsData(token = token, interests = interests)
     }
 
@@ -252,7 +252,7 @@ class UserRepository {
     suspend fun addSkillsData(
         token: String,
         skills: UserSkillsRequest
-    ): retrofit2.Response<UserSkillsRespond>? {
+    ): retrofit2.Response<UserSkillsResponse>? {
         return UserApi.getApi()?.addSkillsData(token = token, skills = skills)
     }
 

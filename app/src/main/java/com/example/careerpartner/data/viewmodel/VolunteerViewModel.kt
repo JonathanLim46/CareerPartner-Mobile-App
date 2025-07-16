@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.careerpartner.data.model.VolunteerDetailResponse
 import com.example.careerpartner.data.model.VolunteerResponse
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.network.SessionManager
@@ -22,6 +23,10 @@ class VolunteerViewModel(application: Application) : AndroidViewModel(applicatio
     val _getVolunteerDataResult: MutableLiveData<BaseResponse<VolunteerResponse>> =
         MutableLiveData()
     val getVolunteerDataResult: LiveData<BaseResponse<VolunteerResponse>> = _getVolunteerDataResult
+
+    val _getVolunteerDetailResult: MutableLiveData<BaseResponse<VolunteerDetailResponse>> =
+        MutableLiveData()
+    val getVolunteerDetailResult: LiveData<BaseResponse<VolunteerDetailResponse>> = _getVolunteerDetailResult
 
     fun getVolunteerData(activity: Activity) {
         viewModelScope.launch {
@@ -41,6 +46,32 @@ class VolunteerViewModel(application: Application) : AndroidViewModel(applicatio
                     BaseResponse.Error("Request timed out. Please try again.")
             } catch (e: Exception) {
                 _getVolunteerDataResult.value = BaseResponse.Error("Exception occurred")
+            }
+        }
+    }
+
+    fun getVolunteerDetail(activity: Activity, id: Int) {
+        viewModelScope.launch {
+            val response = volunteerRepo.getVolunteerDetail(
+                token = "Bearer ${
+                    SessionManager.getToken(activity)
+                }", id = id
+            )
+            try {
+                if (response?.code() == 200) {
+                    _getVolunteerDetailResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _getVolunteerDetailResult.value =
+                        BaseResponse.Error("Check your internet connection")
+                }
+            } catch (e: ConnectException) {
+                _getVolunteerDetailResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (e: SocketTimeoutException) {
+                _getVolunteerDetailResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _getVolunteerDetailResult.value = BaseResponse.Error("Exception occurred")
             }
         }
     }

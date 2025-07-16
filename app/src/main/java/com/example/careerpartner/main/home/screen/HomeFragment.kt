@@ -98,12 +98,13 @@ class HomeFragment : Fragment() {
                 is BaseResponse.Success -> {
                     internshipsData = it.data?.data?.map {
                         HomeData(
+                            id = it.id,
                             title = it.title,
-                            subTitle = it.description,
+                            subTitle = "Status: ${it.status} | Location ${it.location}",
                             image = it.imageCover,
                             status = it.status
                         )
-                    }?.filter{it.status == "open"}?.take(5) ?: listOf()
+                    }?.filter { it.status == "open" }?.take(5) ?: listOf()
                     internshipsData()
                 }
 
@@ -126,11 +127,14 @@ class HomeFragment : Fragment() {
             when (it) {
                 is BaseResponse.Success -> {
                     volunteerData = it.data?.data?.map {
-                        HomeData(title = it.title,
+                        HomeData(
+                            id = it.id,
+                            title = it.title,
                             subTitle = it.description,
                             image = it.imageCover,
-                            status = it.status)
-                    }?.filter { it.status == "completed" }?.take(5) ?: listOf()
+                            status = it.status
+                        )
+                    }?.filter { it.status == "open" }?.take(5) ?: listOf()
                     volunteersData()
                 }
 
@@ -169,6 +173,14 @@ class HomeFragment : Fragment() {
         rvInternship.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvInternship.adapter = adapterInternships
+
+        adapterInternships.onItemClick = { item ->
+            val bundle = Bundle().apply {
+                putString("detail", "internship")
+                putInt("detailID", item.id)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_discoverDetailFragment, bundle)
+        }
     }
 
     private fun volunteersData() {
@@ -176,6 +188,14 @@ class HomeFragment : Fragment() {
         rvVolunteer.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rvVolunteer.adapter = adapterVolunteer
+
+        adapterVolunteer.onItemClick = { item ->
+            val bundle = Bundle().apply {
+                putString("detail", "volunteer")
+                putInt("detailID", item.id)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_discoverDetailFragment, bundle)
+        }
     }
 
     private fun setupPathCourse() {
