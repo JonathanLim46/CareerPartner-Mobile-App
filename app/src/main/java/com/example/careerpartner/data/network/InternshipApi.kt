@@ -1,5 +1,6 @@
 package com.example.careerpartner.data.network
 
+import com.example.careerpartner.data.model.InternshipDetailResponse
 import com.example.careerpartner.data.model.InternshipsResponse
 import retrofit2.create
 import retrofit2.http.GET
@@ -12,7 +13,7 @@ interface InternshipApi {
     suspend fun getInternshipsData(@Header("Authorization") token: String): retrofit2.Response<InternshipsResponse>
 
     @GET("api/talent/internships/{id}")
-    suspend fun getInternshipsDetail(@Header("Authorization") token: String, @Path(value = "id") id: Int): retrofit2.Response<InternshipsResponse>
+    suspend fun getInternshipDetail(@Header("Authorization") token: String, @Path(value = "id") id: Int): retrofit2.Response<InternshipDetailResponse>
 
     companion object{
         fun getApi(): InternshipApi? {

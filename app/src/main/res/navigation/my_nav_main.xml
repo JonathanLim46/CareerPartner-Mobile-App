@@ -33,6 +33,9 @@
                 android:name="tabIndex"
                 android:defaultValue="2" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_discoverDetailFragment"
+            app:destination="@id/discoverDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
@@ -118,4 +121,16 @@
         android:name="com.example.careerpartner.main.profile.screen.ResetInterestFragment"
         android:label="fragment_reset_interest"
         tools:layout="@layout/fragment_reset_interest" />
+    <fragment
+        android:id="@+id/discoverDetailFragment"
+        android:name="com.example.careerpartner.main.discover.screen.DiscoverDetailFragment"
+        android:label="fragment_discover_detail"
+        tools:layout="@layout/fragment_discover_detail" >
+        <argument
+            android:name="detail"
+            app:argType="string" />
+        <argument
+            android:name="detailID"
+            app:argType="integer" />
+    </fragment>
 </navigation>

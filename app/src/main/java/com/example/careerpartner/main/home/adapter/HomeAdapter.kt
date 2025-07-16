@@ -13,11 +13,22 @@ import com.example.careerpartner.main.home.data.HomeData
 
 class HomeAdapter(private val context: Context, private val homeData: List<HomeData>) :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.tvTitleCardHome)
         val subTitle: TextView = itemView.findViewById(R.id.tvSubTitleCardHome)
         val image: ImageView = itemView.findViewById(R.id.ivCardHome)
+
+        init {
+            itemView.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick?.invoke(homeData[position])
+                }
+            }
+        }
     }
+
+    var onItemClick: ((HomeData) -> Unit)? = null
 
     override fun getItemCount(): Int {
         return homeData.size

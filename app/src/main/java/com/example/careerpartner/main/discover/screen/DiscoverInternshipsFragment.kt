@@ -52,9 +52,9 @@ class DiscoverInternshipsFragment : Fragment() {
                     discoverData = it.data?.data?.map {
                         DiscoverData(
                             title = it.title,
-                            subTitle = it.description,
+                            subTitle = it.location,
                             image = it.imageCover,
-                            content = it.description,
+                            content = "Status: ${it.status}",
                             status = it.status
                         )
                     }?.filter { it.status == "open" } ?: listOf()
