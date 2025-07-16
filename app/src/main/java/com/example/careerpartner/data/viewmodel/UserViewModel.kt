@@ -11,6 +11,7 @@ import com.example.careerpartner.data.model.UserAchievementsRequest
 import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserEducationResponse
+import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsRespond
 import com.example.careerpartner.data.model.UserProjectsResponse
@@ -100,6 +101,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData()
     val userAddInterestsResult: LiveData<Event<BaseResponse<UserInterestsRespond>>> =
         _userAddInterestsResult
+
+    val _userGetInterestsResult: MutableLiveData<BaseResponse<UserInterestsAllRespond>> =
+        MutableLiveData()
+    val userGetInterestsResult: LiveData<BaseResponse<UserInterestsAllRespond>> =
+        _userGetInterestsResult
 
     val _userAddSkillsResult: MutableLiveData<Event<BaseResponse<UserSkillsRespond>>> =
         MutableLiveData()
@@ -588,6 +594,54 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getInterestsData(
+        activity: Activity
+    ) {
+        viewModelScope.launch {
+            val response =
+                userRepo.getInterestsData(token = "Bearer ${SessionManager.getToken(activity)}")
+            try {
+                if (response?.code() == 200) {
+                    _userGetInterestsResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _userGetInterestsResult.value =
+                        BaseResponse.Error("Check your internet connection")
+                }
+            } catch (e: ConnectException) {
+                _userGetInterestsResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (e: SocketTimeoutException) {
+                _userGetInterestsResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _userGetInterestsResult.value = BaseResponse.Error("Exception occurred")
+            }
+        }
+    }
+
+    fun deleteInterestsData(activity: Activity, id: Int) {
+        viewModelScope.launch {
+            val response =
+                userRepo.deleteInterestData(
+                    token = "Bearer ${SessionManager.getToken(activity)}",
+                    id = id
+                )
+            try {
+                if (response?.code() == 200) {
+                    Log.d("Interests", "Success Delete $id")
+                } else {
+                    Log.d("Interests", "Failed Delete $id")
+                }
+            } catch (e: ConnectException) {
+                Log.e("Interests".javaClass.name, e.message, e)
+            } catch (e: SocketTimeoutException) {
+                Log.e("Interests".javaClass.name, e.message, e)
+            } catch (e: Exception) {
+                Log.e("Interests".javaClass.name, e.message, e)
+            }
+        }
+    }
+
     // Skills
 
     fun addSkillsData(
@@ -644,19 +698,22 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteSkillsData(activity: Activity, id: Int) {
         viewModelScope.launch {
             val response =
-                userRepo.deleteSkillData(token = "Bearer ${SessionManager.getToken(activity)}", id = id)
+                userRepo.deleteSkillData(
+                    token = "Bearer ${SessionManager.getToken(activity)}",
+                    id = id
+                )
             try {
-                if (response?.code() == 200){
+                if (response?.code() == 200) {
                     Log.d("Skills", "Success Delete $id")
                 } else {
                     Log.d("Skills", "Failed Delete $id")
                 }
             } catch (e: ConnectException) {
-                Log.e("Skills". javaClass.name, e.message, e)
+                Log.e("Skills".javaClass.name, e.message, e)
             } catch (e: SocketTimeoutException) {
-                Log.e("Skills". javaClass.name, e.message, e)
+                Log.e("Skills".javaClass.name, e.message, e)
             } catch (e: Exception) {
-                Log.e("Skills". javaClass.name, e.message, e)
+                Log.e("Skills".javaClass.name, e.message, e)
             }
         }
     }

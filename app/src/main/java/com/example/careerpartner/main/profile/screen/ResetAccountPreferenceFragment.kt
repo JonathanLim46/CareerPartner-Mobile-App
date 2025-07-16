@@ -31,5 +31,9 @@ class ResetAccountPreferenceFragment : Fragment() {
         binding.btnSkills.setOnClickListener {
             findNavController().navigate(R.id.action_resetAccountPreferenceFragment_to_resetSkillsFragment)
         }
+
+        binding.btnResetInterests.setOnClickListener {
+            findNavController().navigate(R.id.action_resetAccountPreferenceFragment_to_resetInterestFragment)
+        }
     }
 }

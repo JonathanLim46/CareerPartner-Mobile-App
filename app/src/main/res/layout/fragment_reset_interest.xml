@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.profile.screen.ResetSkillsFragment">
+    tools:context=".main.profile.screen.ResetInterestFragment">
 
     <View
         android:layout_width="0dp"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginVertical="16dp"
-                android:text="My Skills"
+                android:text="My Interests"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -82,7 +82,7 @@
                     android:id="@+id/tvTitleInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reset My Skills"
+                    android:text="Reset My Interests"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="16sp"

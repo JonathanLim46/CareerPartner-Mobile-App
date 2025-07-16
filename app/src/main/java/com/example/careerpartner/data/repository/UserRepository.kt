@@ -5,6 +5,7 @@ import com.example.careerpartner.data.model.UserAchievementsResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
+import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsRespond
 import com.example.careerpartner.data.model.UserProjectsResponse
@@ -231,6 +232,19 @@ class UserRepository {
         interests: UserInterestsRequest
     ): retrofit2.Response<UserInterestsRespond>? {
         return UserApi.getApi()?.addInterestsData(token = token, interests = interests)
+    }
+
+    suspend fun getInterestsData(
+        token: String
+    ): retrofit2.Response<UserInterestsAllRespond>? {
+        return UserApi.getApi()?.getInterestsData(token = token)
+    }
+
+    suspend fun deleteInterestData(
+        token: String,
+        id: Int
+    ): retrofit2.Response<UserUpdateResponse>? {
+        return UserApi.getApi()?.deleteInterestData(token = token, id = id)
     }
 
     // Skills
