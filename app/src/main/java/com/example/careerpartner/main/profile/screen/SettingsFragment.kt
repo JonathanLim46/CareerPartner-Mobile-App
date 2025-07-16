@@ -72,6 +72,10 @@ class SettingsFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             doLogout()
         }
+
+        binding.btnResetSuggestions.setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_resetAccountPreferenceFragment)
+        }
     }
 
     private fun doLogout(){

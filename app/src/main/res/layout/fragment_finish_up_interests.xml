@@ -225,16 +225,23 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroup"
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:singleSelection="false"
                     android:layout_marginTop="4dp"
                     android:layout_gravity="center"
                     >
 
-                </com.google.android.material.chip.ChipGroup>
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:singleSelection="false"
+                        >
+
+                    </com.google.android.material.chip.ChipGroup>
+
+                </ScrollView>
 
 
             </LinearLayout>

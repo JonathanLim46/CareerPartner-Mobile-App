@@ -75,6 +75,20 @@ class SignUpFragment : Fragment() {
                 }
             }
         }
+
+        viewModelAuth.registerResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Success -> {
+                    viewModelAuth.login(email, password)
+                }
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun validateData() {
@@ -142,7 +156,6 @@ class SignUpFragment : Fragment() {
                 role = "talent"
             ))
             dialog.dismiss()
-            viewModelAuth.login(email, password)
         }
     }
 

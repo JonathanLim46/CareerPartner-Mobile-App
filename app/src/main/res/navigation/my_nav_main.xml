@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_resetAccountPreferenceFragment"
+            app:destination="@id/resetAccountPreferenceFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -93,4 +96,26 @@
         android:name="com.example.careerpartner.main.profile.screen.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/resetAccountPreferenceFragment"
+        android:name="com.example.careerpartner.main.profile.screen.ResetAccountPreferenceFragment"
+        android:label="fragment_reset_account_preference"
+        tools:layout="@layout/fragment_reset_account_preference" >
+        <action
+            android:id="@+id/action_resetAccountPreferenceFragment_to_resetSkillsFragment"
+            app:destination="@id/resetSkillsFragment" />
+        <action
+            android:id="@+id/action_resetAccountPreferenceFragment_to_resetInterestFragment"
+            app:destination="@id/resetInterestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetSkillsFragment"
+        android:name="com.example.careerpartner.main.profile.screen.ResetSkillsFragment"
+        android:label="fragment_reset_skills"
+        tools:layout="@layout/fragment_reset_skills" />
+    <fragment
+        android:id="@+id/resetInterestFragment"
+        android:name="com.example.careerpartner.main.profile.screen.ResetInterestFragment"
+        android:label="fragment_reset_interest"
+        tools:layout="@layout/fragment_reset_interest" />
 </navigation>

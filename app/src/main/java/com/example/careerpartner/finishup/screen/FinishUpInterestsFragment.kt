@@ -37,14 +37,14 @@ class FinishUpInterestsFragment : Fragment() {
 
         val interestsData = arrayOf(
             "Business Analyst",
-            "Developer",
+            "Sports & Wellness",
             "Marketing",
             "Finance",
-            "Design",
-            "Science",
-            "Video Editor",
-            "Game Dev",
-            "Data Engineering"
+            "Education & Learning",
+            "Science and Technology",
+            "Art and Design",
+            "Entrepreneurship",
+            "Social Impact"
         )
 
         val chipGroup = view.findViewById<ChipGroup>(R.id.chipGroup)
