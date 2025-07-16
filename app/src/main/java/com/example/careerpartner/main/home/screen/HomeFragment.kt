@@ -78,6 +78,7 @@ class HomeFragment : Fragment() {
                     binding.contentUserLayout.visibility = View.VISIBLE
                     binding.shimmerUserLayout.stopShimmer()
                     binding.shimmerUserLayout.visibility = View.GONE
+                    Log.d("HomeFragment", it.data?.data?.talent?.full_name.toString())
                     binding.tvHomeHello.text = "Hello, ${it.data?.data?.talent?.full_name}"
                     binding.tvHomeHelloSub.text =
                         "Your future career ${it.data?.data?.talent?.talent?.goalCareer}"

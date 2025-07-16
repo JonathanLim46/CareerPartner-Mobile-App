@@ -45,7 +45,15 @@ class ProfileFragment : Fragment() {
 
         viewmodel.userResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.contentUserLayout.visibility = View.INVISIBLE
+                    binding.shimmerUserLayout.visibility = View.VISIBLE
+                    binding.shimmerUserLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
+                    binding.contentUserLayout.visibility = View.VISIBLE
+                    binding.shimmerUserLayout.stopShimmer()
+                    binding.shimmerUserLayout.visibility = View.GONE
                     binding.tvProfileName.text = it.data?.data?.talent?.full_name
                     binding.tvProfileLastDegree.text = it.data?.data?.talent?.talent?.currentEducation
                     Glide.with(requireContext())
