@@ -77,7 +77,6 @@ class DiscoverAllFragment : Fragment() {
                     getDataRv()
                 }
                 else -> {
-                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
                     discoverData = listOf()
                     getDataRv()
                 }
@@ -95,7 +94,7 @@ class DiscoverAllFragment : Fragment() {
                             content = it.description,
                             status = it.status
                         )
-                    }?.filter { it.status == "completed" } ?: listOf()
+                    }?.filter { it.status == "open" } ?: listOf()
                     updateRv()
                 }
                 is BaseResponse.Error -> {
@@ -104,7 +103,6 @@ class DiscoverAllFragment : Fragment() {
                     getDataRv()
                 }
                 else -> {
-                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
                     discoverData = listOf()
                     getDataRv()
                 }

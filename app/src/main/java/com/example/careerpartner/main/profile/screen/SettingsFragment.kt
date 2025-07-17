@@ -36,19 +36,21 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewmodel.logoutResult.observe(requireActivity()) {
-            when  (it){
-                is BaseResponse.Success -> {
-                    SessionManager.clearData(requireContext().applicationContext)
+            context?.let { safeContext ->
+                when  (it){
+                    is BaseResponse.Success -> {
+                        SessionManager.clearData(safeContext.applicationContext)
 
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    intent.putExtra("from_logout", true)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                }
-                is BaseResponse.Error -> {
-                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
-                } else -> {
+                        val intent = Intent(safeContext, MainActivity::class.java)
+                        intent.putExtra("from_logout", true)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+                    is BaseResponse.Error -> {
+                        Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                    } else -> {
                     Toast.makeText(requireActivity(), "Logout Failed", Toast.LENGTH_SHORT).show()
+                }
                 }
             }
         }
