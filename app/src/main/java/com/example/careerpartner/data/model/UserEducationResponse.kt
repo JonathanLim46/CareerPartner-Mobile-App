@@ -11,6 +11,6 @@ data class UserEducationData(
     @SerializedName("id") val id: Int,
     @SerializedName("institution_name") val institutionName: String,
     @SerializedName("field_of_study") val fieldOfStudy: String,
-    @SerializedName("start_year") val startDate: String,
-    @SerializedName("end_year") val endDate: String
+    @SerializedName("start_year") val startYear: String,
+    @SerializedName("end_year") val endYear: String
 )

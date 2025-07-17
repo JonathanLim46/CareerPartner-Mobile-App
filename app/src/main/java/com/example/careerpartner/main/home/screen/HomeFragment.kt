@@ -79,7 +79,12 @@ class HomeFragment : Fragment() {
                     binding.shimmerUserLayout.stopShimmer()
                     binding.shimmerUserLayout.visibility = View.GONE
                     Log.d("HomeFragment", it.data?.data?.talent?.full_name.toString())
-                    binding.tvHomeHello.text = "Hello, ${it.data?.data?.talent?.full_name}"
+                    val fullName = it.data?.data?.talent?.full_name
+                    binding.tvHomeHello.text = if (fullName != null){
+                        "Hello, $fullName"
+                    } else {
+                        "Hello, User"
+                    }
                     binding.tvHomeHelloSub.text =
                         "Your future career ${it.data?.data?.talent?.talent?.goalCareer}"
                 }
@@ -104,6 +109,7 @@ class HomeFragment : Fragment() {
             when (it) {
                 is BaseResponse.Loading -> {
                     binding.contentInternshipsLayout.visibility = View.INVISIBLE
+                    binding.shimmerInternshipsLayout.visibility = View.VISIBLE
                     binding.shimmerInternshipsLayout.startShimmer()
                 }
                 is BaseResponse.Success -> {
@@ -129,8 +135,6 @@ class HomeFragment : Fragment() {
                 }
 
                 else -> {
-                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT)
-                        .show()
                     internshipsData = listOf()
                     internshipsData()
                 }
@@ -141,6 +145,7 @@ class HomeFragment : Fragment() {
             when (it) {
                 is BaseResponse.Loading -> {
                     binding.contentVolunteersLayout.visibility = View.INVISIBLE
+                    binding.shimmerVolunteersLayout.visibility = View.VISIBLE
                     binding.shimmerVolunteersLayout.startShimmer()
                 }
                 is BaseResponse.Success -> {
@@ -166,15 +171,13 @@ class HomeFragment : Fragment() {
                 }
 
                 else -> {
-                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT)
-                        .show()
                     volunteerData = listOf()
                     volunteersData()
                 }
             }
         }
 
-        binding.tvViewMore.setOnClickListener {
+        binding.tvViewMoreIntern.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_discoverFragment)
         }
 
@@ -202,6 +205,13 @@ class HomeFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_homeFragment_to_discoverDetailFragment, bundle)
         }
+
+        if (internshipsData.isNotEmpty()){
+            binding.tvInternshipsNoData.visibility = View.GONE
+        } else {
+            binding.rvInternship.visibility = View.INVISIBLE
+            binding.tvInternshipsNoData.visibility = View.VISIBLE
+        }
     }
 
     private fun volunteersData() {
@@ -216,6 +226,13 @@ class HomeFragment : Fragment() {
                 putInt("detailID", item.id)
             }
             findNavController().navigate(R.id.action_homeFragment_to_discoverDetailFragment, bundle)
+        }
+
+        if (volunteerData.isNotEmpty()){
+            binding.tvVolunteerNoData.visibility = View.GONE
+        } else {
+            binding.rvVolunteer.visibility = View.INVISIBLE
+            binding.tvVolunteerNoData.visibility = View.VISIBLE
         }
     }
 

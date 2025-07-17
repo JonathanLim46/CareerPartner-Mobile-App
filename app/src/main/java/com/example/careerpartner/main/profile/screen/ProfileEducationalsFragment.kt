@@ -57,6 +57,7 @@ class ProfileEducationalsFragment : Fragment() {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getEducationData(requireActivity())
+            binding.swipeRefreshLayout.isRefreshing = false
         }
 
         binding.tvAdd.setOnClickListener {
@@ -67,16 +68,24 @@ class ProfileEducationalsFragment : Fragment() {
 
         viewModel.userEducationResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.rvEducation.visibility = View.GONE
+                    binding.shimmerProfileEdu.visibility = View.VISIBLE
+                    binding.shimmerProfileEdu.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     educationData = it.data?.data?.map {
                         ProfileHistoryData(
-                            it.id,
-                            it.institutionName,
-                            it.fieldOfStudy,
-                            it.startDate + " - " + it.endDate
+                            id = it.id,
+                            title = it.institutionName,
+                            source = it.fieldOfStudy,
+                            year = it.startYear + " - " + it.endYear
                         )
                     } ?: listOf()
                     setupRv()
+                    binding.rvEducation.visibility = View.VISIBLE
+                    binding.shimmerProfileEdu.stopShimmer()
+                    binding.shimmerProfileEdu.visibility = View.GONE
                 }
 
                 is BaseResponse.Error -> {

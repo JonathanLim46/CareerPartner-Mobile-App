@@ -75,11 +75,21 @@ class ProfileProjectsFragment : Fragment() {
             openDialog()
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getProjectsData(requireActivity())
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
 
         viewModel.getProjectsData(requireActivity())
 
         viewModel.userProjectsResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.rvProjects.visibility = View.GONE
+                    binding.shimmerProfileProjects.visibility = View.VISIBLE
+                    binding.shimmerProfileProjects.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     projectsData = it.data?.data?.map {
                         ProfileProjectsData(
@@ -99,6 +109,9 @@ class ProfileProjectsFragment : Fragment() {
                         val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                         startActivity(intent)
                     }
+                    binding.rvProjects.visibility = View.VISIBLE
+                    binding.shimmerProfileProjects.stopShimmer()
+                    binding.shimmerProfileProjects.visibility = View.GONE
                 }
 
                 is BaseResponse.Error -> {

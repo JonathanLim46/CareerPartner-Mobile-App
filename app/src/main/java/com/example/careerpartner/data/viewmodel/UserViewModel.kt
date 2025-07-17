@@ -139,7 +139,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getEducationData(activity: Activity) {
+        _userEducationResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(1000)
             try {
                 val responseEducation =
                     userRepo.getEducationData(token = "Bearer ${SessionManager.getToken(activity)}")
@@ -327,7 +329,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     // Achievement
 
     fun getAchievementsData(activity: Activity) {
+        _userAchievementsResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(1000)
             val responseAchievement =
                 userRepo.getAchievementsData(token = "Bearer ${SessionManager.getToken(activity)}")
             try {
@@ -446,7 +450,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     // Projects
 
     fun getProjectsData(activity: Activity) {
+        _userProjectsResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(1000)
             val responseProjects =
                 userRepo.getProjectsData(token = "Bearer ${SessionManager.getToken(activity)}")
             try {

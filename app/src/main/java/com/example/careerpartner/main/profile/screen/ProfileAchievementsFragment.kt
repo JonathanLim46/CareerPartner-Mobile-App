@@ -64,6 +64,11 @@ class ProfileAchievementsFragment : Fragment() {
 
         viewModel.userAchievementResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.rvAchievement.visibility = View.GONE
+                    binding.shimmerProfileAch.visibility = View.VISIBLE
+                    binding.shimmerProfileAch.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     educationData = it.data?.data?.achievements?.map {
                         ProfileHistoryData(
@@ -74,6 +79,9 @@ class ProfileAchievementsFragment : Fragment() {
                         )
                     } ?: listOf()
                     setupRv()
+                    binding.rvAchievement.visibility = View.VISIBLE
+                    binding.shimmerProfileAch.stopShimmer()
+                    binding.shimmerProfileAch.visibility = View.GONE
                 }
 
                 is BaseResponse.Error -> {

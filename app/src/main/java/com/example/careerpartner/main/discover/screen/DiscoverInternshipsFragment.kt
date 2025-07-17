@@ -66,7 +66,6 @@ class DiscoverInternshipsFragment : Fragment() {
                     getDataRv()
                 }
                 else -> {
-                    Toast.makeText(requireActivity(), "Something went wrong", Toast.LENGTH_SHORT).show()
                     discoverData = listOf()
                     getDataRv()
                 }
