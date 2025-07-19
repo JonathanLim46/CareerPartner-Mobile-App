@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.careerpartner.R
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.viewmodel.InternshipViewModel
 import com.example.careerpartner.data.viewmodel.VolunteerViewModel
 import com.example.careerpartner.databinding.FragmentDiscoverDetailBinding
+import org.json.JSONArray
 
 class DiscoverDetailFragment : Fragment() {
 
@@ -39,6 +41,10 @@ class DiscoverDetailFragment : Fragment() {
         val detail = arguments?.getString("detail")
         val detailID = arguments?.getInt("detailID")
 
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         if (detail == "internship") {
             viewModelIntern.getInternshipDetail(requireActivity(), detailID!!)
 
@@ -48,9 +54,21 @@ class DiscoverDetailFragment : Fragment() {
                         val url = it.data?.data?.company?.website.toString()
                         binding.tvDetailTitle.text = it.data?.data?.title.toString()
                         binding.tvDetailOneDesc.text = it.data?.data?.company?.description.toString()
-                        binding.tvDetailTwoDesc.text = it.data?.data?.responsibilities.toString()
-                        binding.tvDetailThreeDesc.text = it.data?.data?.requirements.toString()
-                        binding.tvDetailFourDesc.text = it.data?.data?.offer.toString()
+                        val responsibilitiesRaw = it.data?.data?.responsibilities
+                        val responsbilitiesList = JSONArray(responsibilitiesRaw)
+                        val builderResponsbilities = StringBuilder()
+                        for (i in 0 until responsbilitiesList.length()){
+                            builderResponsbilities.append("• ").append(responsbilitiesList.getString(i)).append("\n")
+                        }
+                        binding.tvDetailTwoDesc.text = builderResponsbilities.toString()
+                        val requirementsRaw = it.data?.data?.requirements
+                        val requirementsList = JSONArray(requirementsRaw)
+                        val builderRequirements = StringBuilder()
+                        for (i in 0 until requirementsList.length()){
+                            builderRequirements.append("• ").append(requirementsList.getString(i)).append("\n")
+                        }
+                        binding.tvDetailThreeDesc.text = builderRequirements.toString()
+                        binding.tvDetailFourDesc.text = if (it.data?.data?.offer.isNullOrEmpty()) "No Offer" else it.data.data.offer.toString()
                         binding.tvStatus.text = "Status: ${it.data?.data?.status.toString()}"
                         binding.tvLocation.text = "Location: ${it.data?.data?.location.toString()}"
                         binding.tvEmailContact.text = "Email Contact: ${it.data?.data?.company?.contactEmail.toString()}"
@@ -75,6 +93,7 @@ class DiscoverDetailFragment : Fragment() {
             viewModelVolunteer.getVolunteerDetailResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Success -> {
+                        val urlVolunteer = it.data?.data?.link.toString()
                         binding.tvDetailTitle.text = it.data?.data?.title.toString()
                         binding.tvDetailOneDesc.text = it.data?.data?.description.toString()
                         binding.tvDetailTwoDesc.text = it.data?.data?.detailActivity.toString()
@@ -82,6 +101,9 @@ class DiscoverDetailFragment : Fragment() {
                         binding.tvLocation.text = "Location: ${it.data?.data?.location.toString()}"
                         binding.tvEmailContact.text = "Email Contact: ${it.data?.data?.organization?.contactEmail.toString()}"
                         binding.tvPhoneContact.text = "Phone Contact: ${it.data?.data?.organization?.contactPhone.toString()}"
+                        binding.btnMoreDetail.setOnClickListener {
+                            navigateToBrowser(urlVolunteer)
+                        }
                     }
                     is BaseResponse.Error -> {
                         Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()

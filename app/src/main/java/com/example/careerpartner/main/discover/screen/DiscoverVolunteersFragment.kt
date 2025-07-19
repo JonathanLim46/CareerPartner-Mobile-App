@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
@@ -46,24 +47,28 @@ class DiscoverVolunteersFragment : Fragment() {
         recyclerView = binding.rvDiscoverVolunteers
 
         viewModel.getVolunteerDataResult.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is BaseResponse.Success -> {
                     discoverData = it.data?.data?.map {
                         DiscoverData(
+                            id = it.id,
                             title = it.title,
                             subTitle = it.description,
                             image = it.imageCover,
                             content = it.description,
-                            status = it.status
+                            status = it.status,
+                            type = "volunteer"
                         )
-                    }?.filter { it.status == "completed" } ?: listOf()
+                    }?.filter { it.status == "open" } ?: listOf()
                     getDataRv()
                 }
+
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
                     discoverData = listOf()
                     getDataRv()
                 }
+
                 else -> {
                     discoverData = listOf()
                     getDataRv()
@@ -74,9 +79,21 @@ class DiscoverVolunteersFragment : Fragment() {
         viewModel.getVolunteerData(requireActivity())
     }
 
-    private fun getDataRv(){
+    private fun getDataRv() {
         adapter = DiscoverDataAdapter(requireContext(), discoverData)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        adapter.onItemClick = {
+            val bundle = Bundle().apply {
+                putInt("detailID", it.id)
+                putString("detail", it.type)
+            }
+            findNavController().navigate(
+                R.id.action_discoverFragment_to_discoverDetailFragment,
+                bundle
+            )
+        }
     }
 }

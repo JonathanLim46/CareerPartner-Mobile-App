@@ -11,7 +11,7 @@ interface VolunteerApi {
     @GET("api/talent/volunteers")
     suspend fun getVolunteerData(@Header("Authorization") token: String): retrofit2.Response<VolunteerResponse>
 
-    @GET("api/talent/volunteer/{id}")
+    @GET("api/talent/volunteers/{id}")
     suspend fun getVolunteerDetail(
         @Header("Authorization") token: String,
         @Path("id") id: Int

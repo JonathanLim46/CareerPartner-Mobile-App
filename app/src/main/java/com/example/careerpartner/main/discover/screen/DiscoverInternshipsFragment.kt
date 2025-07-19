@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
@@ -51,11 +52,13 @@ class DiscoverInternshipsFragment : Fragment() {
                 is BaseResponse.Success -> {
                     discoverData = it.data?.data?.map {
                         DiscoverData(
+                            id = it.id,
                             title = it.title,
                             subTitle = it.location,
                             image = it.imageCover,
                             content = "Status: ${it.status}",
-                            status = it.status
+                            status = it.status,
+                            type = "internship"
                         )
                     }?.filter { it.status == "open" } ?: listOf()
                     getDataRv()
@@ -79,5 +82,13 @@ class DiscoverInternshipsFragment : Fragment() {
         adapter = DiscoverDataAdapter(requireActivity(),discoverData)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        adapter.onItemClick = {
+            val bundle = Bundle().apply {
+                putString("detail", it.type)
+                putInt("detailID", it.id)
+            }
+            findNavController().navigate(R.id.action_discoverFragment_to_discoverDetailFragment, bundle)
+        }
     }
 }
