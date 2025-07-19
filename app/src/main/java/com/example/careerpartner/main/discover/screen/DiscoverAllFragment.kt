@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerpartner.R
@@ -59,17 +60,27 @@ class DiscoverAllFragment : Fragment() {
     private fun setupInternshipsVolunteerData(){
         viewModelInternship.getInternshipsDataResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.rvDiscoverAll.visibility = View.GONE
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                    binding.shimmerLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     internshipsData = it.data?.data?.map {
                         DiscoverData(
+                            id = it.id,
                             title = it.title,
                             subTitle = it.location,
                             image = it.imageCover,
                             content = "Status: ${it.status}",
-                            status = it.status
+                            status = it.status,
+                            type = "internship"
                         )
                     }?.filter { it.status == "open" } ?: listOf()
                     updateRv()
+                    binding.rvDiscoverAll.visibility = View.VISIBLE
+                    binding.shimmerLayout.stopShimmer()
+                    binding.shimmerLayout.visibility = View.GONE
                 }
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
@@ -88,11 +99,13 @@ class DiscoverAllFragment : Fragment() {
                 is BaseResponse.Success -> {
                     volunteersData = it.data?.data?.map {
                         DiscoverData(
+                            id = it.id,
                             title = it.title,
                             subTitle = it.description,
                             image = it.imageCover,
                             content = it.description,
-                            status = it.status
+                            status = it.status,
+                            type = "volunteer"
                         )
                     }?.filter { it.status == "open" } ?: listOf()
                     updateRv()
@@ -122,5 +135,13 @@ class DiscoverAllFragment : Fragment() {
         adapter = DiscoverDataAdapter(requireContext(),discoverData)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        adapter.onItemClick = {
+            val bundle = Bundle().apply {
+                putString("detail", it.type)
+                putInt("detailID", it.id)
+            }
+            findNavController().navigate(R.id.action_discoverFragment_to_discoverDetailFragment, bundle)
+        }
     }
 }

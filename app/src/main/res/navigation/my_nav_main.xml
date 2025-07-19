@@ -51,6 +51,9 @@
             android:name="tabIndex"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_discoverFragment_to_discoverDetailFragment"
+            app:destination="@id/discoverDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

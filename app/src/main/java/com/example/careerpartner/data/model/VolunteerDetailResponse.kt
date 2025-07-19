@@ -16,6 +16,7 @@ data class VolunteerDetailData(
     @SerializedName("image_cover") val imageCover: String,
     @SerializedName("location") val location: String,
     @SerializedName("status") val status: String,
+    @SerializedName("link") val link: String,
     @SerializedName("organization") val organization: OrganizationVolunteer
 )
 
