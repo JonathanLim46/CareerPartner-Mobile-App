@@ -57,7 +57,9 @@ class InternshipViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun getInternshipDetail(activity: Activity, id: Int) {
+        _getInternshipsDetailResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            kotlinx.coroutines.delay(500)
             val response = internshipRepo.getInternshipDetail(
                 token = "Bearer ${
                     SessionManager.getToken(activity)

@@ -50,6 +50,11 @@ class DiscoverDetailFragment : Fragment() {
 
             viewModelIntern.getInternshipsDetailResult.observe(viewLifecycleOwner) {
                 when (it) {
+                    is BaseResponse.Loading -> {
+                        binding.cardLayoutDetailDiscover.visibility = View.GONE
+                        binding.shimmerLayout.visibility = View.VISIBLE
+                        binding.shimmerLayout.startShimmer()
+                    }
                     is BaseResponse.Success -> {
                         val url = it.data?.data?.company?.website.toString()
                         binding.tvDetailTitle.text = it.data?.data?.title.toString()
@@ -76,6 +81,9 @@ class DiscoverDetailFragment : Fragment() {
                         binding.btnMoreDetail.setOnClickListener {
                             navigateToBrowser(url)
                         }
+                        binding.cardLayoutDetailDiscover.visibility = View.VISIBLE
+                        binding.shimmerLayout.stopShimmer()
+                        binding.shimmerLayout.visibility = View.GONE
                     }
                     is BaseResponse.Error -> {
                         Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
@@ -92,6 +100,11 @@ class DiscoverDetailFragment : Fragment() {
 
             viewModelVolunteer.getVolunteerDetailResult.observe(viewLifecycleOwner) {
                 when (it) {
+                    is BaseResponse.Loading -> {
+                        binding.cardLayoutDetailDiscover.visibility = View.GONE
+                        binding.shimmerLayout.visibility = View.VISIBLE
+                        binding.shimmerLayout.startShimmer()
+                    }
                     is BaseResponse.Success -> {
                         val urlVolunteer = it.data?.data?.link.toString()
                         binding.tvDetailTitle.text = it.data?.data?.title.toString()
@@ -104,6 +117,9 @@ class DiscoverDetailFragment : Fragment() {
                         binding.btnMoreDetail.setOnClickListener {
                             navigateToBrowser(urlVolunteer)
                         }
+                        binding.cardLayoutDetailDiscover.visibility = View.VISIBLE
+                        binding.shimmerLayout.stopShimmer()
+                        binding.shimmerLayout.visibility = View.GONE
                     }
                     is BaseResponse.Error -> {
                         Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()

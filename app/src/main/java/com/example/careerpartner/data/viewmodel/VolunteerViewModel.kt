@@ -54,7 +54,9 @@ class VolunteerViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun getVolunteerDetail(activity: Activity, id: Int) {
+        _getVolunteerDetailResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(500)
             val response = volunteerRepo.getVolunteerDetail(
                 token = "Bearer ${
                     SessionManager.getToken(activity)
