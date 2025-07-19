@@ -48,6 +48,11 @@ class DiscoverVolunteersFragment : Fragment() {
 
         viewModel.getVolunteerDataResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.rvDiscoverVolunteers.visibility = View.GONE
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                    binding.shimmerLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     discoverData = it.data?.data?.map {
                         DiscoverData(
@@ -61,6 +66,9 @@ class DiscoverVolunteersFragment : Fragment() {
                         )
                     }?.filter { it.status == "open" } ?: listOf()
                     getDataRv()
+                    binding.rvDiscoverVolunteers.visibility = View.VISIBLE
+                    binding.shimmerLayout.stopShimmer()
+                    binding.shimmerLayout.visibility = View.GONE
                 }
 
                 is BaseResponse.Error -> {

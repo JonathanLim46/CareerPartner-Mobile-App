@@ -49,6 +49,11 @@ class DiscoverInternshipsFragment : Fragment() {
 
         viewModel.getInternshipsDataResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.rvDiscoverInternships.visibility = View.GONE
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                    binding.shimmerLayout.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     discoverData = it.data?.data?.map {
                         DiscoverData(
@@ -62,6 +67,9 @@ class DiscoverInternshipsFragment : Fragment() {
                         )
                     }?.filter { it.status == "open" } ?: listOf()
                     getDataRv()
+                    binding.rvDiscoverInternships.visibility = View.VISIBLE
+                    binding.shimmerLayout.stopShimmer()
+                    binding.shimmerLayout.visibility = View.GONE
                 }
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
