@@ -3,6 +3,7 @@ import org.gradle.kotlin.dsl.annotationProcessor
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services") version "4.4.3"
 }
 
 android {
@@ -78,6 +79,9 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-beta01")
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
+    implementation("com.google.firebase:firebase-ai")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

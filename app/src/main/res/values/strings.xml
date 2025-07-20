@@ -98,4 +98,8 @@
     <string name="faq_two_desc">To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals.</string>
     <string name="faq_three">Is support available through a Live Chat Bot ?</string>"
     <string name="faq_three_desc">To change your selected career path, go to the Settings menu and tap on Career Preferences. From there, choose Edit Career Path and select a new option that aligns with your goals.</string>
+
+    <!-- Chat Bot -->
+    <string name="title_chat_bot">Ask Yoca</string>
+    <string name="subtitle_chat_bot">YOCA is here to help you explore and discover more about career guidance.</string>
 </resources>

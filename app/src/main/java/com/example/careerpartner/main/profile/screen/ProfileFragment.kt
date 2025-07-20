@@ -46,13 +46,11 @@ class ProfileFragment : Fragment() {
         viewmodel.userResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
-                    binding.contentUserLayout.visibility = View.INVISIBLE
+                    binding.contentUserLayout.visibility = View.GONE
+                    binding.shimmerUserLayout.visibility = View.VISIBLE
                     binding.shimmerUserLayout.startShimmer()
                 }
                 is BaseResponse.Success -> {
-                    binding.contentUserLayout.visibility = View.VISIBLE
-                    binding.shimmerUserLayout.stopShimmer()
-                    binding.shimmerUserLayout.visibility = View.GONE
                     binding.tvProfileName.text = it.data?.data?.talent?.full_name
                     binding.tvProfileLastDegree.text = it.data?.data?.talent?.talent?.currentEducation
                     Glide.with(requireContext())
@@ -60,6 +58,9 @@ class ProfileFragment : Fragment() {
                         .placeholder(R.drawable.img_default_profile)
                         .error(R.drawable.img_default_profile)
                         .into(binding.ivProfilePicture)
+                    binding.contentUserLayout.visibility = View.VISIBLE
+                    binding.shimmerUserLayout.stopShimmer()
+                    binding.shimmerUserLayout.visibility = View.INVISIBLE
                 }
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg.toString(), Toast.LENGTH_SHORT).show()
