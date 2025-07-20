@@ -14,6 +14,7 @@ import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsResponse
+import com.example.careerpartner.data.model.UserLearningPathResponse
 import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserSkillsAllRespond
@@ -109,11 +110,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     val _userAddSkillsResult: MutableLiveData<Event<BaseResponse<UserSkillsResponse>>> =
         MutableLiveData()
-    val userAddSkillsResult: LiveData<Event<BaseResponse<UserSkillsResponse>>> = _userAddSkillsResult
+    val userAddSkillsResult: LiveData<Event<BaseResponse<UserSkillsResponse>>> =
+        _userAddSkillsResult
 
     val _userGetSkillsResult: MutableLiveData<BaseResponse<UserSkillsAllRespond>> =
         MutableLiveData()
     val userGetSkillsResult: LiveData<BaseResponse<UserSkillsAllRespond>> = _userGetSkillsResult
+
+    val _userLearningPathsResult: MutableLiveData<BaseResponse<UserLearningPathResponse>> =
+        MutableLiveData()
+    val userLearningPathsResult: LiveData<BaseResponse<UserLearningPathResponse>> =
+        _userLearningPathsResult
 
     fun getTalentData(activity: Activity) {
         _userResult.value = BaseResponse.Loading()
@@ -722,6 +729,31 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 Log.e("Skills".javaClass.name, e.message, e)
             } catch (e: Exception) {
                 Log.e("Skills".javaClass.name, e.message, e)
+            }
+        }
+    }
+
+    // Learning Paths
+
+    fun getLearningPaths(activity: Activity) {
+        viewModelScope.launch {
+            val responseEducation =
+                userRepo.getLearningPaths(token = "Bearer ${SessionManager.getToken(activity)}")
+            try {
+                if (responseEducation?.code() == 200) {
+                    _userLearningPathsResult.value = BaseResponse.Success(responseEducation.body())
+                } else {
+                    _userLearningPathsResult.value =
+                        BaseResponse.Error("Check your internet connection")
+                }
+            } catch (e: ConnectException) {
+                _userLearningPathsResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (e: SocketTimeoutException) {
+                _userLearningPathsResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _userLearningPathsResult.value = BaseResponse.Error("Exception occurred")
             }
         }
     }

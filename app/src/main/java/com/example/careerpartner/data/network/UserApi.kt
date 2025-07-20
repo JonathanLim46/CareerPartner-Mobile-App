@@ -8,6 +8,7 @@ import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsResponse
+import com.example.careerpartner.data.model.UserLearningPathResponse
 import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserSkillsAllRespond
 import com.example.careerpartner.data.model.UserSkillsRequest
@@ -162,6 +163,11 @@ interface UserApi {
         @Header("Authorization") token: String,
         @Path(value = "id") id: Int
     ): retrofit2.Response<UserUpdateResponse>
+
+    @GET("api/talent/learning-paths")
+    suspend fun getLearningPaths(
+        @Header("Authorization") token: String
+    ): retrofit2.Response<UserLearningPathResponse>
 
     companion object {
         fun getApi(): UserApi? {

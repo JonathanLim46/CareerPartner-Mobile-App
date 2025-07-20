@@ -8,6 +8,7 @@ import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsResponse
+import com.example.careerpartner.data.model.UserLearningPathResponse
 import com.example.careerpartner.data.model.UserProjectsResponse
 import com.example.careerpartner.data.model.UserSkillsAllRespond
 import com.example.careerpartner.data.model.UserSkillsRequest
@@ -262,5 +263,10 @@ class UserRepository {
 
     suspend fun deleteSkillData(token: String, id: Int): retrofit2.Response<UserUpdateResponse>? {
         return UserApi.getApi()?.deleteSkillData(token = token, id = id)
+    }
+
+    // Learning Paths
+    suspend fun getLearningPaths(token: String): retrofit2.Response<UserLearningPathResponse>? {
+        return UserApi.getApi()?.getLearningPaths(token = token)
     }
 }
