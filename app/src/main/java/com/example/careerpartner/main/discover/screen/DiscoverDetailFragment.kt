@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.careerpartner.R
 import com.example.careerpartner.data.network.BaseResponse
 import com.example.careerpartner.data.viewmodel.InternshipViewModel
@@ -81,6 +82,11 @@ class DiscoverDetailFragment : Fragment() {
                         binding.btnMoreDetail.setOnClickListener {
                             navigateToBrowser(url)
                         }
+                        Glide.with(requireActivity())
+                            .load(it.data?.data?.imageCover ?: R.drawable.default_image_data)
+                            .placeholder(R.drawable.default_image_data)
+                            .error(R.drawable.default_image_data)
+                            .into(binding.ivDetailPhoto)
                         binding.cardLayoutDetailDiscover.visibility = View.VISIBLE
                         binding.shimmerLayout.stopShimmer()
                         binding.shimmerLayout.visibility = View.GONE
@@ -117,6 +123,11 @@ class DiscoverDetailFragment : Fragment() {
                         binding.btnMoreDetail.setOnClickListener {
                             navigateToBrowser(urlVolunteer)
                         }
+                        Glide.with(requireActivity())
+                            .load(it.data?.data?.imageCover ?: R.drawable.default_image_data)
+                            .placeholder(R.drawable.default_image_data)
+                            .error(R.drawable.default_image_data)
+                            .into(binding.ivDetailPhoto)
                         binding.cardLayoutDetailDiscover.visibility = View.VISIBLE
                         binding.shimmerLayout.stopShimmer()
                         binding.shimmerLayout.visibility = View.GONE

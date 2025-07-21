@@ -47,9 +47,9 @@ class DiscoverDataAdapter(private val context: Context,private var discoverData 
         holder.contentCard.text = item.content
 
         Glide.with(context)
-            .load(item.image ?: R.drawable.img_default_profile)
-            .placeholder(R.drawable.dummyimg)
-            .error(R.drawable.dummyimg)
+            .load(item.image ?: R.drawable.default_image_data)
+            .placeholder(R.drawable.default_image_data)
+            .error(R.drawable.default_image_data)
             .into(holder.imageCard)
     }
 

@@ -39,6 +39,8 @@ class HomeFragment : Fragment() {
     private lateinit var adapterVolunteer: HomeAdapter
     private lateinit var internshipsData: List<HomeData>
     private lateinit var volunteerData: List<HomeData>
+    private var pathCourseTotal: Int = 0
+    private var pathCourseDone: Int = 0
 
     private val viewModelIntern: InternshipViewModel by activityViewModels<InternshipViewModel>()
     private val viewModelVolunteer: VolunteerViewModel by activityViewModels<VolunteerViewModel>()
@@ -71,6 +73,7 @@ class HomeFragment : Fragment() {
         observeUserData()
         observeInternshipsData()
         observeVolunteersData()
+        observePathCourse()
 
         binding.tvViewMoreIntern.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_discoverFragment)
@@ -85,10 +88,9 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.getTalentData(requireActivity())
+        viewModel.getLearningPaths(requireActivity())
         viewModelIntern.getInternshipsData(requireActivity())
         viewModelVolunteer.getVolunteerData(requireActivity())
-        setupPathCourse()
-
     }
 
     private fun internshipsData() {
@@ -136,21 +138,44 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupPathCourse() {
-        val pathCourse = arrayOf("HTML", "CSS", "JS", "PHP", "LARAVEL")
-        val currentCourse = "CSS"
-        progressBar.max = pathCourse.size
-        currentProgress = pathCourse.indexOf(currentCourse) + 1
-        progressBar.progress = currentProgress
+        progressBar.max = pathCourseTotal
+        progressBar.progress = pathCourseDone
 
+        Log.d("HomeFragment", "pathCourseTotal: $pathCourseTotal | pathCourseDone: $pathCourseDone")
         val colorResId = when {
-            currentProgress <= pathCourse.size / 3 -> R.color.red
-            currentProgress <= pathCourse.size * 2 / 3 -> R.color.orange
+            pathCourseDone <= pathCourseTotal / 3 -> R.color.red
+            pathCourseDone <= pathCourseTotal * 2 / 3 -> R.color.orange
             else -> R.color.green
         }
         val color = ContextCompat.getColor(requireContext(), colorResId)
         progressBar.progressTintList = ColorStateList.valueOf(color)
 
-        binding.tvProgress.text = "$currentProgress/${progressBar.max} steps"
+        binding.tvProgress.text = "$pathCourseDone/${progressBar.max} steps"
+    }
+
+    private fun observePathCourse(){
+        viewModel.userLearningPathsResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Success -> {
+                    if (it.data?.data?.isNotEmpty() == true) {
+                        pathCourseTotal = it.data.data.size
+                        binding.tvHomeCardCourseTitle.text = it.data.data.firstOrNull() { it.isDone == 0 }?.title
+                        pathCourseDone = it.data.data.filter { it.isDone == 1 }.size
+                        setupPathCourse()
+                    }
+                }
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(
+                        requireActivity(),
+                        "Something went wrong, please try again !",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun observeUserData(){

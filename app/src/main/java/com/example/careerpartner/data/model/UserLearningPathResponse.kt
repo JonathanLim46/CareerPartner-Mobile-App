@@ -12,5 +12,5 @@ data class UserLearningPathData(
     @SerializedName("title") val title: String,
     @SerializedName("source") val source: String,
     @SerializedName("url") val url: String,
-    @SerializedName("is_done") val isDone: String
+    @SerializedName("is_done") val isDone: Int
 )

@@ -38,8 +38,8 @@ class HomeAdapter(private val context: Context, private val homeData: List<HomeD
         val item = homeData[position]
         holder.title.text = item.title
         holder.subTitle.text = item.subTitle
-        Glide.with(context).load(item.image ?: R.drawable.img_default_profile).placeholder(R.drawable.dummyimg)
-            .error(R.drawable.dummyimg).skipMemoryCache(true).into(holder.image)
+        Glide.with(context).load(item.image ?: R.drawable.default_image_data).placeholder(R.drawable.default_image_data)
+            .error(R.drawable.default_image_data).skipMemoryCache(true).into(holder.image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

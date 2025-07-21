@@ -106,18 +106,6 @@
             android:paddingVertical="20dp"
             android:background="@drawable/button_gradient"
             >
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivLogoModuleCourse"
-                android:layout_width="92dp"
-                android:layout_height="96dp"
-                android:src="@drawable/dummyimg"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/RoundedSquare"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
             <TextView
                 android:id="@+id/tvHomeCardModule"
                 android:layout_width="0dp"
@@ -127,8 +115,8 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginStart="12dp"
-                app:layout_constraintStart_toEndOf="@+id/ivLogoModuleCourse"
-                app:layout_constraintTop_toTopOf="@+id/ivLogoModuleCourse"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 />
 
             <TextView
@@ -156,8 +144,10 @@
                 android:maxLines="1"
                 android:textStyle="normal"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintStart_toStartOf="@+id/tvHomeCardModule"
                 app:layout_constraintTop_toBottomOf="@+id/tvHomeCardSubModule"
+                app:layout_constraintEnd_toEndOf="parent"
                 />
 
             <ProgressBar
