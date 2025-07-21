@@ -56,6 +56,11 @@ class ProfileMyCareerFragment : Fragment() {
         observeUserData()
         observeLearningPathsData()
         observeUpdateLearningPath()
+        observeGenerateCareer()
+
+        binding.ivRefreshCareer.setOnClickListener {
+            viewModelUser.generateProfileCareer(requireActivity())
+        }
 
 
     }
@@ -169,6 +174,24 @@ class ProfileMyCareerFragment : Fragment() {
                     else -> {
                         Toast.makeText(requireContext(), "Something went wrong, please try again", Toast.LENGTH_SHORT).show()
                     }
+                }
+            }
+        }
+    }
+
+    private fun observeGenerateCareer(){
+        viewModelUser.userGenerateCareerResult.observe(viewLifecycleOwner){
+            when(it){
+                is BaseResponse.Success -> {
+                    Toast.makeText(requireContext(), "Career Generated", Toast.LENGTH_SHORT).show()
+                    viewModelUser.getTalentData(requireActivity())
+                    viewModelUser.getLearningPaths(requireActivity())
+                }
+                is BaseResponse.Error -> {
+                    Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(requireContext(), "Something went wrong, please try again", Toast.LENGTH_SHORT).show()
                 }
             }
         }
