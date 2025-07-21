@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.careerpartner"
+    namespace = "com.fufufafaAI.careerpartner"
     compileSdk = 35
 
     buildFeatures {
@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.careerpartner"
+        applicationId = "com.fufufafaAI.careerpartner"
         minSdk = 33
         targetSdk = 35
         versionCode = 1
