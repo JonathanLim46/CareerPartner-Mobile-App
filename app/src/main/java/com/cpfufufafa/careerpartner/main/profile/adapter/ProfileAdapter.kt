@@ -53,11 +53,9 @@ class ProfileAdapter(private val profileData: List<ProfileCareerData>) : Recycle
         holder.number.text = (position + 1).toString()
 
         if (item.isDone == 1) {
-            holder.btnDone.text = "Selesai"
-            holder.btnDone.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
+            holder.btnDone.text = "Done"
         } else {
-            holder.btnDone.text = "Mark Down"
-            holder.btnDone.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.primary_color))
+            holder.btnDone.text = "Mark Done"
         }
     }
 

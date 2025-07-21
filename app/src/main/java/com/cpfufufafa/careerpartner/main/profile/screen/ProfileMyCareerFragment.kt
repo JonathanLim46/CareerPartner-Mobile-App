@@ -29,7 +29,6 @@ class ProfileMyCareerFragment : Fragment() {
     private lateinit var adapter: ProfileAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var profileData: List<ProfileCareerData>
-    private lateinit var rawData: List<List<String>>
 
     private val viewModelUser: UserViewModel by activityViewModels<UserViewModel>()
 
@@ -54,6 +53,38 @@ class ProfileMyCareerFragment : Fragment() {
         viewModelUser.getTalentData(requireActivity())
         viewModelUser.getLearningPaths(requireActivity())
 
+        observeUserData()
+        observeLearningPathsData()
+        observeUpdateLearningPath()
+
+
+    }
+
+    private fun setupDataRv() {
+        adapter = ProfileAdapter(profileData)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+
+        adapter.onItemClick = {
+            var url = it.url.orEmpty()
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://$url"
+            }
+            val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+            startActivity(intent)
+        }
+
+        adapter.onItemDone = {
+            if (it.isDone == 0){
+                viewModelUser.updateLearningPath(requireActivity(), id = it.id, 1)
+            } else {
+                viewModelUser.updateLearningPath(requireActivity(), id = it.id, 0)
+            }
+        }
+    }
+
+    private fun observeUserData(){
         viewModelUser.userResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -89,7 +120,9 @@ class ProfileMyCareerFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun observeLearningPathsData(){
         viewModelUser.userLearningPathsResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Success -> {
@@ -120,26 +153,23 @@ class ProfileMyCareerFragment : Fragment() {
         }
     }
 
-    private fun setupDataRv() {
-        adapter = ProfileAdapter(profileData)
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+    private fun observeUpdateLearningPath(){
+        viewModelUser.userUpdateLearningPathsResult.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let {
+                when (it) {
+                    is BaseResponse.Success -> {
+                        Toast.makeText(requireContext(), "Path Course Updated", Toast.LENGTH_SHORT).show()
+                        viewModelUser.getLearningPaths(requireActivity())
+                    }
 
-        adapter.onItemClick = {
-            var url = it.url.orEmpty()
-            if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                url = "http://$url"
-            }
-            val intent = Intent(Intent.ACTION_VIEW, url.toUri())
-            startActivity(intent)
-        }
+                    is BaseResponse.Error -> {
+                        Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT).show()
+                    }
 
-        adapter.onItemDone = {
-            if (it.isDone == 0){
-                viewModelUser.updateLearningPath(requireActivity(), id = it.id, 1)
-            } else {
-                viewModelUser.updateLearningPath(requireActivity(), id = it.id, 0)
+                    else -> {
+                        Toast.makeText(requireContext(), "Something went wrong, please try again", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }
