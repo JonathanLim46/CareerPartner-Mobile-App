@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    tools:context=".main.home.screen.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCourseProgressShimmer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/shimmerColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="20dp"
+            android:background="@color/shimmerColor"
+            >
+            <TextView
+                android:id="@+id/tvHomeCardModuleShimmer"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:background="@color/shimmerColor"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvHomeCardSubModuleShimmer"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/shimmerColor"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/tvHomeCardModuleShimmer"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeCardModuleShimmer"
+                />
+
+            <TextView
+                android:id="@+id/tvHomeCardCourseTitleShimmer"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/shimmerColor"
+                android:maxLength="40"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textStyle="normal"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintStart_toStartOf="@+id/tvHomeCardModuleShimmer"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomeCardSubModuleShimmer"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

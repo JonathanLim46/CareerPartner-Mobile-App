@@ -156,6 +156,11 @@ class HomeFragment : Fragment() {
     private fun observePathCourse(){
         viewModel.userLearningPathsResult.observe(viewLifecycleOwner) {
             when (it) {
+                is BaseResponse.Loading -> {
+                    binding.cardCourseProgress.visibility = View.GONE
+                    binding.shimmerProgressCourse.visibility = View.VISIBLE
+                    binding.shimmerProgressCourse.startShimmer()
+                }
                 is BaseResponse.Success -> {
                     if (it.data?.data?.isNotEmpty() == true) {
                         pathCourseTotal = it.data.data.size
@@ -163,6 +168,9 @@ class HomeFragment : Fragment() {
                         pathCourseDone = it.data.data.filter { it.isDone == 1 }.size
                         setupPathCourse()
                     }
+                    binding.cardCourseProgress.visibility = View.VISIBLE
+                    binding.shimmerProgressCourse.stopShimmer()
+                    binding.shimmerProgressCourse.visibility = View.GONE
                 }
                 is BaseResponse.Error -> {
                     Toast.makeText(requireActivity(), it.msg, Toast.LENGTH_SHORT).show()

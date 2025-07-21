@@ -748,7 +748,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     // Learning Paths
 
     fun getLearningPaths(activity: Activity) {
+        _userLearningPathsResult.value = BaseResponse.Loading()
         viewModelScope.launch {
+            delay(500)
             val responseEducation =
                 userRepo.getLearningPaths(token = "Bearer ${SessionManager.getToken(activity)}")
             try {

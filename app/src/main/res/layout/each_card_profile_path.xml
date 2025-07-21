@@ -90,7 +90,7 @@
                 android:id="@+id/btnOpenSource"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Open Source"
+                android:text="Source"
                 android:textColor="@color/black"
                 android:minWidth="120dp"
                 android:minHeight="32dp"
