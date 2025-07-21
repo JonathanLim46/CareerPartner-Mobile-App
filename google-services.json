@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "407984324315",
+    "project_id": "careerpartner-fb729",
+    "storage_bucket": "careerpartner-fb729.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407984324315:android:2af9455965387f6be256fe",
+        "android_client_info": {
+          "package_name": "com.fufufafaAI.careerpartner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQBraSuaAOf4tO6ugShY1hRlxkO_ROHa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
