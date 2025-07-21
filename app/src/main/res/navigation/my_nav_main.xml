@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.fufufafaAI.careerpartner.main.home.screen.HomeFragment"
+        android:name="com.cpfufufafa.careerpartner.main.home.screen.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="com.fufufafaAI.careerpartner.main.discover.screen.DiscoverFragment"
+        android:name="com.cpfufufafa.careerpartner.main.discover.screen.DiscoverFragment"
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.ProfileFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.SettingsFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -92,22 +92,22 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.AccountFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/supportHelpFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.SupportHelpFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.SupportHelpFragment"
         android:label="fragment_support_help"
         tools:layout="@layout/fragment_support_help" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.AboutFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/resetAccountPreferenceFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.ResetAccountPreferenceFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.ResetAccountPreferenceFragment"
         android:label="fragment_reset_account_preference"
         tools:layout="@layout/fragment_reset_account_preference" >
         <action
@@ -119,17 +119,17 @@
     </fragment>
     <fragment
         android:id="@+id/resetSkillsFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.ResetSkillsFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.ResetSkillsFragment"
         android:label="fragment_reset_skills"
         tools:layout="@layout/fragment_reset_skills" />
     <fragment
         android:id="@+id/resetInterestFragment"
-        android:name="com.fufufafaAI.careerpartner.main.profile.screen.ResetInterestFragment"
+        android:name="com.cpfufufafa.careerpartner.main.profile.screen.ResetInterestFragment"
         android:label="fragment_reset_interest"
         tools:layout="@layout/fragment_reset_interest" />
     <fragment
         android:id="@+id/discoverDetailFragment"
-        android:name="com.fufufafaAI.careerpartner.main.discover.screen.DiscoverDetailFragment"
+        android:name="com.cpfufufafa.careerpartner.main.discover.screen.DiscoverDetailFragment"
         android:label="fragment_discover_detail"
         tools:layout="@layout/fragment_discover_detail" >
         <argument
@@ -141,7 +141,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatBotFragment"
-        android:name="com.fufufafaAI.careerpartner.main.home.screen.ChatBotFragment"
+        android:name="com.cpfufufafa.careerpartner.main.home.screen.ChatBotFragment"
         android:label="fragment_chat_bot"
         tools:layout="@layout/fragment_chat_bot" />
 </navigation>
