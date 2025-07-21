@@ -9,8 +9,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.careerpartner.data.model.UserAchievementsRequest
 import com.example.careerpartner.data.model.UserAchievementsResponse
+import com.example.careerpartner.data.model.UserCareerGenerationResponse
 import com.example.careerpartner.data.model.UserEducationRequest
 import com.example.careerpartner.data.model.UserEducationResponse
+import com.example.careerpartner.data.model.UserGenerateLearningPathsResponse
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsResponse
@@ -121,6 +123,16 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData()
     val userLearningPathsResult: LiveData<BaseResponse<UserLearningPathResponse>> =
         _userLearningPathsResult
+
+    val _userGenerateCareerResult: MutableLiveData<BaseResponse<UserCareerGenerationResponse>> =
+        MutableLiveData()
+    val userGenerateCareerResult: LiveData<BaseResponse<UserCareerGenerationResponse>> =
+        _userGenerateCareerResult
+
+    val _userGenerateLearningPathsResult: MutableLiveData<BaseResponse<UserGenerateLearningPathsResponse>> =
+        MutableLiveData()
+    val userGenerateLearningPathsResult: LiveData<BaseResponse<UserGenerateLearningPathsResponse>> =
+        _userGenerateLearningPathsResult
 
     fun getTalentData(activity: Activity) {
         _userResult.value = BaseResponse.Loading()
@@ -754,6 +766,53 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     BaseResponse.Error("Request timed out. Please try again.")
             } catch (e: Exception) {
                 _userLearningPathsResult.value = BaseResponse.Error("Exception occurred")
+            }
+        }
+    }
+
+    fun generateLearningPaths(activity: Activity) {
+        viewModelScope.launch {
+            val response =
+                userRepo.postLearningPaths(token = "Bearer ${SessionManager.getToken(activity)}")
+            try {
+                if (response?.code() == 200) {
+                    _userGenerateLearningPathsResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _userGenerateLearningPathsResult.value =
+                        BaseResponse.Error("Check your internet connection")
+                }
+            } catch (e: ConnectException) {
+                _userGenerateLearningPathsResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (e: SocketTimeoutException) {
+                _userGenerateLearningPathsResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _userGenerateLearningPathsResult.value = BaseResponse.Error("Exception occurred")
+            }
+        }
+    }
+
+    fun generateProfileCareer(activity: Activity) {
+        viewModelScope.launch {
+            val response =
+                userRepo.generateProfileCareer(token = "Bearer ${SessionManager.getToken(activity)}")
+            try {
+                if (response?.code() == 200) {
+                    _userGenerateCareerResult.value = BaseResponse.Success(response.body())
+                    generateLearningPaths(activity)
+                } else {
+                    _userGenerateCareerResult.value =
+                        BaseResponse.Error("Check your internet connection")
+                }
+            } catch (e: ConnectException) {
+                _userGenerateCareerResult.value =
+                    BaseResponse.Error("Unable to connect to the server. Please check your internet connection.")
+            } catch (e: SocketTimeoutException) {
+                _userGenerateCareerResult.value =
+                    BaseResponse.Error("Request timed out. Please try again.")
+            } catch (e: Exception) {
+                _userGenerateCareerResult.value = BaseResponse.Error("Exception occurred")
             }
         }
     }

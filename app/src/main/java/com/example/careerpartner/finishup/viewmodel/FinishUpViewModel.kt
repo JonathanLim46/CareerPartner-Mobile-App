@@ -124,11 +124,7 @@ class FinishUpViewModel(application: Application) : AndroidViewModel(application
                     Toast.makeText(activity, "Berhasil upload semua data", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    Toast.makeText(
-                        activity,
-                        "Sebagian data gagal dikirim ($totalSuccess/$totalItems)",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Log.e("Finish Up End", "Sebagian data gagal dikirim ($totalSuccess/$totalItems")
                 }
             } finally {
                 _isLoading.value = false

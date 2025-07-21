@@ -25,6 +25,7 @@ data class Talent(
     @SerializedName("description") val description: String,
     @SerializedName("expected_salary") val expectedSalary: String,
     @SerializedName("date_of_birth") val dataOfBirth: String,
+    @SerializedName("job_opportunity") val jobOpportunity: String,
     @SerializedName("skills") val skills: List<SkillData>,
     @SerializedName("experiences") val experiences: List<ExperienceData>,
     @SerializedName("projects") val projects: List<ProjectData>,

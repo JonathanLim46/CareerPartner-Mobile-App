@@ -2,9 +2,11 @@ package com.example.careerpartner.data.repository
 
 import com.example.careerpartner.data.model.UserAchievementsRequest
 import com.example.careerpartner.data.model.UserAchievementsResponse
+import com.example.careerpartner.data.model.UserCareerGenerationResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
+import com.example.careerpartner.data.model.UserGenerateLearningPathsResponse
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsResponse
@@ -268,5 +270,14 @@ class UserRepository {
     // Learning Paths
     suspend fun getLearningPaths(token: String): retrofit2.Response<UserLearningPathResponse>? {
         return UserApi.getApi()?.getLearningPaths(token = token)
+    }
+
+    suspend fun postLearningPaths(token: String): retrofit2.Response<UserGenerateLearningPathsResponse>? {
+        return UserApi.getApi()?.postLearningPaths(token = token)
+    }
+
+    // Profile Career
+    suspend fun generateProfileCareer(token: String): retrofit2.Response<UserCareerGenerationResponse>? {
+        return UserApi.getApi()?.generateProfileCareer(token = token)
     }
 }

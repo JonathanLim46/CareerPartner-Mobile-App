@@ -2,9 +2,11 @@ package com.example.careerpartner.data.network
 
 import com.example.careerpartner.data.model.UserAchievementsRequest
 import com.example.careerpartner.data.model.UserAchievementsResponse
+import com.example.careerpartner.data.model.UserCareerGenerationResponse
 import com.example.careerpartner.data.model.UserEducationResponse
 import com.example.careerpartner.data.model.UserResponse
 import com.example.careerpartner.data.model.UserEducationRequest
+import com.example.careerpartner.data.model.UserGenerateLearningPathsResponse
 import com.example.careerpartner.data.model.UserInterestsAllRespond
 import com.example.careerpartner.data.model.UserInterestsRequest
 import com.example.careerpartner.data.model.UserInterestsResponse
@@ -168,6 +170,16 @@ interface UserApi {
     suspend fun getLearningPaths(
         @Header("Authorization") token: String
     ): retrofit2.Response<UserLearningPathResponse>
+
+    @POST("/api/talent/learning-path-generation")
+    suspend fun postLearningPaths(
+        @Header("Authorization") token: String
+    ): retrofit2.Response<UserGenerateLearningPathsResponse>
+
+    @POST("api/talent/profile-generation")
+    suspend fun generateProfileCareer(
+        @Header("Authorization") token: String
+    ): retrofit2.Response<UserCareerGenerationResponse>
 
     companion object {
         fun getApi(): UserApi? {

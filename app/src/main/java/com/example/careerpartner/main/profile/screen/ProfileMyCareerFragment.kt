@@ -1,12 +1,14 @@
 package com.example.careerpartner.main.profile.screen
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -68,6 +70,7 @@ class ProfileMyCareerFragment : Fragment() {
                     binding.tvMyCareerGoals.text = it.data?.data?.talent?.talent?.goalCareer
                     binding.tvMyCareerSalary.text = "Expected Salary: $formatSalary"
                     binding.tvMyCareerGoalsDesc.text = it.data?.data?.talent?.talent?.description
+                    binding.tvMyCareerJobOpportunity.text = "Job Opportunity: ${it.data?.data?.talent?.talent?.jobOpportunity}"
                     binding.layoutMyCareer.visibility = View.VISIBLE
                     binding.shimmerLayout.stopShimmer()
                     binding.shimmerLayout.visibility = View.GONE
@@ -93,7 +96,8 @@ class ProfileMyCareerFragment : Fragment() {
                     profileData = it.data?.data?.map {
                         ProfileCareerData(
                             title = it.title,
-                            source = it.url
+                            source = it.source,
+                            url = it.url
                         )
                     } ?: listOf()
                     setupDataRv()
@@ -123,5 +127,14 @@ class ProfileMyCareerFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        adapter.onItemClick = {
+            var url = it.url.orEmpty()
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://$url"
+            }
+            val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+            startActivity(intent)
+        }
     }
 }
