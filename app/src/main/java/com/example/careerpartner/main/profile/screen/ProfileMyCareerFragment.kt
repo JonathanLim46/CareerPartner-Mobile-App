@@ -3,6 +3,7 @@ package com.example.careerpartner.main.profile.screen
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -112,11 +113,7 @@ class ProfileMyCareerFragment : Fragment() {
                 else -> {
                     profileData = listOf()
                     setupDataRv()
-                    Toast.makeText(
-                        requireContext(),
-                        "Something went wrong, please try again",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.e("ProfileMyCareerFragment", "Something went wrong")
                 }
             }
         }
